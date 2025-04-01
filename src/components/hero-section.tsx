@@ -52,10 +52,10 @@ export default function Hero() {
 
                 <ShimmerButton className="shadow-2xl z-10 mt-6 bg-background flex">
                     <div className="relative flex items-center justify-center">
-                        <div className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse mr-2 mt-0.5"></div>
+                        <div className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse mr-2"></div>
                     </div>
-                    <span className="whitespace-pre-wrap text-center font-medium leading-none tracking-tight text-gray-500 dark:text-gray-400 dark:from-white dark:to-slate-900/10 text-sm">
-                        Open to work
+                    <span className="whitespace-pre-wrap text-center font-light leading-none tracking-tighter text-gray-500 dark:text-gray-400 dark:from-white dark:to-slate-900/10 text-xs sm:text-sm">
+                        Available for work
                     </span>
                 </ShimmerButton>
 

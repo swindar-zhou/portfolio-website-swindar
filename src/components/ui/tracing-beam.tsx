@@ -113,7 +113,8 @@ export const TracingBeam = ({
               y2={y2} // set y2 for gradient
             >
               <stop stopColor="#18CCFC" stopOpacity="0"></stop>
-              <stop stopColor="#febf17"></stop>
+              <stop stopColor="#ffd566"></stop>
+              <stop offset="0.225" stopOpacity="0.5" stopColor="#ff82f7"></stop>
               <stop offset="0.325" stopColor="#6344F5"></stop>
               <stop offset="1" stopColor="#4acbff" stopOpacity="0"></stop>
             </motion.linearGradient>

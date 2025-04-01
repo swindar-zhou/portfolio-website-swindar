@@ -28,7 +28,7 @@ import { GlowingEffect } from "./ui/glowing-effect";
 
 export default function Experience() {
     return (
-      <div className="flex rounded-xl flex-col items-start justify-start space-y-4 mb-24">
+      <div className="flex max-h-full flex-col items-start justify-start space-y-4 mb-24">
         {/* Container for heading and content */}
         <div className="w-full max-w-4xl">
 
@@ -51,7 +51,7 @@ export default function Experience() {
                 dolorem sunt expedita veritatis atque. Amet?
               </p>
               <GlowingEffect
-          spread={40}
+          spread={20}
           glow={true}
           disabled={false}
           proximity={64}
