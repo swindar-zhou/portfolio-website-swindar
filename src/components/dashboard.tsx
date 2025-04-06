@@ -3,7 +3,7 @@
 import { Box, Lock, Search, Settings, Sparkles } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
  
-export function Dashboard() {
+export default function Dashboard() {
   return (
     <div className="max-w-4xl">
     <ul className="grid grid-cols-1 grid-rows-none gap-4 sm:p-8 p-0 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">

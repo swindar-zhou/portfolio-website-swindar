@@ -7,7 +7,7 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+// import Link from "next/link";
 // import Image from "next/image";
 import { ModeToggle } from "../theme-toggle";
 import { useTheme } from "next-themes";
@@ -29,7 +29,6 @@ export const FloatingNav = ({
 
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  // const logoSrc = resolvedTheme === "dark" ? "/logo-dark.svg" : "/logo-light.svg";
   const {scrollY } = useScroll();
   const [visible, setVisible] = useState(true);
   const router = useRouter(); // Initialize useRouter
@@ -41,7 +40,6 @@ export const FloatingNav = ({
 
   useMotionValueEvent(scrollY, "change", (current) => {
     
-    // Check if current is not undefined and is a number
     if (typeof current === "number") {
       const previous = scrollY.getPrevious();
       const direction = previous !== undefined ? current - previous : 0;
@@ -57,6 +55,13 @@ export const FloatingNav = ({
       }
     }
   });
+
+  const handleScroll = (id: string) => {
+    const section = document.getElementById(id); // Find the section by its `id`
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the section
+    }
+  };
 
   const handleLogoClick = () => {
     router.push("/"); // Navigate to the home page
@@ -80,7 +85,7 @@ export const FloatingNav = ({
             duration: 0.2,
           }}
           className={cn(
-            "flex max-w-4xl w-full justify-self-center backdrop-blur-lg fixed top-0 sm:top-4 inset-x-0 mx-auto dark:border-white/[0.2] md:rounded-lg dark:bg-background/20 bg-white/30 z-[5000] pr-4 pl-6 py-2 items-center justify-between",
+            "flex max-w-4xl w-full justify-self-center backdrop-blur-lg fixed top-0 sm:top-4 inset-x-0 mx-auto dark:border-white/[0.2] md:rounded-lg dark:bg-background/10 sm:dark:bg-background/20 bg-white/30 z-[5000] pr-4 pl-6 py-2 items-center justify-between",
             className
           )}
           
@@ -98,23 +103,18 @@ export const FloatingNav = ({
   
           {/* Links in the center */}
           <div className="flex space-x-6 ml-auto mr-4">
-            {navItems.map(
-              (
-                navItem: { name: string; link: string; icon?: JSX.Element },
-                idx: number
-              ) => (
-                <Link
-                  key={`link=${idx}`}
-                  href={navItem.link}
-                  className={cn(
-                    "relative font-medium dark:text-neutral-300 items-center flex space-x-1 text-neutral-500 dark:hover:text-neutral-50 hover:text-neutral-700"
-                  )}
-                >
-                  <span className="block sm:hidden">{navItem.icon}</span>
-                  <span className="hidden sm:block text-sm">{navItem.name}</span>
-                </Link>
-              )
-            )}
+          {navItems.map((navItem, idx) => (
+            <button
+              key={`link=${idx}`}
+              onClick={() => handleScroll(navItem.link)} // Call handleScroll with the section `id`
+              className={cn(
+                "relative font-medium dark:text-neutral-400 items-center flex space-x-1 text-neutral-500 dark:hover:text-neutral-50 hover:text-neutral-700"
+              )}
+            >
+              <span className="block sm:hidden">{navItem.icon}</span>
+              <span className="hidden sm:block text-sm">{navItem.name}</span>
+            </button>
+          ))}
           </div>
   
           <div className="flex items-center">
