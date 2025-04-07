@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        meteor: "meteor 5s linear infinite",
+        meteor: "meteor 6s cubic-bezier(0.20, 0.1, 0.30, 1) infinite",
         "shimmer-slide":
         "shimmer-slide var(--speed) ease-in-out infinite alternate",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
@@ -47,12 +47,12 @@ module.exports = {
           },
         },
         wiggle: {
-          "0%": { transform: "rotate(-15deg)" }, // Stronger wiggle at the start
+          "0%": { transform: "rotate(-15deg)" },
           "20%": { transform: "rotate(15deg)" },
           "40%": { transform: "rotate(-10deg)" },
           "60%": { transform: "rotate(10deg)" },
           "80%": { transform: "rotate(-5deg)" },
-          "100%": { transform: "rotate(0deg)" }, // Smoothly return to the original position
+          "100%": { transform: "rotate(0deg)" }, 
         },
       },
     },
