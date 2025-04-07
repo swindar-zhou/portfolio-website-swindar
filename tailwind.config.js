@@ -13,7 +13,7 @@ module.exports = {
         "shimmer-slide":
         "shimmer-slide var(--speed) ease-in-out infinite alternate",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
-        wiggle: "wiggle 0.6s ease-in-out 1",
+        wiggle: "wiggle 0.8s ease-out 1",
       },
       keyframes: {
         meteor: {

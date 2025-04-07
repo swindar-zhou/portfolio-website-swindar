@@ -52,6 +52,9 @@ export const AnimatedLogo = ({
                     duration: 3,
                     ease: "easeInOut",
                 }}
+                style={{
+                    transition:  "stroke 0.5s ease-in-out",
+                }}
             />
         </motion.svg>
     );

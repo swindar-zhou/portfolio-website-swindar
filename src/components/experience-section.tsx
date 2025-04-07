@@ -67,13 +67,13 @@ export default function Experience() {
             alt={`${company} logo`}
             className="h-9 w-9 rounded-md mt-1"
           />
-          <div className="flex flex-col pb-2">
-            <p className="font-bold text-balance text-sm sm:text-base text-neutral-700 dark:text-neutral-50">
+          <div className="flex flex-col mb-2">
+            <p className="font-bold leading-relaxed text-pretty text-sm sm:text-base text-neutral-700 dark:text-neutral-50">
               {role}
               <span className="mx-1"> • </span>
               {company}
             </p>
-            <p className="text-xs text-balance sm:text-sm font-normal text-neutral-500 dark:text-neutral-400 ">
+            <p className="text-[10px] text-balance sm:text-xs font-normal text-neutral-500 dark:text-neutral-400 ">
               {date}
               <span className="mx-0.5"> • </span>
               {location}
