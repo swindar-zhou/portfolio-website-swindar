@@ -43,12 +43,12 @@ export const projectData = [
     type: "Web Application",
     technologies: [ "React", "Javascript", "HTML", "TailwindCSS", "Plaid", "MUI", "MongoDB", "NodeJS", "express"],
     description: "AI integrated personal financial dashboard enabling users to connect multiple accounts and analyze their entire financial landscape.",
-    video: "/bread_box.mp4",
+    video: "/breadbox.mp4",
     links: [
       {
         type: "Source",
         href: "https://github.com",
-        icon: <IconBrandGithub className="size-3" />,
+        icon: <IconBrandGithub className="size-8" />,
       },
     ],
     github: "github.link",
@@ -66,7 +66,7 @@ export const projectData = [
       {
         type: "Source",
         href: "https://github.com",
-        icon: <IconBrandGithub className="size-3" />,
+        icon: <IconBrandGithub className="size-8" />,
       },
     ],
     },
@@ -83,12 +83,12 @@ export const projectData = [
       {
         type: "Source",
         href: "https://github.com",
-        icon: <IconBrandGithub className="size-3" />,
+        icon: <IconBrandGithub className="size-8" />,
       },
       {
         type: "Article",
         href: "https://github.com",
-        icon: <IconWorld className="size-3" />,
+        icon: <IconWorld className="size-8" />,
       },
     ],
   },
@@ -116,7 +116,7 @@ export const navData = [
   },
   {
     name: "Projects",
-    link: "/projects",
+    link: "projects",
     icon: <IconMessage className="subpixel-antialiased h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />
 
   },

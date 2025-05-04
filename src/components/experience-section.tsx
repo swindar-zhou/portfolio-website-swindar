@@ -72,14 +72,14 @@ export default function Experience() {
               <span className="mx-1"> • </span>
               {company}
             </p>
-            <p className="text-[10px] text-balance sm:text-xs md:text-sm font-normal text-zinc-500 dark:text-zinc-400 ">
+            <p className="text-[10px] text-balance sm:text-xs md:text-sm font-normal text-zinc-500 dark:text-accent-foreground ">
               {date}
               <span className="mx-0.5"> • </span>
               {location}
             </p>
           </div>
         </div>
-        <p className="text-left text-sm sm:text-base text-zinc-600 dark:text-zinc-300">
+        <p className="text-left text-sm sm:text-base text-muted-foreground">
           {description}˜
         </p>
         <div className="mt-4 flex flex-row flex-wrap gap-y-2 gap-x-2">

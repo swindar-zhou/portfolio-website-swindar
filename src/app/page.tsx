@@ -29,7 +29,7 @@ export default function Home() {
           </section>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 3} inView>
-          <section id="dashboard">
+          <section id="projects">
             <Projects />
           </section>
         </BlurFade> 
