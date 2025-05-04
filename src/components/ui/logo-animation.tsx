@@ -28,8 +28,8 @@ export const AnimatedLogo = ({
         >
             {/* rectangle for clickable area on the logo */}
             <rect
-                width="150%"
-                height="150%"
+                width="400%"
+                height="400%"
                 fill="transparent"
                 onClick={handleClick}
             />
@@ -55,6 +55,7 @@ export const AnimatedLogo = ({
                 style={{
                     transition:  "stroke 0.5s ease-in-out",
                 }}
+                onClick={handleClick}
             />
         </motion.svg>
     );

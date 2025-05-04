@@ -3,6 +3,7 @@
 import Hero from "@/components/hero-section"
 import Experience from "@/components/experience-section"
 import Dashboard from "@/components/dashboard";
+import Projects from "@/components/project-section"
 import { BlurFade } from "@/components/magicui/blur-fade";
 
 
@@ -25,6 +26,11 @@ export default function Home() {
         <BlurFade delay={BLUR_FADE_DELAY * 3} inView>
           <section id="dashboard">
             <Dashboard />
+          </section>
+        </BlurFade>
+        <BlurFade delay={BLUR_FADE_DELAY * 3} inView>
+          <section id="dashboard">
+            <Projects />
           </section>
         </BlurFade> 
       </div>

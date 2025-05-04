@@ -1,4 +1,4 @@
-import {IconHome, IconUser, IconMessage} from "@tabler/icons-react"
+import {IconHome, IconUser, IconMessage, IconBrandGithub, IconWorld} from "@tabler/icons-react"
 
 export const experienceData = [
   {
@@ -37,30 +37,61 @@ export const experienceData = [
 export const projectData = [
   {
     title: "Bread Box | Personal Finance Analytics Dashboard",
+    href: "asdfasdfds",
+    dates: "Feb 2024 - May 2024",
+    active: false,
     type: "Web Application",
-    description: "ello asdfasdf a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam itaque obcaecati,",
+    technologies: [ "React", "Javascript", "HTML", "TailwindCSS", "Plaid", "MUI", "MongoDB", "NodeJS", "express"],
+    description: "AI integrated personal financial dashboard enabling users to connect multiple accounts and analyze their entire financial landscape.",
     video: "/bread_box.mp4",
-    skills: ["React, NodeJS, Express, MongoDB, Generative AI"],
+    links: [
+      {
+        type: "Source",
+        href: "https://github.com",
+        icon: <IconBrandGithub className="size-3" />,
+      },
+    ],
     github: "github.link",
   },
   {
     title: "SeedPlanter | Gardening Assistant",
+    href: "asdfasdfds",
+    dates: "Feb 2024 - May 2024",
+    active: false,
     type: "Mobile Application",
-    description: "ello asdfasdf a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam itaque obcaecati,",
-    video: "/bread_box.mp4",
-    skills: ["React, NodeJS, Express, MongoDB, Generative AI"],
-    github: "github.link",
-  },
+    technologies: [ "React Native", "Javascript", "Expo", "PerenualAPI", "MongoDB", "NodeJS", "Express"],
+    description: "A unified solution for planters to journal, garden, track planting schedules, and learn about gardening using an AI chatbot.",
+    video: "/SeedPlanter.mp4",
+    links: [
+      {
+        type: "Source",
+        href: "https://github.com",
+        icon: <IconBrandGithub className="size-3" />,
+      },
+    ],
+    },
   {
-    title: "SeedPlanter | Gardening Assistant",
-    type: "Mobile Application",
-    description: "ello asdfasdf a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam itaque obcaecati,",
-    video: "/bread_box.mp4",
-    skills: ["React, NodeJS, Express, MongoDB, Generative AI"],
-    github: "github.link",
-    article: "website.com"
-  }
-
+    title: "Cyfra | Secure Messaging Platform",
+    href: "asdfasdfds",
+    dates: "Feb 2024 - May 2024",
+    active: false,
+    type: "Mobile and Desktop App",
+    technologies: [ "Vue", "Typescript", "HTML", "TailwindCSS", "Tauri", "Rust", "SQL"],
+    description: "Decentralized communication platform with e2e encryption, ensuring user privacy without third party interference.",
+    image: "/cyfra.jpg",
+    links: [
+      {
+        type: "Source",
+        href: "https://github.com",
+        icon: <IconBrandGithub className="size-3" />,
+      },
+      {
+        type: "Article",
+        href: "https://github.com",
+        icon: <IconWorld className="size-3" />,
+      },
+    ],
+  },
 ]
 
 export const contactData = [
