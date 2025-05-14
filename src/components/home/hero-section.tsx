@@ -64,8 +64,8 @@ const handleIconClick = (iconName: string) => {
                                     <div className="absolute h-1.5 w-1.5 rounded-full border-1 border-green-600/80 bg-green-500 animate-ping mr-1.5"></div>
                                     <div className="relative h-1 w-1 rounded-full border-1 border-green-600/80 bg-green-500 animate-pulse mr-1.5"></div>
                                 </div>
-                                <span className="whitespace-pre-wrap text-center font-semibold leading-none text-zinc-500 dark:text-zinc-300 text-[10px] sm:text-xs">
-                                    Open to Work
+                                <span className="whitespace-pre-wrap text-center font-semibold leading-none text-zinc-500 dark:text-zinc-300 text-[10px] sm:text-xs py-1">
+                                    Available
                                 </span>
                             </ShimmerButton>
                                 <div className="flex flex-row items-center justify-center space-x-6">

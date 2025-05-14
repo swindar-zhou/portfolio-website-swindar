@@ -1,8 +1,8 @@
 "use client";
 // import { cn } from "@/lib/utils";
-import { TracingBeam } from "./ui/tracing-beam"
+import { TracingBeam } from "../ui/tracing-beam"
 import Image from "next/image";
-import { experienceData } from "../data/data"
+import { experienceData } from "../../data/data"
 import { BlurFade } from "@/components/magicui/blur-fade";
 
 export default function Experience() {

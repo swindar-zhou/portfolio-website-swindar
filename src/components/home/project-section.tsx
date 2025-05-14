@@ -9,8 +9,8 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { BlurFade } from "./magicui/blur-fade";
-import { projectData } from "../data/data"
+import { BlurFade } from "../magicui/blur-fade";
+import { projectData } from "../../data/data"
 // import Markdown from "react-markdown";
 
 

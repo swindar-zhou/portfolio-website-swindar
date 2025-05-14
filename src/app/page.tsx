@@ -1,9 +1,9 @@
 "use client";
 // import { cn } from "@/lib/utils";
-import Hero from "@/components/hero-section"
-import Experience from "@/components/experience-section"
-import Dashboard from "@/components/dashboard";
-import Projects from "@/components/project-section"
+import Hero from "@/components/home/hero-section"
+import Experience from "@/components/home/experience-section"
+import Dashboard from "@/components/home/dashboard";
+import Projects from "@/components/home/project-section"
 import { BlurFade } from "@/components/magicui/blur-fade";
 
 
