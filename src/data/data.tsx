@@ -1,4 +1,4 @@
-import {IconHome, IconUser, IconMessage, IconBrandGithub, IconWorld, IconBrush, IconBriefcase2, IconLayoutDashboard} from "@tabler/icons-react"
+import {IconHome, IconUser, IconMessage, IconBrandGithub, IconWorld, IconBrush, IconBriefcase2, IconLayoutDashboard, IconBrandLinkedin, IconMail, IconBrandInstagram} from "@tabler/icons-react"
 
 export const experienceData = [
   {
@@ -103,14 +103,32 @@ export const projectData = [
   },
 ]
 
-export const contactData = [
-    {
-        email: "shivypat02@gmail.com",
-        github: "https",
-        linkedIn: "adfa",
-        instagram: "instagram"
-    }
-]
+export const contactLinks = [
+  {
+    href: "mailto:your@email.com",
+    label: "Mail",
+    icon: <IconMail className="h-5 w-5" />,
+    aria: "Email",
+  },
+  {
+    href: "https://www.linkedin.com/in/your-linkedin",
+    label: "LinkedIn",
+    icon: <IconBrandLinkedin className="h-5 w-5" />,
+    aria: "LinkedIn",
+  },
+  {
+    href: "https://github.com/your-github",
+    label: "GitHub",
+    icon: <IconBrandGithub className="h-5 w-5" />,
+    aria: "GitHub",
+  },
+  {
+    href: "https://instagram.com/your-instagram",
+    label: "Instagram",
+    icon: <IconBrandInstagram className="h-5 w-5" />,
+    aria: "Instagram",
+  },
+];
 
 export const navData = [
   {

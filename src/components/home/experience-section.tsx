@@ -31,18 +31,23 @@ export default function Experience() {
           ))}
         </div>
       </TracingBeam>
-      <SectionHeading className="my-8" icon={<IconSchool className="h-5 w-5 text-secondary-foreground" />}>
-        Education
-      </SectionHeading>
-      <ExperienceItem
-        image="/umasslowell_logo.jpg"
-        company="University of Massachusetts, Lowell"
-        role="B.S. in Computer Science, Minor in Mathematics"
-        date="2020 - 2024"
-        description=" "
-        location="Lowell, MA"
-        skills={["C", "C++", "Java", "Python", "JavaScript", "HTML/CSS", "SQL"]}
-      />
+
+      <BlurFade delay={0.15} direction="right" inView>
+        <SectionHeading className="my-8" icon={<IconSchool className="h-5 w-5 text-secondary-foreground" />}>
+          Education
+        </SectionHeading>
+        <ExperienceItem
+          image="/umasslowell_logo.jpg"
+          company="University of Massachusetts, Lowell"
+          role="B.S. in Computer Science, Minor in Mathematics"
+          date="2020 - 2024"
+          description=" "
+          location="Lowell, MA"
+          skills={["C", "C++", "Java", "Python", "JavaScript", "HTML/CSS", "SQL"]}
+        />
+
+      </BlurFade>
+
     </div>
   );
 }

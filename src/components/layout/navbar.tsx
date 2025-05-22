@@ -102,13 +102,13 @@ export const FloatingNav = ({
           </div>
 
           {/* Links in the center */}
-          <div className="flex space-x-6 ml-auto mr-4">
+          <div className="flex gap-6 ml-auto mr-4">
             {navItems.map((navItem, idx) => (
               <button
                 key={`link=${idx}`}
                 onClick={() => handleScroll(navItem.link)} // Call handleScroll with the section `id`
                 className={cn(
-                  "relative font-medium dark:text-zinc-400 items-center flex space-x-1 text-zinc-500 dark:hover:text-zinc-50 hover:text-zinc-950 transition-colors duration-300"
+                  "relative font-semibold text-muted-foreground items-center flex space-x-1 hover:text-primary transition-colors duration-300"
                 )}
               >
                 <span className="block sm:hidden">{navItem.icon}</span>
