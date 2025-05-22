@@ -50,11 +50,11 @@ const handleIconClick = (iconName: string) => {
                         </div>
                         <div className="w-full space-y-8">
                             <BlurFade delay={0.25 * 1} inView>
-                                <p className="z-50 subpixel-antialiased leading-snug bg-gradient-to-b from-zinc-200 dark:from-zinc-50 to-zinc-900 dark:to-zinc-300 bg-clip-text text-5xl sm:text-7xl font-bold text-transparent text-center whitespace-nowrap">
+                                <p className="z-50 subpixel-antialiased leading-snug bg-gradient-to-b from-zinc-200 dark:from-zinc-50 to-zinc-950 dark:to-zinc-300 bg-clip-text text-5xl sm:text-7xl font-bold text-transparent text-center whitespace-nowrap">
                                     Hi. I&#39;m Shivam
                                 </p>
                                 <p className="text-sm subpixel-antialiased font-medium sm:text-lg text-center text-secondary-foreground">
-                                    A Full-Stack Developer who likes building things!
+                                    A Software Engineer who likes building things!
                                 </p>
                             </BlurFade>
                             <BlurFade delay={0.25 * 2} direction="up"inView>
@@ -64,7 +64,7 @@ const handleIconClick = (iconName: string) => {
                                     <div className="absolute h-1.5 w-1.5 rounded-full border-1 border-green-600/80 bg-green-500 animate-ping mr-1.5"></div>
                                     <div className="relative h-1 w-1 rounded-full border-1 border-green-600/80 bg-green-500 animate-pulse mr-1.5"></div>
                                 </div>
-                                <span className="whitespace-pre-wrap text-center font-semibold leading-none text-zinc-500 dark:text-zinc-300 text-[10px] sm:text-xs py-[0.5]">
+                                <span className="whitespace-pre-wrap text-center font-normal leading-none text-muted-foreground text-[10px] sm:text-xs py-[0.5]">
                                     Available
                                 </span>
                             </ShimmerButton>

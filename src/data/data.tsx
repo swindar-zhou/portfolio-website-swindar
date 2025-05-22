@@ -1,10 +1,19 @@
-import {IconHome, IconUser, IconMessage, IconBrandGithub, IconWorld} from "@tabler/icons-react"
+import {IconHome, IconUser, IconMessage, IconBrandGithub, IconWorld, IconBrush, IconBriefcase2, IconLayoutDashboard} from "@tabler/icons-react"
 
 export const experienceData = [
   {
+    image: "/sterilite_logo.jpeg",
+    company: "Sterilite",
+    role: "Software Engineer | Analyst",
+    date: "Present",
+    description:"",
+    location: "Townsend, MA",
+    skills: ["HTML/CSS","Javascript", "SQL", "Data Warehousing", "Data Analysis"],
+  },
+  { 
     image: "/saic_logo.png",
     company: "SAIC",
-    role: "Software Engineer Intern | Team Lead",
+    role: "Cloud Engineer Intern | Team Lead",
     date: "Feb 2020 - Jun 2021",
     description:
       "Hello asdfasdf a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam itaque obcaecati, odio blanditiis ullam iste tempora commodi quidem ea incidunt, sint officia voluptatum accusantium, dolorem sunt expedita veritatis atque. Amet?",
@@ -19,7 +28,7 @@ export const experienceData = [
     description:
       "Hello asdfasdf a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam itaque obcaecati, odio blanditiis ullam iste tempora commodi quidem ea incidunt, sint officia voluptatum accusantium, dolorem sunt expedita veritatis atque. Amet?",
     location: "Boston, MA",
-    skills: ["HTML", "CSS", "Angular", "Node.js", "Express", "MongoDB" , "TypeScript"],
+    skills: ["HTML/CSS", "Angular", "Node.js", "Express", "MongoDB" , "TypeScript"],
 
   },
   {
@@ -105,19 +114,24 @@ export const contactData = [
 
 export const navData = [
   {
+    name: "Home",
+    link: "hero",
+    icon: <IconHome className="subpixel-antialiased h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />,
+  },
+  {
     name: "Experience",
     link: "experience",
-    icon: <IconHome className="subpixel-antialiased h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />,
+    icon: <IconBriefcase2 className="subpixel-antialiased h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />,
   },
   {
     name: "Dashboard",
     link: "dashboard",
-    icon: <IconUser className="subpixel-antialiased h-5 w-5 text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />,
+    icon: <IconLayoutDashboard className="subpixel-antialiased h-5 w-5 text-zinc-500 dark:text-zinc-300 hover:text-zinc-950 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />,
   },
   {
     name: "Projects",
     link: "projects",
-    icon: <IconMessage className="subpixel-antialiased h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />
+    icon: <IconBrush className="subpixel-antialiased h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />
 
   },
 ];

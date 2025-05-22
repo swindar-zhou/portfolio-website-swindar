@@ -12,7 +12,7 @@ const BLUR_FADE_DELAY = 0.15;
 export default function Home() {
   return (
     <div className="relative min-h-screen w-full bg-background">
-      <div className="mx-auto flex max-w-4xl flex-col space-y-16 sm:space-y-32 px-4 items-center overflow-hidden ">
+      <div className="mx-auto flex max-w-4xl flex-col space-y-16 sm:space-y-32 px-4 ">
         <BlurFade delay={BLUR_FADE_DELAY} inView>
           <section id="hero">
             <Hero />
@@ -32,7 +32,7 @@ export default function Home() {
           <section id="projects">
             <Projects />
           </section>
-        </BlurFade> 
+        </BlurFade>
       </div>
     </div>
   );

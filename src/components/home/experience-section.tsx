@@ -74,15 +74,15 @@ export const ExperienceItem = ({
           width={100}
           height={100}
           alt={`${company} logo`}
-          className="h-6 w-6 rounded-sm sm:h-8 sm:w-8 sm:rounded-md mt-1"
+          className="h-8 w-8 rounded-sm sm:h-10 sm:w-10 sm:rounded-md mt-1"
         />
         <div className="flex flex-col mb-2">
-          <p className="font-bold leading-normal text-balance text-sm sm:text-base text-zinc-700 dark:text-zinc-50">
+          <p className="font-bold leading-normal text-balance text-sm sm:text-base text-primary">
             {role}
             <span className="mx-1"> • </span>
             {company}
           </p>
-          <p className="text-[10px] text-balance sm:text-xs md:text-sm font-normal text-zinc-500 dark:text-accent-foreground ">
+          <p className="text-[10px] text-balance sm:text-xs md:text-sm font-normal text-muted-foreground ">
             {date}
             <span className="mx-0.5"> • </span>
             {location}
@@ -90,7 +90,7 @@ export const ExperienceItem = ({
         </div>
       </div>
       {description && (
-        <p className="text-left text-sm sm:text-base text-muted-foreground">
+        <p className="text-left mt-2 text-sm sm:text-base text-muted-foreground">
           {description}
         </p>
       )}
