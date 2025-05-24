@@ -39,7 +39,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           <FloatingNav navItems={navData} />
           <Image
-            src="/background-ellipse2.svg"
+            src="/layout/background-ellipse2.svg"
             alt=""
             fill={false}
             width={0}

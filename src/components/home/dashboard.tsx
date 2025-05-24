@@ -1,14 +1,24 @@
 "use client";
 
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { IconLayoutDashboard, IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin } from "@tabler/icons-react";
+import { IconLayoutDashboard, IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconBrandSpotify, IconHeart} from "@tabler/icons-react";
 import { Globe } from "@/components/magicui/globe";
 import styles from "./dashboard.module.css";
 import { SectionHeading } from "../layout/section-heading";
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import { contactLinks } from "@/data/data";
 import { Marquee } from "@/components/magicui/marquee";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+import Image from "next/image";
+import { toolsData } from "@/data/data";
+import { useTheme } from "next-themes";
+import { Grid } from "lucide-react";
 
 
 export default function Dashboard() {
@@ -30,10 +40,23 @@ export default function Dashboard() {
           <Globe />
         </GridItem>
         <GridItem
+          area="spotify"
+          icon={<IconBrandSpotify className={dashboardIconClass} />}
+          title="Last Played"
+        >
+          </GridItem>
+          <GridItem
+          area="favorite"
+          icon={<IconHeart className={dashboardIconClass} />}
+          title="Favorite Language"
+        >
+          </GridItem>
+        <GridItem
           area="tools"
           icon={<IconTool className={dashboardIconClass} />}
           title="Tools"
         >
+          <ToolsMarquee />
         </GridItem>
         <GridItem
           area="contact"
@@ -133,19 +156,53 @@ const ContactMe = () => {
   );
 };
 
+const Tool = ({ name, icon }: { name: string; icon: string }) => {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <div className="flex items-center">
+            <Image
+              src={`${icon}`}
+              alt={`${name} icon`}
+              width={30}
+              height={30}
+              className="h-8 w-8"
+            />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p className="text-sm font-semibold text-muted-foreground">{name}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+};
+
 const ToolsMarquee = () => {
-  const toolsDarkMode = [
-    { name: "React", icon: <IconLayoutDashboard className="h-5 w-5 text-secondary-foreground" /> },
-    { name: "Next.js", icon: <IconLayoutDashboard className="h-5 w-5 text-secondary-foreground" /> },
-    { name: "Tailwind CSS", icon: <IconLayoutDashboard className="h-5 w-5 text-secondary-foreground" /> },
-    { name: "TypeScript", icon: <IconLayoutDashboard className="h-5 w-5 text-secondary-foreground" /> },
-    { name: "Node.js", icon: <IconLayoutDashboard className="h-5 w-5 text-secondary-foreground" /> },
-  ]
+  const { theme, resolvedTheme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true); 
+  }, []);
+
+  if (!isMounted) {
+    return null; 
+  }
 
   return (
     <div>
-      <Marquee pauseOnHover className="[--duration:20s]" >
-
+      <Marquee pauseOnHover className="[--duration:20s]">
+        <div className="flex items-center gap-6">
+          {toolsData.map(({ name, icon, themeDependent }) => (
+            <Tool
+              key={name}
+              name={name}
+              icon={`/tools/${icon}${themeDependent && (theme || resolvedTheme) === "dark" ? "-dark" : ""}.svg`}
+            />
+          ))}
+        </div>
       </Marquee>
     </div>
   );

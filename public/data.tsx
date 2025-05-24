@@ -2,7 +2,7 @@ import { IconHome, IconBrandGithub, IconWorld, IconBrush, IconBriefcase2, IconLa
 
 export const experienceData = [
   {
-    image: "/experience/sterilite_logo.jpeg",
+    image: "/sterilite_logo.jpeg",
     company: "Sterilite",
     role: "Software Engineer | Analyst",
     date: "Present",
@@ -11,7 +11,7 @@ export const experienceData = [
     skills: ["HTML/CSS", "Javascript", "SQL", "Data Warehousing", "Data Analysis"],
   },
   {
-    image: "/experience/saic_logo.jpeg",
+    image: "/saic_logo.jpeg",
     company: "SAIC",
     role: "Cloud Engineer Intern | Lead",
     date: "Feb 2020 - Jun 2021",
@@ -21,7 +21,7 @@ export const experienceData = [
     skills: ["Microsoft Azure", "Powershell", "Azure DevOps", "CI/CD"],
   },
   {
-    image: "/experience/orbitahealth_logo.jpeg",
+    image: "/orbitahealth_logo.jpeg",
     company: "Orbita",
     role: "Software Engineer Intern",
     date: "Feb 2020 - Jun 2021",
@@ -32,7 +32,7 @@ export const experienceData = [
 
   },
   {
-    image: "/experience/umasslowell_logo.jpg",
+    image: "/umasslowell_logo.jpg",
     company: "University of Massachusetts Lowell",
     role: "Resident Advisor",
     date: "Feb 2020 - Jun 2021",
@@ -52,7 +52,7 @@ export const projectData = [
     type: "Web Application",
     technologies: ["React", "Javascript", "HTML", "TailwindCSS", "Plaid", "MUI", "MongoDB", "NodeJS", "express"],
     description: "AI integrated personal financial dashboard enabling users to connect multiple accounts and analyze their entire financial landscape.",
-    video: "/projects/breadbox.mp4",
+    video: "/breadbox.mp4",
     links: [
       {
         type: "Source",
@@ -222,7 +222,7 @@ export const toolsData = [
   {
     name: "Rust",
     icon: "rust",
-    themeDependent: true,
+    themeDependent: false,
   },
   {
     name: "HTML",
@@ -236,7 +236,7 @@ export const toolsData = [
   },
   {
     name: "TailwindCSS",
-    icon: "tailwind",
+    icon: "tailwindcss",
     themeDependent: false,
   },
   {
@@ -284,4 +284,5 @@ export const toolsData = [
     icon: "vscode",
     themeDependent: false,
   },
+
 ]

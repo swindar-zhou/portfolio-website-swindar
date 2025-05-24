@@ -2,11 +2,12 @@
   display: grid;
   width: 100%;           /* Fills the parent container */
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(0, 1fr));
   grid-template-areas:
     "location location"
     "location location"
     "tools tools"
+    "favorite spotify"
     "contact hours"
     "contact coffees";
 }
@@ -16,9 +17,9 @@
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(4, minmax(0, 1fr));
     grid-template-areas:
-      "location location location location contact contact"
-      "location location location location contact contact"
-      "location location location location coffees coffees"
+      "location location location contact contact contact"
+      "location location location contact contact contact"
+      "spotify spotify favorite favorite coffees coffees"
       "tools tools tools tools hours hours";
   }
 } 
