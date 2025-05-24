@@ -37,7 +37,7 @@ export default function Experience() {
           Education
         </SectionHeading>
         <ExperienceItem
-          image="/umasslowell_logo.jpg"
+          image="/experience/umasslowell_logo.jpg"
           company="University of Massachusetts, Lowell"
           role="B.S. in Computer Science, Minor in Mathematics"
           date="2020 - 2024"
@@ -72,7 +72,7 @@ export const ExperienceItem = ({
   skills,
 }: ExperienceItemProps) => {
   return (
-    <div className="p-4 border rounded-xl sm:rounded-lg">
+    <div className="p-4 border rounded-xl sm:rounded-lg bg-background transition-all duration-400">
       <div className="flex flex-row space-x-2">
         <Image
           src={image}

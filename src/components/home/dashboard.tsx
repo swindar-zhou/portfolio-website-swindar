@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { IconLayoutDashboard, IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconBrandSpotify, IconHeart} from "@tabler/icons-react";
 import { Globe } from "@/components/magicui/globe";
@@ -18,7 +18,6 @@ import {
 import Image from "next/image";
 import { toolsData } from "@/data/data";
 import { useTheme } from "next-themes";
-import { Grid } from "lucide-react";
 
 
 export default function Dashboard() {
@@ -61,7 +60,7 @@ export default function Dashboard() {
         <GridItem
           area="contact"
           icon={<IconLink className={dashboardIconClass} />}
-          title="Contact Me"
+          title="Connect"
         >
           <ContactMe />
         </GridItem>
@@ -100,7 +99,7 @@ interface GridItemProps {
 const GridItem = ({ area, icon, title, children }: GridItemProps) => {
   return (
     <li
-      className="min-h-[2rem] w-full list-none"
+      className="min-h-[2rem] w-full list-none transition-all"
       style={{ gridArea: area }}
     >
       <div className="relative mx-auto h-full rounded-xl border p-2 md:rounded-2xl md:p-2">
@@ -111,13 +110,13 @@ const GridItem = ({ area, icon, title, children }: GridItemProps) => {
           proximity={64}
           inactiveZone={0.01}
         />
-        <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-lg border-0.75 p-4 shadow-[0px_0px_12px_0px_#ebecf0] dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
+        <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-lg border-0.75 p-4 shadow-[0px_0px_12px_0px_#ebecf0] dark:shadow-[0px_0px_27px_0px_#2D2D2D] bg-background transition-all duration-400">
           <div className="relative flex flex-row items-center gap-2 sm:gap-3">
             <div className="pt-0">
               {icon}
             </div>
             <div className="space-y-2">
-              <h3 className="pt-0.5 text-xs sm:text-base text-start font-semibold text-black dark:text-white">
+              <h3 className="pt-0.5 text-xs md:text-base text-start font-semibold text-black dark:text-white">
                 {title}
               </h3>
             </div>
@@ -168,6 +167,7 @@ const Tool = ({ name, icon }: { name: string; icon: string }) => {
               width={30}
               height={30}
               className="h-8 w-8"
+              loading="lazy"
             />
           </div>
         </TooltipTrigger>
@@ -183,24 +183,31 @@ const ToolsMarquee = () => {
   const { theme, resolvedTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
+  // Memoize the processed tools data to avoid recalculating on every render
+  const processedToolsData = useMemo(() => {
+    return toolsData.map(({ name, icon, themeDependent }) => ({
+      name,
+      icon: `/tools/${icon}${themeDependent && (theme || resolvedTheme) === "dark" ? "-dark" : ""}.svg`,
+    }));
+  }, [theme, resolvedTheme]);
+
   useEffect(() => {
-    setIsMounted(true); 
+    setIsMounted(true);
   }, []);
 
   if (!isMounted) {
-    return null; 
+    return null;
   }
 
   return (
-    <div>
+    <div className="relative overflow-hidden">
+      {/* Fading effect */}
+      <div className="fade-mask-left transition-colors duration-400" />
+      <div className="fade-mask-right transition-colors duration-400" />
       <Marquee pauseOnHover className="[--duration:20s]">
         <div className="flex items-center gap-6">
-          {toolsData.map(({ name, icon, themeDependent }) => (
-            <Tool
-              key={name}
-              name={name}
-              icon={`/tools/${icon}${themeDependent && (theme || resolvedTheme) === "dark" ? "-dark" : ""}.svg`}
-            />
+          {processedToolsData.map(({ name, icon }) => (
+            <Tool key={name} name={name} icon={icon} />
           ))}
         </div>
       </Marquee>
