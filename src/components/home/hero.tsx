@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import profilePic from "@/images/profile-bw.jpg"
 import profilePicHover from "@/images/profile-color.jpg"
@@ -103,7 +102,6 @@ const getStatus = () => {
 
   const currentHour = parseInt(bostonTime, 10);
 
-  // Check if the current hour is between 8 AM and 6 PM
   if (currentHour >= 8 && currentHour < 18) {
     return { status: "Available", dotColor: "green" };
   } else {

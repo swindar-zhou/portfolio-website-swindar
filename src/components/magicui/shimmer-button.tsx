@@ -41,7 +41,7 @@ export const ShimmerButton = React.forwardRef<
       ? resolvedTheme === "dark"
         ? "#ffffff"
         : "#ffffff"
-      : "transparent"; 
+      : "transparent";
 
     return (
       <button
@@ -108,3 +108,4 @@ export const ShimmerButton = React.forwardRef<
 );
 
 ShimmerButton.displayName = "ShimmerButton";
+ 

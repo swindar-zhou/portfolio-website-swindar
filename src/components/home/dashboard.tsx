@@ -1,6 +1,6 @@
-"use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+"use client";
+import React, { useState, useEffect} from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { IconLayoutDashboard, IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconBrandSpotify, IconHeart } from "@tabler/icons-react";
 import { Globe } from "@/components/magicui/globe";
@@ -168,6 +168,7 @@ const Tool = ({ name, icon }: { name: string; icon: string }) => {
               height={30}
               className="h-8 w-8"
               loading="lazy"
+              
             />
           </div>
         </TooltipTrigger>
@@ -183,24 +184,23 @@ const ToolsMarquee = () => {
   const { theme, resolvedTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
-  const processedToolsData = useMemo(() => {
-    return toolsData.map(({ name, icon, themeDependent }) => ({
-      name,
-      icon: `/tools/${icon}${themeDependent && (theme || resolvedTheme) === "dark" ? "-dark" : ""}.svg`,
-    }));
-  }, [theme, resolvedTheme]);
-
   useEffect(() => {
-    setIsMounted(true);
+    setIsMounted(true); // Ensure this component only renders after the client has mounted
   }, []);
 
   if (!isMounted) {
-    return null;
+    return null; // Avoid rendering anything on the server
   }
 
+  const currentTheme = theme || resolvedTheme || "light"; // Default to "light" during SSR
+
+  // Process tools data based on the current theme
+  const processedToolsData = toolsData.map(({ name, icon, themeDependent }) => ({
+    name, 
+    icon: `/tools/${icon}${themeDependent && currentTheme === "dark" ? "-dark" : ""}.svg`,
+  }));
   return (
     <div className="relative overflow-hidden">
-      {/* Fading effect */}
       <div className="fade-mask-left transition-all duration-400" />
       <div className="fade-mask-right transition-all duration-400" />
       <Marquee pauseOnHover className="[--duration:20s]">

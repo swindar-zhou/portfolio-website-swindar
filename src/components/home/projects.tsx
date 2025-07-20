@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import {
     Card,
@@ -36,7 +38,7 @@ export default function Projects() {
                             image={item.image}
                             video={item.video}
                             links={item.links}
-                        />
+                            />
                     </BlurFade>
                 ))}
             </div>
@@ -47,7 +49,7 @@ interface Props {
     title: string;
     href?: string;
     description: string;
-    dates: string;
+    dates: string;  
     tags: readonly string[];
     link?: string;
     image?: string;
@@ -134,3 +136,4 @@ export function ProjectCard({ title, href, description, tags, link, image, video
         </Card>
     );
 }
+

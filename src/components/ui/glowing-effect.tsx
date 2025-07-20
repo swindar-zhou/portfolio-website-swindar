@@ -22,7 +22,7 @@ const GlowingEffect = memo(
     inactiveZone = 0.7,
     proximity = 0,
     spread = 20,
-    variant = "default",
+    variant = "default", 
     glow = false,
     className,
     movementDuration = 2,
@@ -79,8 +79,7 @@ const GlowingEffect = memo(
             parseFloat(element.style.getPropertyValue("--start")) || 0;
           const targetAngle =
             (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) /
-              Math.PI +
-            90;
+              Math.PI + 90;
 
           const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
           const newAngle = currentAngle + angleDiff;
@@ -124,11 +123,11 @@ const GlowingEffect = memo(
             "pointer-events-none absolute -inset-px hidden rounded-[inherit] border opacity-0 transition-opacity",
             glow && "opacity-100",
             variant === "white" && "border-white",
-            disabled && "!block"
+            disabled && "!block" 
           )}
         />
         <div
-          ref={containerRef}
+            ref={containerRef}
           style={
             {
               "--blur": `${blur}px`,
@@ -188,3 +187,4 @@ const GlowingEffect = memo(
 GlowingEffect.displayName = "GlowingEffect";
 
 export { GlowingEffect };
+
