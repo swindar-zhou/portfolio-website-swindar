@@ -93,8 +93,9 @@ interface GridItemProps {
   area: string;
   icon: React.ReactNode;
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode; // children is now optional
 }
+
 
 const GridItem = ({ area, icon, title, children }: GridItemProps) => {
   return (
