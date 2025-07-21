@@ -48,7 +48,7 @@ export default function Dashboard() {
         <GridItem
           area="favorite"
           icon={<IconHeart className={dashboardIconClass} />}
-          title="Favorite Language"
+          title="Fav Language"
         >
         </GridItem>
         <GridItem
@@ -134,7 +134,7 @@ const GridItem = ({ area, icon, title, children }: GridItemProps) => {
 
 const ContactMe = () => {
   return (
-    <div className="flex flex-col gap-4 p-2 sm:p-4">
+    <div className="flex flex-col gap-4 sm:p-4">
       {contactLinks.map(({ href, label, icon, aria }) => (
         <a
           key={label}
