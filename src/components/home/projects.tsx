@@ -68,6 +68,7 @@ export function ProjectCard({ title, href, description, tags, link, image, video
     useEffect(() => {
         const handleVisibilityChange = () => {
             if (document.visibilityState === "visible" && videoRef.current) {
+                videoRef.current.load(); // Reset the video
                 videoRef.current.play().catch(() => {
                     // Handle autoplay restrictions
                 });
