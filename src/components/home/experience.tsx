@@ -82,12 +82,12 @@ export const ExperienceItem = ({
           className="h-8 w-8 rounded-sm sm:h-10 sm:w-10 sm:rounded-md mt-1"
         />
         <div className="flex flex-col mb-2">
-          <p className="font-bold leading-normal text-balance text-sm sm:text-base text-primary">
+          <p className="font-bold tracking-tight leading-normal text-balance text-sm sm:text-base text-primary">
             {role}
             <span className="mx-1"> • </span>
             {company}
           </p>
-          <p className=" text-balance text-xs md:text-sm font-normal text-muted-foreground ">
+          <p className=" text-balance leading-none tracking-tight text-xs md:text-sm font-normal text-muted-foreground ">
             {date}
             <span className="mx-0.5"> • </span>
             {location}
@@ -103,7 +103,7 @@ export const ExperienceItem = ({
         {skills.map((skill, index) => (
           <BlurFade key={skill} delay={0.05 + index * 0.05} direction="up" inView>
             <div key={index} className="flex items-center justify-center bg-secondary transition-colors px-2 py-1 rounded-sm">
-              <p className="leading-none text-xs md:text-sm font-semibold transition-colors text-zinc-700 dark:text-slate-200 ">
+              <p className="leading-none tracking-tight text-xs md:text-sm font-semibold transition-colors text-zinc-700 dark:text-slate-200 ">
                 {skill}
               </p>
             </div>

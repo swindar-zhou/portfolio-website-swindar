@@ -118,7 +118,7 @@ const GridItem = ({ area, icon, title, children }: GridItemProps) => {
               {icon}
             </div>
             <div className="space-y-2">
-              <h3 className="pt-0.5 text-xs md:text-base text-start font-semibold text-black dark:text-white">
+              <h3 className="taxt-sm sm:text-md md:text-base tracking-tight text-start font-semibold text-black dark:text-white">
                 {title}
               </h3>
             </div>
