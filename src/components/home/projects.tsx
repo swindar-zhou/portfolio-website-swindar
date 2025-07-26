@@ -71,6 +71,8 @@ export function ProjectCard({ title, href, description, tags, link, image, video
                 videoRef.current.play().catch(() => {
                     // Handle autoplay restrictions
                 });
+            } else if (document.visibilityState === "hidden" && videoRef.current) {
+                videoRef.current.pause();
             }
         };
 
@@ -80,7 +82,23 @@ export function ProjectCard({ title, href, description, tags, link, image, video
             document.removeEventListener("visibilitychange", handleVisibilityChange);
         };
     }, []);
-    
+
+    useEffect(() => {
+        const handlePlay = () => {
+            if (videoRef.current) {
+                videoRef.current.play().catch(() => {
+                    // Handle autoplay restrictions
+                });
+            }
+        };
+
+        videoRef.current?.addEventListener("pause", handlePlay);
+
+        return () => {
+            videoRef.current?.removeEventListener("pause", handlePlay);
+        };
+    }, []);
+
     return (
         <Card
             className={
@@ -99,6 +117,7 @@ export function ProjectCard({ title, href, description, tags, link, image, video
                         loop
                         muted
                         playsInline
+                        preload="auto"
                         className="pointer-events-none mx-auto h-55 w-full object-cover object-top" // needed because random black line at bottom of video
                     />
                 )}
