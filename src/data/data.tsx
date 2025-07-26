@@ -16,7 +16,7 @@ export const data = {
       role: "Cloud Engineer Intern | Lead",
       date: "Jun 2023 - Aug 2023",
       description:
-        "Hello asdfasdf a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam itaque obcaecati, odio blanditiis ullam iste tempora commodi quidem ea incidunt, sint officia voluptatum accusantium, dolorem sunt expedita veritatis atque. Amet?",
+        "Spearheaded the migration of mission-critical applications to Microsoft Azure, enhancing system reliability and scalability. Developed and implemented CI/CD pipelines, improving deployment efficiency for STIG VMs by 90%.",
       location: "Hanscom Air Force Base, MA",
       skills: ["Microsoft Azure", "Powershell", "Azure DevOps", "CI/CD", "Cloud Engineering", "DevSecOps"],
     },
@@ -26,7 +26,7 @@ export const data = {
       role: "Software Engineer Intern",
       date: " Jun 2021 - Oct 2022",
       description:
-        "Hello asdfasdf a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam itaque obcaecati, odio blanditiis ullam iste tempora commodi quidem ea incidunt, sint officia voluptatum accusantium, dolorem sunt expedita veritatis atque. Amet?",
+        "Developed features for an AI-powered healthcare platform, enhancing patient experience and engagement. D.",
       location: "Boston, MA",
       skills: ["Full-Stack", "HTML/CSS", "JavaScript", "TypeScript", "Angular", "Node.js", "Express", "MongoDB" ],
 
@@ -36,10 +36,10 @@ export const data = {
       company: "University of Massachusetts Lowell",
       role: "Resident Advisor",
       date: "Feb 2020 - Jun 2021",
-      description:
-        "Hello asdfasdf a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam itaque obcaecati, odio blanditiis ullam iste tempora commodi quidem ea incidunt, sint officia voluptatum accusantium, dolorem sunt expedita veritatis atque. Amet?",
+      // description:
+      //   "Hello asdfasdf a Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam itaque obcaecati, odio blanditiis ullam iste tempora commodi quidem ea incidunt, sint officia voluptatum accusantium, dolorem sunt expedita veritatis atque. Amet?",
       location: "Lowell, MA",
-      skills: ["Leadership", "Conflict Resolution", "Event Planning"],
+      skills: ["Leadership", "Communication", "Conflict Resolution", "Event Planning"],
     },
   ],
 

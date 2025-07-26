@@ -3,12 +3,12 @@
 import React, { useState, useEffect} from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { IconLayoutDashboard, IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconBrandSpotify, IconHeart } from "@tabler/icons-react";
-import { Globe } from "@/components/magicui/globe";
+import { Globe } from "@/components/ui/globe";
 import styles from "./dashboard.module.css";
 import { SectionHeading, headingIconClass } from "../layout/section-heading";
-import { NumberTicker } from "@/components/magicui/number-ticker";
+import { NumberTicker } from "@/components/ui/number-ticker";
 // import { contactLinks } from "@/data/data";
-import { Marquee } from "@/components/magicui/marquee";
+import { Marquee } from "@/components/ui/marquee";
 import {
   Tooltip,
   TooltipContent,
@@ -189,7 +189,7 @@ const Tool = ({ name, icon }: { name: string; icon: string }) => {
               width={30}
               height={30}
               className="h-8 w-8"
-              loading="lazy"
+              loading="eager"
               
             />
           </div>

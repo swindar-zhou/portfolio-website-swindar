@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { BlurFade } from "../magicui/blur-fade";
+import { BlurFade } from "../ui/blur-fade";
 import { data } from "../../data/data"
 import { IconBrush } from "@tabler/icons-react";
 import { SectionHeading, headingIconClass } from "@/components/layout/section-heading";

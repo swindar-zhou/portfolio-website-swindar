@@ -2,9 +2,9 @@ import Image from "next/image";
 import profilePic from "@/images/profile-bw.jpg"
 import profilePicHover from "@/images/profile-color.jpg"
 import { BackgroundGradient } from "@/components/ui/background-gradient";
-import { Meteors } from "@/components/magicui/meteors"
-import { BlurFade } from "@/components/magicui/blur-fade";
-import { ShimmerButton } from "@/components/magicui/shimmer-button";
+import { Meteors } from "@/components/ui/meteors"
+import { BlurFade } from "@/components/ui/blur-fade";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 import React, { useState } from "react";
 import {
     Tooltip,

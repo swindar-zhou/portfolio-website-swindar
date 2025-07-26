@@ -4,7 +4,7 @@
 import { TracingBeam } from "../ui/tracing-beam"
 import Image from "next/image";
 import { data } from "@/data/data"
-import { BlurFade } from "@/components/magicui/blur-fade";
+import { BlurFade } from "@/components/ui/blur-fade";
 import { SectionHeading, headingIconClass } from "@/components/layout/section-heading";
 import { IconBriefcase2, IconSchool } from "@tabler/icons-react"
 
@@ -56,7 +56,7 @@ interface ExperienceItemProps {
   company: string;
   role: string;
   date: string;
-  description: string;
+  description?: string;
   location: string;
   skills: string[];
 }
