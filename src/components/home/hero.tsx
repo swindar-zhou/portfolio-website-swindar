@@ -12,7 +12,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { contactLinks } from "@/data/data";
+import { data } from "@/data/data";
 
 
 export default function Hero() {
@@ -42,12 +42,12 @@ export default function Hero() {
                                     src={profilePic}
                                     alt="Profile Picture"
                                     priority
-                                    className="absolute z-50 rounded-full transition-opacity duration-200 opacity-100 group-hover:opacity-0"
+                                    className="absolute rounded-full transition-opacity duration-200 opacity-100 group-hover:opacity-0"
                                 />
                                 <Image
                                     src={profilePicHover}
                                     alt="Profile Picture Hover"
-                                    className="absolute z-50 rounded-full transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+                                    className="absolute rounded-full transition-opacity duration-200 opacity-0 group-hover:opacity-100"
                                 />
                             </BackgroundGradient>
                         </div>
@@ -123,18 +123,18 @@ function ContactIcons({
     wiggleIcon: string | null;
     handleIconClick: (label: string) => void;
 }) {
-    return (
-        <div className="flex flex-row items-center justify-center space-x-6">
-            {contactLinks
+        return (
+    <div className="flex flex-row items-center justify-center space-x-6">
+            {data.contact
                 .filter(link => link.label !== "Instagram")
-                .map(link => (
-                    <Tooltip key={link.label}>
+                        .map(link => (
+                <Tooltip key={link.label}>
                         <TooltipTrigger asChild>
                             <a
                                 href={link.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label={link.aria}
+                                aria-label={link. aria}
                                 onClick={() => handleIconClick(link.label.toLowerCase())}
                             >
                                 {React.cloneElement(link.icon, {
@@ -145,6 +145,6 @@ function ContactIcons({
                         <TooltipContent side="bottom" >{link.label}</TooltipContent>
                     </Tooltip>
                 ))}
-        </div>
+                </div>
     );
 }

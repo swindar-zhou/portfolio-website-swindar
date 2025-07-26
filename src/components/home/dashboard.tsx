@@ -7,7 +7,7 @@ import { Globe } from "@/components/magicui/globe";
 import styles from "./dashboard.module.css";
 import { SectionHeading, headingIconClass } from "../layout/section-heading";
 import { NumberTicker } from "@/components/magicui/number-ticker";
-import { contactLinks } from "@/data/data";
+// import { contactLinks } from "@/data/data";
 import { Marquee } from "@/components/magicui/marquee";
 import {
   Tooltip,
@@ -16,7 +16,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import Image from "next/image";
-import { toolsData } from "@/data/data";
+import { data } from "@/data/data";
 import { useTheme } from "next-themes";
 
 
@@ -135,7 +135,7 @@ const GridItem = ({ area, icon, title, children }: GridItemProps) => {
 const ContactMe = () => {
   return (
     <div className="flex flex-col gap-4 sm:p-4">
-      {contactLinks.map(({ href, label, icon, aria }) => (
+      {data.contact.map(({ href, label, icon, aria }) => (
         <a
           key={label}
           href={href}
@@ -176,26 +176,7 @@ const LastPlayed = () => {
     </div>
   );
 };
-// const LastPlayed = () => {
-//   return (
-//     <div className="flex flex-row gap-2 ">
-//       <Image
-//         src="/album-cover.jpeg"
-//         alt="Last Played Song"
-//         width={300}
-//         height={300}
-//         className="rounded-lg shadow-lg h-12 w-12"
-//       />
-//       <div className="flex-1 overflow-hidden">
-//         <Marquee className="[--duration:10s]" pauseOnHover>
-//           <p className="text-sm text-foreground">
-//             $$$ - Gunna feat. Normandi •
-//           </p>
-//         </Marquee>
-//       </div>
-//     </div>
-//   );
-// };
+
 const Tool = ({ name, icon }: { name: string; icon: string }) => {
   return (
     <TooltipProvider>
@@ -236,7 +217,7 @@ const ToolsMarquee = () => {
   const currentTheme = theme || resolvedTheme || "light"; // Default to "light" during SSR
 
   // Process tools data based on the current theme
-  const processedToolsData = toolsData.map(({ name, icon, themeDependent }) => ({
+  const processedToolsData = data.tools.map(({ name, icon, themeDependent }) => ({
     name, 
     icon: `/tools/${icon}${themeDependent && currentTheme === "dark" ? "-dark" : ""}.svg`,
   }));

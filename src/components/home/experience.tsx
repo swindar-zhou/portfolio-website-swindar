@@ -3,7 +3,7 @@
 // import { cn } from "@/lib/utils";
 import { TracingBeam } from "../ui/tracing-beam"
 import Image from "next/image";
-import { experienceData } from "../../data/data"
+import { data } from "@/data/data"
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { SectionHeading, headingIconClass } from "@/components/layout/section-heading";
 import { IconBriefcase2, IconSchool } from "@tabler/icons-react"
@@ -16,7 +16,7 @@ export default function Experience() {
       </SectionHeading>
       <TracingBeam>
         <div className="space-y-4">
-          {experienceData.map((item, index) => (
+          {data.experience.map((item, index) => (
             <BlurFade key={item.role || index} delay={0.10 + index * .05} direction="right" inView>
               <ExperienceItem
                 key={index}

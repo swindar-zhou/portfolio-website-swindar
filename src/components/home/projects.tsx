@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { BlurFade } from "../magicui/blur-fade";
-import { projectData } from "../../data/data"
+import { data } from "../../data/data"
 import { IconBrush } from "@tabler/icons-react";
 import { SectionHeading, headingIconClass } from "@/components/layout/section-heading";
 
@@ -23,7 +23,7 @@ export default function Projects() {
                 Projects
             </SectionHeading>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mx-auto">
-                {projectData.map((item, index) => (
+                {data.projects.map((item, index) => (
                     <BlurFade
                         key={item.title}
                         delay={0.04 * 12 + index * 0.05}

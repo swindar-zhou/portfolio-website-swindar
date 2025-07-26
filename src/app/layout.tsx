@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { navData } from "@/data/data";
+import { data } from "@/data/data";
 import Image from "next/image";
 
 const geistSans = Geist({
@@ -38,7 +38,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
-          <Navbar navItems={navData} />
+          <Navbar navItems={data.nav} />
           <Image
             src="/layout/background-ellipse2.svg"
             alt=""
