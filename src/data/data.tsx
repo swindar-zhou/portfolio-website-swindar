@@ -26,7 +26,7 @@ export const data = {
       role: "Software Engineer Intern",
       date: " Jun 2021 - Oct 2022",
       description:
-        "Developed features for an AI-powered healthcare platform, enhancing patient experience and engagement. D.",
+        "Developed features for an AI-powered healthcare platform, enhancing patient experience and engagement.",
       location: "Boston, MA",
       skills: ["Full-Stack", "HTML/CSS", "JavaScript", "TypeScript", "Angular", "Node.js", "Express", "MongoDB" ],
 
@@ -45,7 +45,7 @@ export const data = {
 
   projects :[
     {
-      title: "Bread Box | Personal Finance Analytics Dashboard",
+      title: "Breadbox | Personal Finance Analytics Dashboard",
       href: "asdfasdfds",
       dates: "Feb 2024 - May 2024",
       active: false,
@@ -63,7 +63,7 @@ export const data = {
       github: "github.link",
     },
     {
-      title: "Seedlanter | Gardening Assistant",
+      title: "Seed Planter | Gardening Assistant",
       href: "asdfasdfds",
       dates: "Feb 2024 - May 2024",
       active: false,
