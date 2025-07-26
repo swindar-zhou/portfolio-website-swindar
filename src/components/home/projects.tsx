@@ -1,5 +1,5 @@
 "use client";
-
+import React, { useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 import {
     Card,
@@ -63,6 +63,24 @@ interface Props {
 }
 
 export function ProjectCard({ title, href, description, tags, link, image, video, links, className }: Props) {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === "visible" && videoRef.current) {
+                videoRef.current.play().catch(() => {
+                    // Handle autoplay restrictions
+                });
+            }
+        };
+
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        return () => {
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
+    }, []);
+    
     return (
         <Card
             className={
@@ -75,6 +93,7 @@ export function ProjectCard({ title, href, description, tags, link, image, video
             >
                 {video && (
                     <video
+                        ref={videoRef}
                         src={video}
                         autoPlay
                         loop
