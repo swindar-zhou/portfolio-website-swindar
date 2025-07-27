@@ -46,60 +46,60 @@ export const data = {
   projects :[
     {
       title: "Breadbox | Personal Finance Analytics Dashboard",
-      href: "asdfasdfds",
+      href: "https://github.com/BreadBoxOrg/breadbox-web",
       dates: "Feb 2024 - May 2024",
       active: false,
       type: "Web Application",
       technologies: ["React", "Javascript", "HTML", "TailwindCSS", "Plaid API", "OpenAI API", "MUI", "MongoDB", "NodeJS", "Express"],
       description: "AI integrated personal financial dashboard enabling users to connect multiple accounts and analyze their entire financial landscape.",
       video: "/projects/breadbox.mp4",
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com",
-          icon: <IconBrandGithub className="size-8" />,
-        },
-      ],
-      github: "github.link",
+      // links: [
+      //   {
+      //     type: "Source",
+      //     href: "https://github.com",
+      //     icon: <IconBrandGithub className="size-8" />,
+      //   },
+      // ],
+      // github: "github.link",
     },
     {
       title: "Seed Planter | Gardening Assistant",
-      href: "asdfasdfds",
+      href: "https://github.com/SeedPlanterOrg/seedplanter-mobile",
       dates: "Feb 2024 - May 2024",
       active: false,
       type: "Mobile Application",
       technologies: ["React Native", "Javascript", "Expo", "Perenual API", "OpenAI API", "MongoDB", "NodeJS", "Express"],
       description: "A unified solution for planters to journal, garden, track planting schedules, and learn about gardening using an AI chatbot.",
       video: "/projects/seedplanter.mp4",
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com",
-          icon: <IconBrandGithub className="size-8" />,
-        },
-      ],
+      // links: [
+      //   {
+      //     type: "Source",
+      //     href: "https://github.com",
+      //     icon: <IconBrandGithub className="size-8" />,
+      //   },
+      // ],
     },
     {
       title: "Cyfra | Secure Messaging Platform",
-      href: "asdfasdfds",
+      href: "https://www.uml.edu/differencemaker/meet-the-differencemakers/dm-cryptopigeon.aspx",
       dates: "Feb 2022 - May 2023",
       active: false,
       type: "Mobile and Desktop App",
       technologies: ["Vue", "Typescript", "HTML", "TailwindCSS", "Tauri", "Rust", "SQL"],
       description: "Decentralized communication platform with e2e encryption, ensuring user privacy without third party interference.",
       image: "/projects/cyfra.png",
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com",
-          icon: <IconBrandGithub className="size-8" />,
-        },
-        {
-          type: "Article",
-          href: "https://github.com",
-          icon: <IconWorld className="size-8" />,
-        },
-      ],
+      // links: [ 
+      //   {
+      //     type: "Source",
+      //     href: "https://github.com",
+      //     icon: <IconBrandGithub className="size-8" />,
+      //   },
+      //   {
+      //     type: "Article",
+      //     href: "https://github.com",
+      //     icon: <IconWorld className="size-8" />,
+      //   },
+      // ],
     },
   ],
 
