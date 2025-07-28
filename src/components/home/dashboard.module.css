@@ -8,9 +8,9 @@
     "location location"
     "tools tools"
     "favorite spotify"
-    "coffees hours"
     "contact scratch"
-    "contact scratch";
+    "contact scratch"
+    "coffees hours";
 }
 .dashboardGrid > li {
   min-width: 0; /* Allow grid items to shrink */

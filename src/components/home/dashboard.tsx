@@ -27,7 +27,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col w-full">
-      <SectionHeading icon={<IconLayoutDashboard className={headingIconClass}/>}>
+      <SectionHeading icon={<IconLayoutDashboard className={headingIconClass} />}>
         Dashboard
       </SectionHeading>
       <ul
@@ -36,6 +36,7 @@ export default function Dashboard() {
           area="location"
           icon={<IconMapPin className={dashboardIconClass} />}
           title="Greater Boston, MA"
+          transitionDuration="100ms" // Add unique transition duration
         >
           <Globe />
         </GridItem>
@@ -43,6 +44,7 @@ export default function Dashboard() {
           area="spotify"
           icon={<IconBrandSpotify className={dashboardIconClass} />}
           title="Last Played"
+          transitionDuration="200ms" // Add unique transition duration
         >
           <LastPlayed />
         </GridItem>
@@ -50,6 +52,7 @@ export default function Dashboard() {
           area="favorite"
           icon={<IconHeart className={dashboardIconClass} />}
           title="Fav Framework"
+          transitionDuration="300ms" // Add unique transition duration
         >
           <FavoriteLanguage />
         </GridItem>
@@ -57,6 +60,7 @@ export default function Dashboard() {
           area="tools"
           icon={<IconTool className={dashboardIconClass} />}
           title="Tools"
+          transitionDuration="400ms" // Add unique transition duration
         >
           <ToolsMarquee />
         </GridItem>
@@ -64,6 +68,7 @@ export default function Dashboard() {
           area="contact"
           icon={<IconLink className={dashboardIconClass} />}
           title="Connect"
+          transitionDuration="500ms" // Add unique transition duration
         >
           <ContactMe />
         </GridItem>
@@ -71,21 +76,21 @@ export default function Dashboard() {
           area="scratch"
           icon={<IconHandClick className={dashboardIconClass} />}
           title="Scratch Me"
+          transitionDuration="600ms" // Add unique transition duration
         >
           <ScratchToReveal
-            // width={185}
-            // height={190}
             minScratchPercentage={15}
             className="flex items-center h-35 justify-center overflow-hidden rounded-md border-1 bg-background"
             gradientColors={["#A97CF9E6", "#F38CB9E6", "#FDCC92E6"]}
           >
-      <p className="text-8xl lg:text-9xl">😎</p>
-    </ScratchToReveal>
+            <p className="text-8xl lg:text-9xl">😎</p>
+          </ScratchToReveal>
         </GridItem>
         <GridItem
           area="hours"
           icon={<IconClockHour4 className={dashboardIconClass} />}
           title="Hours Coding"
+          transitionDuration="800ms" // Add unique transition duration
         >
           <NumberTicker
             value={5223}
@@ -96,6 +101,7 @@ export default function Dashboard() {
           area="coffees"
           icon={<IconCoffee className={dashboardIconClass} />}
           title="Coffees Drank"
+          transitionDuration="700ms" // Add unique transition duration
         >
           <NumberTicker
             value={1134}
@@ -111,15 +117,18 @@ interface GridItemProps {
   area: string;
   icon: React.ReactNode;
   title: string;
-  children?: React.ReactNode; // children is now optional
+  children?: React.ReactNode;
+  transitionDuration?: string; // Add transitionDuration prop
 }
 
-
-const GridItem = ({ area, icon, title, children }: GridItemProps) => {
+const GridItem = ({ area, icon, title, children, transitionDuration = "300ms" }: GridItemProps) => {
   return (
     <li
       className="min-h-[2rem] w-full list-none transition-all"
-      style={{ gridArea: area }}
+      style={{
+        gridArea: area,
+        transitionDuration, // Apply the transition duration dynamically
+      }}
     >
       <div className="relative mx-auto h-full rounded-xl border p-2 md:rounded-2xl md:p-2">
         <GlowingEffect
@@ -129,20 +138,21 @@ const GridItem = ({ area, icon, title, children }: GridItemProps) => {
           proximity={64}
           inactiveZone={0.01}
         />
-        <div className="relative flex h-full flex-col justify-between gap-2 overflow-hidden rounded-lg border-0.75 p-4 shadow-[0px_0px_12px_0px_#ebecf0] dark:shadow-[0px_0px_27px_0px_#2D2D2D] bg-background transition-all duration-400">
+        <div
+          className="relative flex h-full flex-col justify-between gap-2 overflow-hidden rounded-lg border-0.75 p-4 shadow-[0px_0px_12px_0px_#ebecf0] dark:shadow-[0px_0px_27px_0px_#2D2D2D] bg-background transition-all"
+          style={{
+            transitionDuration, // Apply the transition duration dynamically
+          }}
+        >
           <div className="relative flex flex-row items-center gap-2 sm:gap-3">
-            <div className="pt-0">
-              {icon}
-            </div>
+            <div className="pt-0">{icon}</div>
             <div className="space-y-2">
               <h3 className="text-sm sm:text-md md:text-base tracking-tight text-start font-semibold text-black dark:text-white">
                 {title}
               </h3>
             </div>
           </div>
-          <div >
-            {children}
-          </div>
+          <div>{children}</div>
         </div>
       </div>
     </li>
