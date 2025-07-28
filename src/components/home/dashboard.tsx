@@ -76,7 +76,7 @@ export default function Dashboard() {
             // width={185}
             // height={190}
             minScratchPercentage={15}
-            className="flex items-center h-35 justify-center overflow-auto rounded-md border-1 bg-background"
+            className="flex items-center h-35 justify-center overflow-hidden rounded-md border-1 bg-background"
             gradientColors={["#A97CF9E6", "#F38CB9E6", "#FDCC92E6"]}
           >
       <p className="text-8xl lg:text-9xl">😎</p>
