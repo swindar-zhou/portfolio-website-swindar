@@ -108,7 +108,7 @@ export const Navbar = ({
                 key={`link=${idx}`}
                 onClick={() => handleScroll(navItem.link)} // Call handleScroll with the section `id`
                 className={cn(
-                  "relative font-semibold text-muted-foreground items-center flex space-x-1 hover:text-primary transition-colors duration-300"
+                  "relative font-semibold text-slate-700 dark:text-muted-foreground items-center flex space-x-1 hover:text-black dark:hover:text-white transition-colors duration-300"
                 )}
               >
                 <span className="block sm:hidden">{navItem.icon}</span>
