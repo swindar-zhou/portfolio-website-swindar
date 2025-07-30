@@ -20,8 +20,8 @@
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(4, minmax(0, 1fr));
     grid-template-areas:
-      "location location location contact contact contact scratch scratch"
-      "location location location contact contact contact scratch scratch"
+      "location location location scratch scratch contact contact contact "
+      "location location location scratch scratch contact contact contact "
       "spotify spotify spotify favorite favorite favorite coffees coffees"
       "tools tools tools tools tools tools hours hours";
   }
