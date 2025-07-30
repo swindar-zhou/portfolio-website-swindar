@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { RainbowButton } from "@/components/magicui/rainbow-button";
+import { IconSend } from "@tabler/icons-react";
 
 export const Footer = () => {
 
@@ -14,7 +15,10 @@ export const Footer = () => {
                         Have any questions, or just want to chat?
                     </h2>
                     <a href="mailto:shivypat@gmail.com">
-                        <RainbowButton className="bg-background">Contact Me</RainbowButton>
+                        <RainbowButton variant="default"  className="bg-background">
+                            <IconSend />
+                           <p className="tracking-tight">Contact Me</p> 
+                        </RainbowButton>
                     </a>
                 </div>
                 <p className="text-sm text-center font-semibold">
