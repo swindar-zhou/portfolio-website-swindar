@@ -2,10 +2,10 @@
 "use client";
 import React, { useState, useEffect} from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { IconLayoutDashboard, IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconBrandSpotify, IconHeart, IconHandClick} from "@tabler/icons-react";
+import { IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconBrandSpotify, IconHeart, IconHandClick} from "@tabler/icons-react";
 import { Globe } from "@/components/ui/globe";
 import styles from "./dashboard.module.css";
-import { SectionHeading, headingIconClass } from "../layout/section-heading";
+// import { SectionHeading, headingIconClass } from "../layout/section-heading";
 import { NumberTicker } from "@/components/ui/number-ticker";
 // import { contactLinks } from "@/data/data";
 import { Marquee } from "@/components/ui/marquee";
