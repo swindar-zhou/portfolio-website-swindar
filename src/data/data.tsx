@@ -1,4 +1,4 @@
-import { IconHome, IconBrandGithub, IconBrush, IconBriefcase2, IconLayoutDashboard, IconBrandLinkedin, IconMail, IconBrandInstagram } from "@tabler/icons-react"
+import { IconHome, IconBrandGithub, IconBrush, IconBriefcase2, IconBrandLinkedin, IconMail, IconBrandInstagram } from "@tabler/icons-react"
 export const data = {
   experience: [
     {
