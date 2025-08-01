@@ -22,10 +22,10 @@ export const Footer = () => {
                     </a>
                 </div>
                 <p className="text-sm text-center font-medium leading-none">
-                    &copy; {new Date().getFullYear()} Shivam Patel. All rights reserved.
+                    Built with ❤️ using React, Next.js and Tailwind
                 </p>
                 <p className="text-xs leading-none text-center align-text-bottom mt-2">
-                    Built with ❤️ using React, Next.js and Tailwind
+                    &copy; {new Date().getFullYear()} Shivam Patel. All rights reserved.
                 </p>
             </div>
              <Image
