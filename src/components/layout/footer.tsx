@@ -15,7 +15,7 @@ export const Footer = () => {
                         Have any questions, or just want to chat?
                     </h2>
                     <a href="mailto:shivypat02@gmail.com">
-                        <RainbowButton variant="default"  className="bg-background">
+                        <RainbowButton variant="default">
                             <IconSend />
                            <p className="tracking-tight">Contact Me</p> 
                         </RainbowButton>

@@ -128,7 +128,7 @@ interface GridItemProps {
   icon: React.ReactNode;
   title: string;
   children?: React.ReactNode;
-  transitionDuration?: string; // Add transitionDuration prop
+  transitionDuration?: string;
 }
 
 const GridItem = ({ area, icon, title, children, transitionDuration = "300ms" }: GridItemProps) => {
@@ -137,7 +137,7 @@ const GridItem = ({ area, icon, title, children, transitionDuration = "300ms" }:
       className="min-h-[2rem] w-full list-none transition-all"
       style={{
         gridArea: area,
-        transitionDuration, // Apply the transition duration dynamically
+        transitionDuration, 
       }}
     >
       <div className="relative mx-auto h-full rounded-xl border p-2 md:rounded-2xl md:p-2">
@@ -151,7 +151,7 @@ const GridItem = ({ area, icon, title, children, transitionDuration = "300ms" }:
         <div
           className="relative flex h-full flex-col justify-between gap-2 overflow-hidden rounded-lg border-0.75 p-4 shadow-[0px_0px_12px_0px_#ebecf0] dark:shadow-[0px_0px_27px_0px_#2D2D2D] bg-background transition-all"
           style={{
-            transitionDuration, // Apply the transition duration dynamically
+            transitionDuration, 
           }}
         >
           <div className="relative flex flex-row items-center gap-2 sm:gap-3">
@@ -244,16 +244,15 @@ const ToolsMarquee = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true); // Ensure this component only renders after the client has mounted
+    setIsMounted(true);
   }, []);
 
   if (!isMounted) {
-    return null; // Avoid rendering anything on the server
+    return null;
   }
 
-  const currentTheme = theme || resolvedTheme || "dark"; // Default to "light" during SSR
+  const currentTheme = theme || resolvedTheme || "dark";
 
-  // Process tools data based on the current theme
   const processedToolsData = data.tools.map(({ name, icon, themeDependent }) => ({
     name, 
     icon: `/tools/${icon}${themeDependent && currentTheme === "dark" ? "-dark" : ""}.svg`,
@@ -279,14 +278,14 @@ const FavoriteLanguage = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true); // Ensure this component only renders after the client has mounted
+    setIsMounted(true);
   }, []);
 
   if (!isMounted) {
-    return null; // Avoid rendering anything on the server
+    return null;
   }
 
-  const currentTheme = theme || resolvedTheme || "light"; // Default to "light" during SSR
+  const currentTheme = theme || resolvedTheme || "light";
 
   const iconPath =
     currentTheme === "dark" ? "/tools/nextjs-dark.svg" : "/tools/nextjs.svg";
@@ -298,9 +297,9 @@ const FavoriteLanguage = () => {
         alt="Next.js Icon"
         width={24}
         height={24}
-        className="h-6 w-6 sm:h-8 sm:w-8"
+        className="h-6 w-6 sm:h-8 sm:w-8 ml-1 mb-1"
       />
-      <span className="ml-2 sm:ml-3 text-md sm:text-lg font-normal tracking-tight text-muted-foreground">
+      <span className="ml-2 sm:ml-3 mb-1 text-md sm:text-lg font-normal tracking-tight text-muted-foreground">
         Next JS
       </span>
     </div>
