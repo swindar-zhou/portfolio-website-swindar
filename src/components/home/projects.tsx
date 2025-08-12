@@ -35,7 +35,7 @@ export default function Projects() {
                             description={item.description}
                             dates={item.dates}
                             tags={item.technologies}
-                            image={item.image}
+                            // image={item.image}
                             video={item.video}
                             // links={item.links}
                             />
