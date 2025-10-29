@@ -2,10 +2,19 @@ import { IconHome, IconBrandGithub, IconBrush, IconBriefcase2, IconBrandLinkedin
 export const data = {
   experience: [
     {
+      image: "/experience/ai12z.jpeg",
+      company: "ai12z",
+      role: "Software Engineer",
+      date: "Present",
+      description: "Testing Automation",
+      location: "Boston, MA",
+      skills: ["Typescript", "React", "Cypress", "HTML/CSS", "MongoDB"],
+    },
+    {
       image: "/experience/sterilite_logo.jpeg",
       company: "Sterilite",
       role: "Software Engineer",
-      date: "Present",
+      date: "May 2025 - Aug 2025",
       description: "Data Engineering & Information Systems",
       location: "Townsend, MA",
       skills: ["Full-Stack", "HTML/CSS", "Javascript", "ASP.NET", "PL/SQL", "Data Warehousing", "Data Analysis", "ETL"],
