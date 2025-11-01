@@ -67,7 +67,7 @@ interface Props {
 
 export function ProjectCard({ title, href, description, tags, link, image, video, thumbnail, links }: Props) {
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+    const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
     useEffect(() => {
         const handleVisibilityChange = () => {
@@ -107,29 +107,21 @@ export function ProjectCard({ title, href, description, tags, link, image, video
         const video = videoRef.current;
         if (!video) return;
 
-        const handleVideoReady = () => {
-            setIsVideoLoaded(true);
+        const handleVideoPlaying = () => {
+            // Only hide thumbnail after video is actually playing and visible
+            setIsVideoPlaying(true);
         };
 
-        // Check if video is already loaded
-        if (video.readyState >= 3) {
-            setIsVideoLoaded(true);
-        }
+        // Listen for playing event to ensure video is actually rendering
+        video.addEventListener("playing", handleVideoPlaying);
 
-        // Listen for multiple events to catch when video is ready
-        video.addEventListener("loadeddata", handleVideoReady);
-        video.addEventListener("canplay", handleVideoReady);
-        video.addEventListener("canplaythrough", handleVideoReady);
-
-        // Fallback: force show video after 2 seconds even if events don't fire
+        // Fallback: force show video after 3 seconds even if events don't fire
         const fallbackTimer = setTimeout(() => {
-            setIsVideoLoaded(true);
-        }, 2000);
+            setIsVideoPlaying(true);
+        }, 3000);
 
         return () => {
-            video.removeEventListener("loadeddata", handleVideoReady);
-            video.removeEventListener("canplay", handleVideoReady);
-            video.removeEventListener("canplaythrough", handleVideoReady);
+            video.removeEventListener("playing", handleVideoPlaying);
             clearTimeout(fallbackTimer);
         };
     }, []);
@@ -141,9 +133,45 @@ export function ProjectCard({ title, href, description, tags, link, image, video
                     "relative flex flex-col overflow-hidden border hover:shadow-md transition-all duration-300 ease-out h-full"
                 }
             >
-                <div className="relative overflow-hidden h-55">
-                    {/* Video Layer */}
-                    {video && (
+                <div className="relative overflow-hidden h-55 bg-muted">
+                    {/* Thumbnail Layer - Shows immediately and stays until video is playing */}
+                    {video && thumbnail && (
+                        <div className="absolute top-0 left-0 w-full h-full">
+                            <Image
+                                src={thumbnail}
+                                alt={title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-cover object-top"
+                                priority
+                            />
+                        </div>
+                    )}
+                    {/* Video Layer - Renders on top when playing */}
+                    <AnimatePresence>
+                        {video && isVideoPlaying && (
+                            <motion.div
+                                key="video"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.6, ease: "easeInOut" }}
+                                className="absolute top-0 left-0 w-full h-full z-10"
+                            >
+                                <video
+                                    ref={videoRef}
+                                    src={video}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    preload="auto"
+                                    className="pointer-events-none w-full h-full object-cover object-top"
+                                />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                    {/* Hidden video to trigger loading/playing events */}
+                    {video && !isVideoPlaying && (
                         <video
                             ref={videoRef}
                             src={video}
@@ -152,35 +180,16 @@ export function ProjectCard({ title, href, description, tags, link, image, video
                             muted
                             playsInline
                             preload="auto"
-                            className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover object-top"
+                            className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover object-top opacity-0"
                         />
                     )}
-                    {/* Thumbnail Overlay with Blur */}
-                    <AnimatePresence>
-                        {video && thumbnail && !isVideoLoaded && (
-                            <motion.div
-                                key="thumbnail"
-                                initial={{ opacity: 1, filter: "blur(8px)" }}
-                                exit={{ opacity: 0, filter: "blur(0px)" }}
-                                transition={{ duration: 0.6, ease: "easeInOut" }}
-                                className="absolute top-0 left-0 w-full h-full z-10"
-                            >
-                                <Image
-                                    src={thumbnail}
-                                    alt={title}
-                                    fill
-                                    className="object-cover object-top scale-105"
-                                    priority
-                                />
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                    {/* Static Image (fallback) */}
+                    {/* Static Image (fallback for projects without video) */}
                     {!video && image && (
                         <Image
                             src={image}
                             alt={title}
                             fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
                             className="object-cover object-top"
                         />
                     )}
