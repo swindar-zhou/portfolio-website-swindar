@@ -211,11 +211,15 @@ const GridItem = ({ area, icon, title, children, transitionDuration = "300ms", t
   if (tooltip) {
     return (
       <TooltipProvider>
-        <Tooltip open={showTooltip}>
+        <Tooltip open={showTooltip} delayDuration={0}>
           <TooltipTrigger asChild onMouseEnter={() => setShowTooltip(true)} onMouseLeave={() => setShowTooltip(false)}>
             {content}
           </TooltipTrigger>
-          <TooltipContent sideOffset={-16}>
+          <TooltipContent
+            sideOffset={-16}
+            sticky="always"
+            avoidCollisions={false}
+          >
             <p>{tooltip}</p>
           </TooltipContent>
         </Tooltip>
