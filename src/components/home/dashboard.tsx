@@ -277,8 +277,6 @@ const LastPlayed = ({ track }: LastPlayedProps) => {
     songUrl: "#",
   };
 
-  const songText = `• ${displayTrack.title} • ${displayTrack.artist} • ${displayTrack.album} `;
-
   return (
     <a
       href={displayTrack.songUrl}
@@ -294,12 +292,15 @@ const LastPlayed = ({ track }: LastPlayedProps) => {
         className="rounded-md shadow-lg sm:h-10 sm:w-10 h-8 w-8"
       />
       <div className="flex-1 min-w-0 max-w-full overflow-hidden">
-        <Marquee className="[--duration:10s]" pauseOnHover>
-          {Array(3).fill(null).map((_, index) => (
-            <p key={index} className="text-sm text-foreground whitespace-nowrap mx-4">
-              {songText}
-            </p>
-          ))}
+        <Marquee className="[--duration:20s]" pauseOnHover>
+          <div className="flex items-center gap-8">
+            {Array(5).fill(null).map((_, index) => (
+              <p key={index} className="text-sm whitespace-nowrap">
+                <span className="text-foreground">{displayTrack.title}</span>
+                <span className="text-muted-foreground"> • {displayTrack.artist} • {displayTrack.album}</span>
+              </p>
+            ))}
+          </div>
         </Marquee>
       </div>
     </a>
