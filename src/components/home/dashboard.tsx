@@ -5,9 +5,7 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconBrandSpotify, IconHeart, IconHandClick} from "@tabler/icons-react";
 import { Globe } from "@/components/ui/globe";
 import styles from "./dashboard.module.css";
-// import { SectionHeading, headingIconClass } from "../layout/section-heading";
 import { NumberTicker } from "@/components/ui/number-ticker";
-// import { contactLinks } from "@/data/data";
 import { Marquee } from "@/components/ui/marquee";
 import {
   Tooltip,
@@ -19,9 +17,14 @@ import Image from "next/image";
 import { data } from "@/data/data";
 import { useTheme } from "next-themes";
 import { ScratchToReveal } from "../magicui/scratch-to-reveal";
+import { useWakaTime } from "@/hooks/useWakaTime";
+import { useSpotify } from "@/hooks/useSpotify";
 
 
 export default function Dashboard() {
+  const { totalHours } = useWakaTime();
+  const totalCoffees = Math.ceil(totalHours / 4);
+  const { track } = useSpotify();
 
   const dashboardIconClass = "h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary";
 
@@ -44,9 +47,10 @@ export default function Dashboard() {
           area="spotify"
           icon={<IconBrandSpotify className={dashboardIconClass} />}
           title="Last Played"
-          transitionDuration="200ms" 
+          transitionDuration="200ms"
+          tooltip="Spotify"
         >
-          <LastPlayed />
+          <LastPlayed track={track} />
         </GridItem>
         <GridItem
           area="favorite"
@@ -100,10 +104,11 @@ export default function Dashboard() {
           area="hours"
           icon={<IconClockHour4 className={dashboardIconClass} />}
           title="Hours Coding"
-          transitionDuration="800ms" 
+          transitionDuration="800ms"
+          tooltip="Powered by WakaTime"
         >
           <NumberTicker
-            value={5223}
+            value={totalHours}
             className="whitespace-pre-wrap text-3xl font-semibold tracking-tighter text-muted-foreground"
           />
         </GridItem>
@@ -111,10 +116,11 @@ export default function Dashboard() {
           area="coffees"
           icon={<IconCoffee className={dashboardIconClass} />}
           title="Coffees Drank"
-          transitionDuration="700ms" 
+          transitionDuration="700ms"
+          tooltip="Hours Coding / 4 (rounded up)"
         >
           <NumberTicker
-            value={1134}
+            value={totalCoffees}
             className="whitespace-pre-wrap text-3xl font-semibold tracking-tighter text-muted-foreground"
           />
         </GridItem>
@@ -129,15 +135,16 @@ interface GridItemProps {
   title: string;
   children?: React.ReactNode;
   transitionDuration?: string;
+  tooltip?: string;
 }
 
-const GridItem = ({ area, icon, title, children, transitionDuration = "300ms" }: GridItemProps) => {
-  return (
+const GridItem = ({ area, icon, title, children, transitionDuration = "300ms", tooltip }: GridItemProps) => {
+  const content = (
     <li
       className="min-h-[2rem] w-full list-none transition-all"
       style={{
         gridArea: area,
-        transitionDuration, 
+        transitionDuration,
       }}
     >
       <div className="relative mx-auto h-full rounded-xl border p-2 md:rounded-2xl md:p-2">
@@ -151,7 +158,7 @@ const GridItem = ({ area, icon, title, children, transitionDuration = "300ms" }:
         <div
           className="relative flex h-full flex-col justify-between gap-2 overflow-hidden rounded-lg border-0.75 p-4 shadow-[0px_0px_12px_0px_#ebecf0] dark:shadow-[0px_0px_27px_0px_#2D2D2D] bg-background transition-all"
           style={{
-            transitionDuration, 
+            transitionDuration,
           }}
         >
           <div className="relative flex flex-row items-center gap-2 sm:gap-3">
@@ -167,6 +174,23 @@ const GridItem = ({ area, icon, title, children, transitionDuration = "300ms" }:
       </div>
     </li>
   );
+
+  if (tooltip) {
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            {content}
+          </TooltipTrigger>
+          <TooltipContent sideOffset={-16}>
+            <p>{tooltip}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
+  }
+
+  return content;
 };
 
 const ContactMe = () => {
@@ -193,12 +217,36 @@ const ContactMe = () => {
     </div>
   );
 };
-const LastPlayed = () => {
+interface LastPlayedProps {
+  track: {
+    title: string;
+    artist: string;
+    album: string;
+    albumImageUrl: string;
+    songUrl: string;
+  } | null;
+}
+
+const LastPlayed = ({ track }: LastPlayedProps) => {
+  // Fallback to hardcoded data if no track
+  const displayTrack = track || {
+    title: "U.N.I",
+    artist: "NAV",
+    album: "OMW2 REXDALE",
+    albumImageUrl: "/album-cover.jpeg",
+    songUrl: "#",
+  };
+
   return (
-    <div className="flex flex-row items-center gap-2 w-full overflow-hidden">
+    <a
+      href={displayTrack.songUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-row items-center gap-2 w-full overflow-hidden group"
+    >
       <Image
-        src="/album-cover.jpeg"
-        alt="Last Played Song"
+        src={displayTrack.albumImageUrl}
+        alt={`${displayTrack.title} album cover`}
         width={48}
         height={48}
         className="rounded-md shadow-lg sm:h-10 sm:w-10 h-8 w-8"
@@ -206,11 +254,11 @@ const LastPlayed = () => {
       <div className="flex-1 min-w-0 max-w-full overflow-hidden">
         <Marquee className="[--duration:10s]" pauseOnHover>
           <p className="text-sm text-foreground whitespace-nowrap ml-[-8px]">
-          • U.N.I • <span className="text-muted-foreground">NAV • OMW2 REXDALE </span>
+            • {displayTrack.title} • <span className="text-muted-foreground">{displayTrack.artist} • {displayTrack.album}</span>
           </p>
         </Marquee>
       </div>
-    </div>
+    </a>
   );
 };
 
