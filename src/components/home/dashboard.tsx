@@ -119,7 +119,7 @@ export default function Dashboard() {
           <ScratchToReveal
             minScratchPercentage={20}
             className="flex items-center h-24 sm:h-35 justify-center overflow-hidden rounded-md bg-background"
-            gradientColors={["#A97CF9E6", "#F38CB9E6", "#FDCC92E6"]}
+            gradientColors={["#A97CF933", "#F38CB933", "#FDCC9233"]}
           >
             <Image
               src="https://www.animatedimages.org/data/media/202/animated-dog-image-0161.gif"
