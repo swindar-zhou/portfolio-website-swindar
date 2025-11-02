@@ -218,8 +218,10 @@ const GridItem = ({ area, icon, title, children, transitionDuration = "300ms", t
           </TooltipTrigger>
           <TooltipContent
             sideOffset={-16}
-            className="pointer-events-none"
-            style={{ position: 'fixed' }}
+            side="top"
+            align="center"
+            collisionPadding={0}
+            className="pointer-events-none whitespace-nowrap"
           >
             <p>{tooltip}</p>
           </TooltipContent>
