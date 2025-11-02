@@ -22,19 +22,27 @@ export function useSpotify(): SpotifyData {
   useEffect(() => {
     async function fetchSpotifyData() {
       try {
-        const response = await fetch('/api/spotify');
+        const response = await fetch('/api/spotify', {
+          cache: 'no-store',
+        });
 
         if (!response.ok) {
           throw new Error('Failed to fetch Spotify data');
         }
 
         const data = await response.json();
-        setTrack(data);
-        setError(null);
+
+        // Only update track if we got valid data
+        if (data && !data.error) {
+          setTrack(data);
+          setError(null);
+        } else {
+          throw new Error(data.error || 'Invalid data received');
+        }
       } catch (err) {
         console.error('Spotify fetch error:', err);
         setError(err instanceof Error ? err.message : 'Unknown error');
-        setTrack(null);
+        // Don't clear track on error - keep showing last successful data
       } finally {
         setIsLoading(false);
       }
