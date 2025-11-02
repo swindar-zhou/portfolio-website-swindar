@@ -338,15 +338,11 @@ const LastPlayed = ({ track }: LastPlayedProps) => {
       />
       <div className="flex-1 min-w-0 max-w-full overflow-hidden">
         {isReady ? (
-          <Marquee className="[--duration:40s]" pauseOnHover>
-            <div className="flex items-center gap-8">
-              {Array(5).fill(null).map((_, index) => (
-                <p key={index} className="text-sm whitespace-nowrap">
-                  <span className="text-foreground">{displayTrack.title}</span>
-                  <span className="text-muted-foreground"> • {displayTrack.artist} • {displayTrack.album}</span>
-                </p>
-              ))}
-            </div>
+          <Marquee className="[--duration:40s] [--gap:2rem]" pauseOnHover repeat={5}>
+            <p className="text-sm whitespace-nowrap">
+              <span className="text-foreground">{displayTrack.title}</span>
+              <span className="text-muted-foreground"> • {displayTrack.artist} • {displayTrack.album}</span>
+            </p>
           </Marquee>
         ) : (
           <p className="text-sm whitespace-nowrap">
