@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconBrandSpotify, IconHeart, IconHandClick} from "@tabler/icons-react";
 import { Globe } from "@/components/ui/globe";
@@ -139,8 +139,41 @@ interface GridItemProps {
 }
 
 const GridItem = ({ area, icon, title, children, transitionDuration = "300ms", tooltip }: GridItemProps) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const itemRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    if (!tooltip) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShowTooltip(true);
+            // Hide tooltip after 2 seconds
+            setTimeout(() => {
+              setShowTooltip(false);
+            }, 2000);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => {
+      if (itemRef.current) {
+        observer.unobserve(itemRef.current);
+      }
+    };
+  }, [tooltip]);
+
   const content = (
     <li
+      ref={itemRef}
       className="min-h-[2rem] w-full list-none transition-all"
       style={{
         gridArea: area,
@@ -178,8 +211,8 @@ const GridItem = ({ area, icon, title, children, transitionDuration = "300ms", t
   if (tooltip) {
     return (
       <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
+        <Tooltip open={showTooltip}>
+          <TooltipTrigger asChild onMouseEnter={() => setShowTooltip(true)} onMouseLeave={() => setShowTooltip(false)}>
             {content}
           </TooltipTrigger>
           <TooltipContent sideOffset={-16}>
