@@ -136,7 +136,14 @@ export function ProjectCard({ title, href, description, tags, link, image, video
                 <div className="relative overflow-hidden h-55 bg-muted">
                     {/* Thumbnail Layer - Shows immediately and stays until video is playing */}
                     {video && thumbnail && (
-                        <div className="absolute top-0 left-0 w-full h-full">
+                        <motion.div
+                            className="absolute top-0 left-0 w-full h-full"
+                            animate={{
+                                filter: isVideoPlaying ? "blur(0px)" : "blur(8px)",
+                                scale: isVideoPlaying ? 1 : 1.05
+                            }}
+                            transition={{ duration: 0.6, ease: "easeInOut" }}
+                        >
                             <Image
                                 src={thumbnail}
                                 alt={title}
@@ -145,7 +152,7 @@ export function ProjectCard({ title, href, description, tags, link, image, video
                                 className="object-cover object-top"
                                 priority
                             />
-                        </div>
+                        </motion.div>
                     )}
                     {/* Video Layer - Renders on top when playing */}
                     <AnimatePresence>
