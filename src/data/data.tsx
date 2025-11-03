@@ -194,6 +194,14 @@ export const data = {
     }
   ],
 
+  scratchGifs: [
+    "https://www.animatedimages.org/data/media/202/animated-dog-image-0161.gif",
+    "https://www.animatedimages.org/data/media/67/animated-car-image-0010.gif",
+    "https://www.animatedimages.org/data/media/67/animated-car-image-0011.gif",
+    "https://www.animatedimages.org/data/media/56/animated-computer-image-0004.gif",
+    "https://www.animatedimages.org/data/media/532/animated-chicken-image-0079.gif",
+  ],
+
   tools : [
     {
       name: "React",

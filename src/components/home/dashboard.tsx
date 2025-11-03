@@ -26,8 +26,15 @@ export default function Dashboard() {
   const { totalHours } = useWakaTime();
   const totalCoffees = Math.ceil(totalHours / 4);
   const { track } = useSpotify();
+  const [scratchGif, setScratchGif] = useState("");
 
   const dashboardIconClass = "h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary";
+
+  useEffect(() => {
+    // Randomly select a GIF on mount
+    const randomGif = data.scratchGifs[Math.floor(Math.random() * data.scratchGifs.length)];
+    setScratchGif(randomGif);
+  }, []);
 
   return (
     <div className="flex flex-col w-full">
@@ -58,7 +65,7 @@ export default function Dashboard() {
             <div className="relative flex items-center justify-center w-full sm:w-auto overflow-visible">
               <div className="absolute -top-36 -right-20 sm:-top-72 sm:-right-32 w-64 h-64 sm:w-96 sm:h-96 pointer-events-none z-0 scale-x-[-1]" style={{ opacity: 1 }}>
                 <Spotlight
-                  className="!opacity-100 scale-75"
+                  className="!opacity-100 scale-75 z-50"
                   fill="rgba(255, 255, 255, 0.6)"
                 />
               </div>
@@ -75,7 +82,7 @@ export default function Dashboard() {
                 alt="Dancing"
                 width={80}
                 height={80}
-                className="w-16 h-16 sm:w-12 sm:h-12 relative z-10 sm:ml-10"
+                className="w-16 h-16 sm:w-12 sm:h-12 relative z-10"
                 unoptimized
               />
             </div>
@@ -120,14 +127,16 @@ export default function Dashboard() {
             className="flex items-center h-24 sm:h-35 justify-center overflow-hidden rounded-md bg-background"
             gradientColors={["#A97CF933", "#F38CB933", "#FDCC9233"]}
           >
-            <Image
-              src="https://www.animatedimages.org/data/media/202/animated-dog-image-0161.gif"
-              alt="Dog"
-              width={100}
-              height={100}
-              className="h-14 w-14 sm:h-16 sm:w-16"
-              unoptimized
-            />
+            {scratchGif && (
+              <Image
+                src={scratchGif}
+                alt="Scratch to reveal"
+                width={100}
+                height={100}
+                className="h-14 sm:h-16 object-contain"
+                unoptimized
+              />
+            )}
           </ScratchToReveal>
         </GridItem>
         <GridItem
