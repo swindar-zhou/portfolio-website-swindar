@@ -56,7 +56,7 @@ export default function Dashboard() {
           <div className="flex flex-col-reverse sm:flex-row-reverse items-center gap-4 sm:gap-6 w-full">
             {/* Dancing Animation Section */}
             <div className="relative flex items-center justify-center w-full sm:w-auto overflow-visible">
-              <div className="absolute -top-36 -right-20 md:-top-72 md:-right-32 w-64 h-64 md:w-96 md:h-96 pointer-events-none z-0 scale-x-[-1]" style={{ opacity: 1 }}>
+              <div className="absolute -top-36 -right-20 sm:-top-72 sm:-right-32 w-64 h-64 sm:w-96 sm:h-96 pointer-events-none z-0 scale-x-[-1]" style={{ opacity: 1 }}>
                 <Spotlight
                   className="!opacity-100 scale-75"
                   fill="rgba(255, 255, 255, 0.6)"
@@ -75,7 +75,7 @@ export default function Dashboard() {
                 alt="Dancing"
                 width={80}
                 height={80}
-                className="w-16 h-16 sm:w-12 sm:h-12 relative z-10"
+                className="w-16 h-16 sm:w-12 sm:h-12 relative z-10 sm:ml-10"
                 unoptimized
               />
             </div>
@@ -332,7 +332,6 @@ const LastPlayed = ({ track }: LastPlayedProps) => {
         className="rounded-md shadow-lg sm:h-10 sm:w-10 h-8 w-8"
       />
       <div className="flex-1 min-w-0 max-w-full overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-8 sm:w-16 h-full bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
         {isReady ? (
           <Marquee className="[--duration:12s] sm:[--duration:15s] [--gap:0.5rem]" pauseOnHover repeat={5}>
             <p className="text-sm whitespace-nowrap">

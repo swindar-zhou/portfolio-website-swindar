@@ -56,7 +56,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark">
           <Navbar navItems={data.nav} />
           <Image
-            src="/layout/background-ellipse2.svg"
+            src="/layout/background-ellipse3.svg"
             alt=""
             fill={false}
             width={0}

@@ -28,12 +28,12 @@ export const Footer = () => {
                 </p>
             </div>
             <Image
-                src="/layout/background-ellipse2.svg"
+                src="/layout/background-ellipse3.svg"
                 alt=""
                 fill={false}
                 width={100}
                 height={900}
-                className="absolute bottom-0 blur-lg left-1/2 transform -translate-x-1/2 translate-y-3/5 w-auto z-0 pointer-events-none select-none"
+                className="absolute bottom-0 blur-md left-1/2 transform -translate-x-1/2 translate-y-3/5 w-auto z-0 pointer-events-none select-none"
                 aria-hidden="true"
                 priority
             />
