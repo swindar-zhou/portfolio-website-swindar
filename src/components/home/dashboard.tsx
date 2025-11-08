@@ -20,6 +20,7 @@ import { ScratchToReveal } from "../magicui/scratch-to-reveal";
 import { useWakaTime } from "@/hooks/useWakaTime";
 import { useSpotify } from "@/hooks/useSpotify";
 import { Spotlight } from "@/components/ui/spotlight";
+import { useAlbumColor } from "@/hooks/useAlbumColor";
 
 
 export default function Dashboard() {
@@ -27,6 +28,7 @@ export default function Dashboard() {
   const totalCoffees = Math.ceil(totalHours / 4);
   const { track } = useSpotify();
   const [scratchGif, setScratchGif] = useState("");
+  const spotlightColor = useAlbumColor(track?.albumImageUrl || null);
 
   const dashboardIconClass = "h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary";
 
@@ -73,7 +75,7 @@ export default function Dashboard() {
               <div className="absolute -top-36 -right-20 sm:-top-72 sm:-right-32 w-64 h-64 sm:w-96 sm:h-96 pointer-events-none z-0 scale-x-[-1]" style={{ opacity: 1 }}>
                 <Spotlight
                   className="!opacity-100 scale-75 z-50"
-                  fill="rgba(255, 255, 255, 0.6)"
+                  fill={spotlightColor}
                 />
               </div>
               <Image
@@ -165,7 +167,7 @@ export default function Dashboard() {
           icon={<IconCoffee className={dashboardIconClass} />}
           title="Coffees Drank"
           transitionDuration="700ms"
-          tooltip="4 Hours Coding = 1 Coffee ☕"
+          tooltip="1 Coffee ☕ = 4 Hours Coding"
         >
           <NumberTicker
             value={totalCoffees}
