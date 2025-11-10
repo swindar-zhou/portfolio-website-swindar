@@ -8,7 +8,7 @@ export const data = {
       date: "Present",
       description: "Testing Automation",
       location: "Boston, MA",
-      skills: ["Typescript", "React", "Cypress", "HTML/CSS", "MongoDB"],
+      skills: ["Typescript", "NextJS", "React", "Cypress", "HTML/CSS", "MongoDB"],
     },
     {
       image: "/experience/sterilite_logo.jpeg",
