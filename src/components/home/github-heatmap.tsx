@@ -9,7 +9,7 @@ interface GitHubHeatmapProps {
 }
 
 const levelColors = {
-  NONE: 'bg-neutral-200 dark:bg-neutral-800/50',
+  NONE: 'bg-zinc-100 dark:bg-neutral-800/50',
   FIRST_QUARTILE: 'bg-green-200 dark:bg-green-900/70',
   SECOND_QUARTILE: 'bg-green-400 dark:bg-green-700/80',
   THIRD_QUARTILE: 'bg-green-600 dark:bg-green-500/90',

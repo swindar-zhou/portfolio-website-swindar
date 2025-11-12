@@ -330,7 +330,7 @@ const ContactMe = () => {
         >
           {React.cloneElement(icon, {
             className:
-              "h-5 w-5 text-muted-foreground transition-all group-hover:animate-wiggle group-hover:h-6 group-hover:w-6 group-hover:text-primary",
+              "h-5 w-5 text-muted-foreground transition-all group-hover:animate-wiggle group-hover:scale-125 group-hover:text-primary",
           })}
           <span className="text-muted-foreground transition-all group-hover:text-primary group-hover:font-bold">
             {label}
