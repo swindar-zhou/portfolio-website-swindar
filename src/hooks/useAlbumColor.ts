@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import { extractVibrantColor } from '@/lib/colorExtractor';
 
 /**
- * Custom hook to extract and manage vibrant color from album cover
+ * Custom hook to extract and manage vibrant colors from album cover
  * @param albumImageUrl - The URL of the album cover image
- * @returns The extracted vibrant color as an rgba string
+ * @returns A gradient string created from the top 2 vibrant colors
  */
 export function useAlbumColor(albumImageUrl: string | null): string {
-  const [color, setColor] = useState<string>('rgba(255, 255, 255, 0.6)'); // Default white
+  const [color, setColor] = useState<string>('linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(200, 200, 200, 0.6))'); // Default gradient
 
   useEffect(() => {
     if (!albumImageUrl) {
-      setColor('rgba(255, 255, 255, 0.6)');
+      setColor('linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(200, 200, 200, 0.6))');
       return;
     }
 

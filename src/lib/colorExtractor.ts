@@ -1,7 +1,14 @@
+interface ColorData {
+  r: number;
+  g: number;
+  b: number;
+  vibrance: number;
+}
+
 /**
- * Extracts the most vibrant color from an image URL
+ * Extracts the top 2 most vibrant colors from an image URL and creates a gradient
  * @param imageUrl - The URL of the image to analyze
- * @returns A promise that resolves to an RGB color string
+ * @returns A promise that resolves to a gradient string
  */
 export async function extractVibrantColor(imageUrl: string): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -26,9 +33,8 @@ export async function extractVibrantColor(imageUrl: string): Promise<string> {
         const imageData = ctx.getImageData(0, 0, 100, 100);
         const pixels = imageData.data;
 
-        // Find the most vibrant color
-        let maxVibrance = 0;
-        let vibrantColor = { r: 255, g: 255, b: 255 };
+        // Collect vibrant colors
+        const vibrantColors: ColorData[] = [];
 
         // Sample every 4th pixel for performance
         for (let i = 0; i < pixels.length; i += 16) {
@@ -48,14 +54,61 @@ export async function extractVibrantColor(imageUrl: string): Promise<string> {
           // Vibrance combines saturation and brightness
           const vibrance = saturation * (brightness / 255);
 
-          if (vibrance > maxVibrance) {
-            maxVibrance = vibrance;
-            vibrantColor = { r, g, b };
+          // Only consider colors with reasonable vibrance
+          if (vibrance > 0.2) {
+            vibrantColors.push({ r, g, b, vibrance });
           }
         }
 
-        // Return as rgba string with opacity
-        resolve(`rgba(${vibrantColor.r}, ${vibrantColor.g}, ${vibrantColor.b}, 0.6)`);
+        // Sort by vibrance and get top 2
+        vibrantColors.sort((a, b) => b.vibrance - a.vibrance);
+
+        // Get the top 2 most vibrant colors, ensuring they're different enough
+        const topColors: ColorData[] = [];
+
+        if (vibrantColors.length > 0) {
+          topColors.push(vibrantColors[0]);
+
+          // Find a second color that's different from the first
+          for (let i = 1; i < vibrantColors.length; i++) {
+            const color = vibrantColors[i];
+            const firstColor = topColors[0];
+
+            // Check if colors are different enough (euclidean distance in RGB space)
+            const distance = Math.sqrt(
+              Math.pow(color.r - firstColor.r, 2) +
+              Math.pow(color.g - firstColor.g, 2) +
+              Math.pow(color.b - firstColor.b, 2)
+            );
+
+            if (distance > 100) {
+              topColors.push(color);
+              break;
+            }
+          }
+        }
+
+        // Fallback colors
+        if (topColors.length === 0) {
+          topColors.push({ r: 255, g: 255, b: 255, vibrance: 0 });
+        }
+        if (topColors.length === 1) {
+          // Create a lighter/darker variant of the same color
+          const c = topColors[0];
+          const variant = {
+            r: Math.min(255, c.r + 40),
+            g: Math.min(255, c.g + 40),
+            b: Math.min(255, c.b + 40),
+            vibrance: c.vibrance
+          };
+          topColors.push(variant);
+        }
+
+        // Create gradient from top 2 colors
+        const color1 = `rgba(${topColors[0].r}, ${topColors[0].g}, ${topColors[0].b}, 0.6)`;
+        const color2 = `rgba(${topColors[1].r}, ${topColors[1].g}, ${topColors[1].b}, 0.6)`;
+
+        resolve(`linear-gradient(135deg, ${color1}, ${color2})`);
       } catch (error) {
         reject(error);
       }
