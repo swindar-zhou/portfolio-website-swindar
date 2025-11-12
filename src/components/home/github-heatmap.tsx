@@ -9,11 +9,11 @@ interface GitHubHeatmapProps {
 }
 
 const levelColors = {
-  NONE: 'bg-neutral-800/50',
-  FIRST_QUARTILE: 'bg-green-900/70',
-  SECOND_QUARTILE: 'bg-green-700/80',
-  THIRD_QUARTILE: 'bg-green-500/90',
-  FOURTH_QUARTILE: 'bg-green-400',
+  NONE: 'bg-neutral-200 dark:bg-neutral-800/50',
+  FIRST_QUARTILE: 'bg-green-200 dark:bg-green-900/70',
+  SECOND_QUARTILE: 'bg-green-400 dark:bg-green-700/80',
+  THIRD_QUARTILE: 'bg-green-600 dark:bg-green-500/90',
+  FOURTH_QUARTILE: 'bg-green-700 dark:bg-green-400',
 };
 
 export function GitHubHeatmap({ contributions, isLoading }: GitHubHeatmapProps) {
@@ -57,8 +57,8 @@ export function GitHubHeatmap({ contributions, isLoading }: GitHubHeatmapProps) 
                       className={`
                         w-3.5 h-3.5 sm:w-3 sm:h-3 rounded-[2px]
                         ${levelColors[day.level]}
-                        border border-neutral-700/30
-                        hover:border-neutral-500
+                        border border-neutral-200/50 dark:border-neutral-700/30
+                        hover:border-neutral-300 dark:hover:border-neutral-500
                         transition-all duration-200
                         hover:scale-125
                         cursor-pointer
