@@ -2,7 +2,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconHeart, IconHandClick, IconBrandGithub } from "@tabler/icons-react";
+import { IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconHeart, IconHandClick, IconBrandGithub, IconBrandSpotifyFilled } from "@tabler/icons-react";
 import { Globe } from "@/components/ui/globe";
 import styles from "./dashboard.module.css";
 import { NumberTicker } from "@/components/ui/number-ticker";
@@ -307,7 +307,12 @@ const GridItem = ({ area, icon, title, children, transitionDuration = "300ms", t
             collisionPadding={0}
             className="pointer-events-none whitespace-nowrap"
           >
-            <p>{tooltip}</p>
+            <p className="flex items-center gap-1.5">
+              {tooltip === "Spotify" && (
+                <IconBrandSpotifyFilled className="h-4 w-4 text-green-500" />
+              )}
+              {tooltip}
+            </p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
