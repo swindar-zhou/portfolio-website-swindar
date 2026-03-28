@@ -27,7 +27,7 @@ export default function Home() {
             <Projects />
           </section>
         </BlurFade>
-        <BlurFade delay={BLUR_FADE_DELAY * 1} inView>
+        <BlurFade delay={BLUR_FADE_DELAY} inView>
           <section id="experience">
             <Experience />
           </section>

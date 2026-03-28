@@ -70,7 +70,8 @@ export function GitHubHeatmap({ contributions, isLoading }: GitHubHeatmapProps) 
   if (!displayContributions || displayContributions.length === 0) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="text-sm text-neutral-400">No contribution data available</div>
+        <div className="text-sm text-neutral-400">sorry, my access token probably expired 😕
+        </div>
       </div>
     );
   }
