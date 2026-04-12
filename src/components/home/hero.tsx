@@ -2,7 +2,7 @@ import Image from "next/image";
 import profilePic from "@/images/profile-bw.jpg"
 import profilePicHover from "@/images/profile-color.jpg"
 import { BackgroundGradient } from "@/components/ui/background-gradient";
-import { Meteors } from "@/components/ui/meteors"
+import { HeroConstellation } from "@/components/ui/hero-constellation"
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import React, { useState } from "react";
@@ -32,11 +32,11 @@ export default function Hero() {
 
     return (
         <div className="pt-32 pb-16 sm:pt-56 relative flex items-center justify-center overflow-hidden">
+            <HeroConstellation desktopDots={200} mobileDots={50} />
             <TooltipProvider>
                 <BlurFade delay={0.005} inView>
                     <div className="relative flex-col space-y-1">
                         <div className="relative flex flex-col items-center justify-center">
-                            <Meteors number={30} angle={130} />
                             <BackgroundGradient className="z-50 h-16 w-16 sm:w-20 sm:h-20 md:w-20 md:h-20 ">
                                 <Image
                                     src={profilePic}
