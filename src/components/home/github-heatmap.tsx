@@ -92,12 +92,14 @@ export function GitHubHeatmap({ contributions, isLoading }: GitHubHeatmapProps) 
                 return (
                   <Tooltip key={day.date}>
                     <TooltipTrigger asChild>
-                      <div
+                      <a
+                        href="https://github.com/shivy02"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View GitHub profile"
                         className={`
-                          w-3.5 h-3.5 sm:w-3 sm:h-3 rounded-[2px]
+                          block w-3.5 h-3.5 sm:w-3 sm:h-3 rounded-[2px]
                           ${levelColors[displayLevel]}
-                          border border-neutral-200/50 dark:border-neutral-700/30
-                          hover:border-neutral-300 dark:hover:border-neutral-500
                           transition-all duration-300
                           hover:scale-125
                           cursor-pointer
