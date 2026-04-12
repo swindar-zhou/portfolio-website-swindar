@@ -56,10 +56,18 @@ export const Navbar = ({
     }
   });
 
-  const handleScroll = (id: string) => {
-    const section = document.getElementById(id); // Find the section by its `id`
+  const handleNavClick = (link: string) => {
+    if (link.startsWith("/")) {
+      router.push(link);
+      return;
+    }
+    if (window.location.pathname !== "/") {
+      router.push(`/#${link}`);
+      return;
+    }
+    const section = document.getElementById(link);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the section
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -106,7 +114,7 @@ export const Navbar = ({
             {navItems.map((navItem, idx) => (
               <button
                 key={`link=${idx}`}
-                onClick={() => handleScroll(navItem.link)} // Call handleScroll with the section `id`
+                onClick={() => handleNavClick(navItem.link)}
                 className={cn(
                   "relative font-semibold text-slate-700 dark:text-muted-foreground items-center flex space-x-1 hover:text-black dark:hover:text-white transition-colors duration-300"
                 )}
