@@ -106,12 +106,12 @@ export function GitHubHeatmap({ contributions, isLoading }: GitHubHeatmapProps) 
                         `}
                       />
                     </TooltipTrigger>
-                    <TooltipContent side="top" className="bg-neutral-900 border-neutral-700">
+                    <TooltipContent side="top">
                       <div className="text-xs">
                         <div className="font-semibold">
                           {day.count} {day.count === 1 ? 'contribution' : 'contributions'}
                         </div>
-                        <div className="text-neutral-400">{formatDate(day.date)}</div>
+                        <div className="text-muted-foreground">{formatDate(day.date)}</div>
                       </div>
                     </TooltipContent>
                   </Tooltip>

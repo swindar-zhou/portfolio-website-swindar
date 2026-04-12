@@ -159,7 +159,8 @@ function AnimatedDots({ desktopDots = 1500, mobileDots = 250 }: { desktopDots?: 
         ctx!.beginPath();
         ctx!.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         const isDark = document.documentElement.classList.contains("dark");
-        ctx!.fillStyle = `rgba(${dot.color}, ${opacity * vignette * (isDark ? 0.7 : 1)})`;
+        const rgb = isDark ? "255, 255, 255" : "30, 30, 30";
+        ctx!.fillStyle = `rgba(${rgb}, ${opacity * vignette * (isDark ? 0.7 : 1)})`;
         ctx!.fill();
       }
 
