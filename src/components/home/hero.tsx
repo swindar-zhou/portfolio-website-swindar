@@ -94,13 +94,13 @@ export default function Hero() {
 
 const getStatus = () => {
     const now = new Date();
-    const bostonTime = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/New_York",
+    const localTime = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Los_Angeles",
         hour: "numeric",
         hour12: false,
     }).format(now);
 
-    const currentHour = parseInt(bostonTime, 10);
+    const currentHour = parseInt(localTime, 10);
 
     if (currentHour >= 8 && currentHour < 22) {
         return { status: "Available", dotColor: "green" };
