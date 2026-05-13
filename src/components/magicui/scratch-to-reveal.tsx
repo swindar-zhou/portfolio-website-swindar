@@ -161,7 +161,7 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
 
   return (
     <motion.div
-      className={cn("relative select-none", className)}
+      className={cn("relative select-none touch-none", className)}
       style={{
         width,
         height,
