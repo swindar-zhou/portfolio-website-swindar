@@ -2,7 +2,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconHeart, IconHandClick, IconBrandGithub, IconBrandSpotifyFilled } from "@tabler/icons-react";
+import { IconTool, IconLink, IconCoffee, IconClockHour4, IconMapPin, IconHeart, IconHandClick, IconBrandGithub, IconBrandSpotifyFilled, IconRefresh } from "@tabler/icons-react";
 import { Globe } from "@/components/ui/globe";
 import styles from "./dashboard.module.css";
 import { NumberTicker } from "@/components/ui/number-ticker";
@@ -24,6 +24,7 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { useAlbumColor } from "@/hooks/useAlbumColor";
 import { GitHubHeatmap } from "./github-heatmap";
 import { SoundWave } from "@/components/ui/sound-wave";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 
 
 export default function Dashboard() {
@@ -42,15 +43,19 @@ export default function Dashboard() {
     setScratchGif(randomGif);
   }, []);
 
-  const handleScratchComplete = () => {
-    // Select a new random GIF that's different from the current one
+  const pickNewGif = () => {
     const availableGifs = data.scratchGifs.filter(gif => gif !== scratchGif);
     const randomGif = availableGifs[Math.floor(Math.random() * availableGifs.length)];
     setScratchGif(randomGif);
   };
 
+  const handleScratchComplete = () => {
+    pickNewGif();
+  };
+
   return (
     <div className="flex flex-col w-full">
+      <CustomCursor />
       {/* <SectionHeading icon={<IconLayoutDashboard className={headingIconClass} />}>
         About Me
       </SectionHeading> */}
@@ -59,8 +64,9 @@ export default function Dashboard() {
         <GridItem
           area="location"
           icon={<IconMapPin className={dashboardIconClass} />}
-          title="Greater Boston, MA"
+          title="Boston, MA → Menlo Park, CA"
           transitionDuration="100ms"
+          cursorEmoji="✈️"
         >
           <div className="min-h-[160px] md:min-h-0">
             <Globe />
@@ -72,6 +78,7 @@ export default function Dashboard() {
           title="Last Played"
           transitionDuration="200ms"
           tooltip="Spotify"
+          cursorEmoji="🎵"
         >
           <div className="flex flex-col-reverse sm:flex-row-reverse items-center gap-4 sm:gap-6 w-full">
             {/* Dancing Animation Section */}
@@ -115,6 +122,7 @@ export default function Dashboard() {
           icon={<IconHeart className={dashboardIconClass} />}
           title="Fav Tool"
           transitionDuration="300ms"
+          cursorEmoji="❤️"
         >
           <FavoriteLanguage />
         </GridItem>
@@ -123,6 +131,7 @@ export default function Dashboard() {
           icon={<IconTool className={dashboardIconClass} />}
           title="Tools"
           transitionDuration="400ms"
+          cursorEmoji="🔧"
         >
           <ToolsMarquee />
         </GridItem>
@@ -131,6 +140,7 @@ export default function Dashboard() {
           icon={<IconLink className={dashboardIconClass} />}
           title="Connect"
           transitionDuration="500ms"
+          cursorEmoji="🔗"
         >
           <ContactMe />
         </GridItem>
@@ -140,24 +150,36 @@ export default function Dashboard() {
           title="Scratch Me"
           transitionDuration="600ms"
         >
-          <ScratchToReveal
-            minScratchPercentage={20}
-            className="flex items-center h-24 sm:h-35 justify-center overflow-hidden rounded-md bg-background"
-            gradientColors={["#A97CF933", "#F38CB933", "#FDCC9233"]}
-            onComplete={handleScratchComplete}
-            resetKey={scratchGif}
-          >
-            {scratchGif && (
-              <Image
-                src={scratchGif}
-                alt="Scratch to reveal"
-                width={100}
-                height={100}
-                className="h-14 sm:h-16 object-contain"
-                unoptimized
-              />
-            )}
-          </ScratchToReveal>
+          <div className="relative">
+            <ScratchToReveal
+              minScratchPercentage={20}
+              className="flex items-center h-24 sm:h-35 justify-center overflow-hidden rounded-md bg-background"
+              gradientColors={["#A97CF933", "#F38CB933", "#FDCC9233"]}
+              onComplete={handleScratchComplete}
+              resetKey={scratchGif}
+            >
+              {scratchGif && (
+                <Image
+                  src={scratchGif}
+                  alt="Scratch to reveal"
+                  width={100}
+                  height={100}
+                  className="h-14 sm:h-16 object-contain"
+                  unoptimized
+                />
+              )}
+            </ScratchToReveal>
+            <button
+              type="button"
+              onClick={pickNewGif}
+              onMouseDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
+              aria-label="Refresh scratch"
+              className="absolute top-1 right-1 z-10 p-1 rounded-md text-muted-foreground hover:text-primary hover:bg-background/60 transition-colors group"
+            >
+              <IconRefresh className="h-4 w-4 transition-transform group-hover:rotate-180 duration-300" />
+            </button>
+          </div>
         </GridItem>
         <GridItem
           area="hours"
@@ -165,6 +187,7 @@ export default function Dashboard() {
           title="Hours Coding"
           transitionDuration="800ms"
           tooltip="Powered by WakaTime"
+          cursorEmoji="🕐"
         >
           <NumberTicker
             value={totalHours}
@@ -177,6 +200,7 @@ export default function Dashboard() {
           title="Coffees Drank"
           transitionDuration="700ms"
           tooltip="1 Coffee ☕ = 4 Hours Coding"
+          cursorEmoji="☕"
         >
           <NumberTicker
             value={totalCoffees}
@@ -189,6 +213,7 @@ export default function Dashboard() {
           title="Activity"
           transitionDuration="900ms"
           tooltip="Last 7 Weeks"
+          cursorEmoji="💻"
         >
           <div className="flex flex-col gap-[22px] sm:gap-6 h-full">
             {/* Heatmap */}
@@ -225,9 +250,10 @@ interface GridItemProps {
   children?: React.ReactNode;
   transitionDuration?: string;
   tooltip?: string;
+  cursorEmoji?: string;
 }
 
-const GridItem = ({ area, icon, title, children, transitionDuration = "300ms", tooltip }: GridItemProps) => {
+const GridItem = ({ area, icon, title, children, transitionDuration = "300ms", tooltip, cursorEmoji }: GridItemProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const itemRef = useRef<HTMLLIElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -259,10 +285,12 @@ const GridItem = ({ area, icon, title, children, transitionDuration = "300ms", t
   const content = (
     <li
       ref={itemRef}
+      data-cursor-emoji={cursorEmoji}
       className="min-h-[2rem] w-full list-none transition-all"
       style={{
         gridArea: area,
         transitionDuration,
+        ...(cursorEmoji ? { cursor: "none" } : {}),
       }}
     >
       <div className="relative mx-auto h-full rounded-xl border p-2 md:rounded-2xl md:p-2">

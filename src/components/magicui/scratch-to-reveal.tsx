@@ -35,6 +35,7 @@ export const ScratchToReveal: React.FC<ScratchToRevealProps> = ({
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (canvas && ctx) {
+      ctx.globalCompositeOperation = "source-over";
       ctx.fillStyle = "#ccc";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       const gradient = ctx.createLinearGradient(
