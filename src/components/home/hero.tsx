@@ -5,9 +5,16 @@ import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { HeroConstellation } from "@/components/ui/hero-constellation"
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { AnimatedName } from "@/components/ui/animated-name";
+import {
+    AnimatedName,
+    HOLD_MS,
+    INITIAL_REVEAL_MS,
+    SWAP_REVEAL_MS,
+    type Phase,
+    type Suffix,
+} from "@/components/ui/animated-name";
 import { motion } from "motion/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Tooltip,
     TooltipContent,
@@ -20,6 +27,38 @@ import { data } from "@/data/data";
 export default function Hero() {
 
     const [wiggleIcon, setWiggleIcon] = useState<string | null>(null);
+
+    // State machine for the animated name. Lifted to Hero so the layout-animated
+    // line wrapper re-renders on every phase/suffix change — Framer Motion's
+    // `layout` only measures bounding rects when the motion component re-renders.
+    // If the state lived inside AnimatedName, Hero wouldn't re-render and Framer
+    // would never see the line wrapper's width change.
+    const [phase, setPhase] = useState<Phase>("initial");
+    const [suffix, setSuffix] = useState<Suffix>("y");
+
+    useEffect(() => {
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        if (phase === "initial") {
+            timer = setTimeout(() => setPhase("hold"), INITIAL_REVEAL_MS);
+        } else if (phase === "hold") {
+            timer = setTimeout(() => setPhase("exit"), HOLD_MS);
+        } else if (phase === "enter") {
+            timer = setTimeout(() => setPhase("hold"), SWAP_REVEAL_MS);
+        }
+        // Note: exit -> enter transition is NOT handled by a timer here.
+        // It's triggered by AnimatedName's onAnimationComplete (passed below)
+        // so the suffix swap happens precisely when Framer signals the exit
+        // clipPath animation has settled — no setTimeout timing race that
+        // could leave the new suffix briefly visible mid-clip.
+        return () => {
+            if (timer) clearTimeout(timer);
+        };
+    }, [phase]);
+
+    const handleExitComplete = () => {
+        setSuffix((s) => (s === "y" ? "am" : "y"));
+        setPhase("enter");
+    };
 
     const { status, dotColor } = getStatus();
 
@@ -79,14 +118,19 @@ export default function Hero() {
                                         layout
                                         transition={{
                                             layout: {
-                                                duration: 0.75,
+                                                duration: 0.6,
                                                 ease: "easeInOut",
                                             },
                                         }}
                                         className="inline-block pb-2 bg-gradient-to-b from-zinc-200 dark:from-zinc-50 to-zinc-950 dark:to-zinc-300 bg-clip-text text-transparent"
                                     >
                                         Hi. I&#39;m{" "}
-                                        <AnimatedName className="font-script font-normal text-[1.05em] leading-none align-baseline" />
+                                        <AnimatedName
+                                            phase={phase}
+                                            suffix={suffix}
+                                            onExitComplete={handleExitComplete}
+                                            className="font-script font-normal text-[1.05em] leading-none align-baseline"
+                                        />
                                     </motion.span>
                                 </p>
                                 <p className="text-base subpixel-antialiased tracking-tight font-medium sm:text-2xl text-center text-secondary-foreground">
