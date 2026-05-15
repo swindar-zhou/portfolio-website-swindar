@@ -1,8 +1,7 @@
 import { getAllPosts } from "@/lib/blog";
 import Link from "next/link";
 import { BlurFade } from "@/components/ui/blur-fade";
-import { Badge } from "@/components/ui/badge";
-import { IconArrowLeft, IconCalendar, IconClock } from "@tabler/icons-react";
+import { IconArrowLeft, IconArrowUpRight } from "@tabler/icons-react";
 
 export const metadata = {
   title: "Blog — Shivam Patel",
@@ -23,11 +22,15 @@ export default function BlogPage() {
             <IconArrowLeft className="h-4 w-4" />
             Back home
           </Link>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-2">
-            Blog
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-3">
+            Recent{" "}
+            <span className="font-script font-normal text-[1.05em] leading-none align-baseline">
+              writing
+            </span>
+            .
           </h1>
-          <p className="text-muted-foreground text-lg mb-12">
-            Thoughts on software engineering, projects, and things I find
+          <p className="text-muted-foreground text-lg mb-16">
+            Thoughts on software engineering, design, and things I find
             interesting.
           </p>
         </BlurFade>
@@ -37,45 +40,48 @@ export default function BlogPage() {
             <p className="text-muted-foreground">No posts yet. Check back soon.</p>
           </BlurFade>
         ) : (
-          <div className="flex flex-col gap-6">
+          <ul className="flex flex-col divide-y divide-border/60">
             {posts.map((post, idx) => (
               <BlurFade key={post.slug} delay={0.01 + idx * 0.05} inView>
-                <Link href={`/blog/${post.slug}`} className="block group">
-                  <article className="rounded-xl border p-6 transition-all hover:shadow-md hover:border-foreground/20 bg-background">
-                    <h2 className="text-xl font-semibold tracking-tight group-hover:text-primary transition-colors">
-                      {post.title}
-                    </h2>
-                    <p className="text-muted-foreground mt-2 line-clamp-2">
-                      {post.description}
-                    </p>
-                    <div className="flex flex-wrap items-center gap-3 mt-4 text-sm text-muted-foreground">
-                      <span className="inline-flex items-center gap-1">
-                        <IconCalendar className="h-3.5 w-3.5" />
+                <li>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="group block py-8 first:pt-0"
+                  >
+                    <div className="flex items-baseline justify-between gap-6 mb-2">
+                      <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-primary transition-colors">
+                        <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 group-hover:bg-[length:100%_1px]">
+                          {post.title}
+                        </span>
+                        <IconArrowUpRight className="inline-block ml-1 h-4 w-4 text-muted-foreground transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                      </h2>
+                      <time className="shrink-0 text-xs text-muted-foreground tabular-nums mt-1">
                         {new Date(post.date).toLocaleDateString("en-US", {
                           month: "short",
                           day: "numeric",
                           year: "numeric",
                         })}
-                      </span>
-                      <span className="inline-flex items-center gap-1">
-                        <IconClock className="h-3.5 w-3.5" />
-                        {post.readingTime}
-                      </span>
+                      </time>
                     </div>
-                    {post.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mt-3">
-                        {post.tags.map((tag) => (
-                          <Badge key={tag} variant="secondary">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-                  </article>
-                </Link>
+                    <p className="text-muted-foreground leading-relaxed mb-3">
+                      {post.description}
+                    </p>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+                      <span>{post.readingTime}</span>
+                      {post.tags.length > 0 && (
+                        <>
+                          <span aria-hidden>·</span>
+                          <span className="lowercase">
+                            {post.tags.join(", ")}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  </Link>
+                </li>
               </BlurFade>
             ))}
-          </div>
+          </ul>
         )}
       </div>
     </div>

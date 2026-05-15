@@ -8,6 +8,9 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        script: ["var(--font-script)", "ui-rounded", "cursive"],
+      },
       animation: {
         meteor: "meteor 6s cubic-bezier(0.20, 0.1, 0.30, 1) infinite",
         "shimmer-slide":

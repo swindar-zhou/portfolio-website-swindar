@@ -5,6 +5,10 @@ import { RainbowButton } from "@/components/magicui/rainbow-button";
 import { IconSend } from "@tabler/icons-react";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
+import { AnimatedLogo } from "@/components/ui/logo-animation";
+import { data } from "@/data/data";
 
 export const Footer = () => {
     const [sent, setSent] = useState(false);
@@ -12,23 +16,53 @@ export const Footer = () => {
     const waveInView = useInView(waveRef, { amount: 0.5 });
     const [waveKey, setWaveKey] = useState(0);
 
+    const { resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    const router = useRouter();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     useEffect(() => {
         if (waveInView) setWaveKey((k) => k + 1);
     }, [waveInView]);
 
-    const handleClick = () => {
+    const handleSendClick = () => {
         if (sent) return;
         setSent(true);
-        // Reset so the icon "respawns" after the fly-off animation lands.
-        window.setTimeout(() => setSent(false), 1600);
+        // Reset after the full fly-out + rise-in keyframe sequence finishes.
+        window.setTimeout(() => setSent(false), 1300);
     };
 
+    const handleNavClick = (link: string) => {
+        if (link.startsWith("/")) {
+            router.push(link);
+            return;
+        }
+        if (window.location.pathname !== "/") {
+            router.push(`/#${link}`);
+            return;
+        }
+        const section = document.getElementById(link);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
+    const handleLogoClick = () => router.push("/");
+
     return (
-        <footer className="relative w-full sm:h-[30rem] h-[20rem] bg-background text-secondary-foreground pt-4 overflow-hidden">
-            <div className="container relative z-10 mx-auto flex flex-col h-full items-center justify-end px-4 py-4">
-                <div className="flex flex-col items-center justify-center h-full">
+        <footer className="relative w-full bg-background text-secondary-foreground overflow-hidden">
+            <div className="relative z-10 mx-auto flex max-w-5xl flex-col px-4 pt-20 sm:pt-28">
+                {/* CTA */}
+                <div className="flex flex-col items-center justify-center mb-16 sm:mb-24">
                     <h2 className="mx-16 sm:mx-none text-center text-pretty text-3xl sm:text-4xl font-bold mb-8">
-                        Say hello.{" "}
+                        Say{" "}
+                        <span className="font-script font-normal text-[1.05em] leading-none align-baseline">
+                            hello
+                        </span>
+                        .{" "}
                         <span ref={waveRef} className="inline-block">
                             <span
                                 key={waveKey}
@@ -40,27 +74,37 @@ export const Footer = () => {
                     </h2>
                     <a
                         href="mailto:shivypat02@gmail.com"
-                        onClick={handleClick}
+                        onClick={handleSendClick}
                         className="group inline-block active:scale-95 transition-transform duration-150"
                     >
-                        <RainbowButton variant="default" className="overflow-visible">
+                        <RainbowButton
+                            variant="default"
+                            className="overflow-visible pl-5 pr-6 sm:pl-7 sm:pr-8 before:transition-[width,height,bottom,filter] before:duration-300 hover:before:w-4/5 hover:before:h-1/3 hover:before:bottom-[-35%] hover:before:[filter:blur(1.1rem)]"
+                        >
                             <motion.span
                                 aria-hidden
                                 className="inline-flex will-change-transform"
                                 animate={
                                     sent
                                         ? {
-                                              x: [0, 24, 90],
-                                              y: [0, -38, -64],
-                                              rotate: [0, 25, 45],
-                                              opacity: [1, 1, 0],
+                                              x: [0, 24, 90, 0, 0],
+                                              y: [0, -38, -64, 30, 0],
+                                              rotate: [0, 25, 45, 0, 0],
+                                              opacity: [1, 1, 0, 0, 1],
                                           }
                                         : { x: 0, y: 0, rotate: 0, opacity: 1 }
                                 }
                                 transition={{
-                                    duration: sent ? 0.7 : 0.45,
-                                    ease: sent ? [0.22, 1, 0.36, 1] : "easeOut",
-                                    times: sent ? [0, 0.55, 1] : undefined,
+                                    duration: sent ? 1.2 : 0.45,
+                                    ease: sent
+                                        ? [
+                                              [0.22, 1, 0.36, 1],
+                                              [0.22, 1, 0.36, 1],
+                                              "linear",
+                                              [0.22, 1, 0.36, 1],
+                                          ]
+                                        : "easeOut",
+                                    times: sent ? [0, 0.3, 0.5, 0.51, 1] : undefined,
                                 }}
                             >
                                 <IconSend className="transition-transform duration-200 group-hover:-rotate-12 group-hover:-translate-y-0.5" />
@@ -69,12 +113,75 @@ export const Footer = () => {
                         </RainbowButton>
                     </a>
                 </div>
-                <p className="text-sm text-center font-medium leading-none">
-                    Built with ❤️ using React, Next.js and Tailwind
-                </p>
-                <p className="text-xs leading-none text-center align-text-bottom mt-2">
-                    &copy; {new Date().getFullYear()} Shivam Patel. All rights reserved.
-                </p>
+
+                {/* Links + Logo */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 border-t border-border/50 pt-10 pb-8">
+                    <div className="col-span-2 sm:col-span-1 flex flex-col items-start gap-3">
+                        {mounted && (
+                            <AnimatedLogo
+                                theme={resolvedTheme === "dark" ? "dark" : "light"}
+                                className="w-8 h-8"
+                                onClick={handleLogoClick}
+                            />
+                        )}
+                        <p className="text-sm font-semibold tracking-tight text-primary">
+                            Shivam Patel
+                        </p>
+                        <p className="text-xs text-muted-foreground leading-relaxed max-w-xs">
+                            Software Engineer & Co-founder, building thoughtful products at the intersection of AI and great UX.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                        <h3 className="text-xs font-semibold uppercase tracking-wider text-primary">
+                            Navigate
+                        </h3>
+                        <ul className="flex flex-col gap-2">
+                            {data.nav.map((item) => (
+                                <li key={item.name}>
+                                    <button
+                                        onClick={() => handleNavClick(item.link)}
+                                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                                    >
+                                        {item.name}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                        <h3 className="text-xs font-semibold uppercase tracking-wider text-primary">
+                            Connect
+                        </h3>
+                        <ul className="flex flex-col gap-2">
+                            {data.contact.map((item) => (
+                                <li key={item.label}>
+                                    <a
+                                        href={item.href}
+                                        target={item.href.startsWith("http") ? "_blank" : undefined}
+                                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                        aria-label={item.aria}
+                                        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                                    >
+                                        {item.icon}
+                                        {item.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+                {/* Bottom row */}
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center border-t border-border/50 pt-6 pb-6">
+                    <p className="text-xs text-muted-foreground leading-none">
+                        &copy; {new Date().getFullYear()} Shivam Patel. All rights reserved.
+                    </p>
+                    <p className="text-xs text-muted-foreground leading-none">
+                        Built with ❤️ using React, Next.js and Tailwind
+                    </p>
+                </div>
             </div>
             <Image
                 src="/layout/background-ellipse3.svg"
@@ -87,5 +194,5 @@ export const Footer = () => {
                 priority
             />
         </footer>
-    )
+    );
 };

@@ -5,11 +5,11 @@ date: "2026-04-12"
 tags: ["nextjs", "react", "portfolio"]
 ---
 
-This is my first blog post — a quick look at how I built this site and some of the decisions I made along the way.
+This is my first blog post: a quick look at how I built this site and some of the decisions I made along the way.
 
 ## The Stack
 
-I went with **Next.js 15** and **React 19** because I wanted the latest features — Server Components, the App Router, and improved streaming. For styling, **Tailwind CSS** keeps things fast and consistent.
+I went with **Next.js 15** and **React 19** because I wanted the latest features: Server Components, the App Router, and improved streaming. For styling, **Tailwind CSS** keeps things fast and consistent.
 
 ## Animations
 
@@ -23,9 +23,9 @@ One of the things I spent the most time on was getting the animations right. The
 
 The dashboard section pulls in live data from a few APIs:
 
-- **Spotify** — shows my last played track
-- **WakaTime** — tracks my coding hours
-- **GitHub** — renders a contribution heatmap
+- **Spotify** shows my last played track
+- **WakaTime** tracks my coding hours
+- **GitHub** renders a contribution heatmap
 
 Each widget has its own animation timing so they cascade in nicely on scroll.
 

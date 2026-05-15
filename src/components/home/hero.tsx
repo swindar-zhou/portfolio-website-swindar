@@ -5,6 +5,8 @@ import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { HeroConstellation } from "@/components/ui/hero-constellation"
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { AnimatedName } from "@/components/ui/animated-name";
+import { motion } from "motion/react";
 import React, { useState } from "react";
 import {
     Tooltip,
@@ -72,11 +74,27 @@ export default function Hero() {
                         </div>
                         <div className="w-full space-y-6">
                             <BlurFade delay={0.005 * 1} inView>
-                                <p className="z-50 subpixel-antialiased leading-snug bg-gradient-to-b from-zinc-200 dark:from-zinc-50 to-zinc-950 dark:to-zinc-300 bg-clip-text text-5xl sm:text-7xl font-bold text-transparent text-center whitespace-nowrap">
-                                    Hi. I&#39;m Shivam
+                                <p className="z-50 subpixel-antialiased leading-[1.8] text-5xl sm:text-7xl font-bold text-center whitespace-nowrap">
+                                    <motion.span
+                                        layout
+                                        transition={{
+                                            layout: {
+                                                duration: 0.75,
+                                                ease: "easeInOut",
+                                            },
+                                        }}
+                                        className="inline-block pb-2 bg-gradient-to-b from-zinc-200 dark:from-zinc-50 to-zinc-950 dark:to-zinc-300 bg-clip-text text-transparent"
+                                    >
+                                        Hi. I&#39;m{" "}
+                                        <AnimatedName className="font-script font-normal text-[1.05em] leading-none align-baseline" />
+                                    </motion.span>
                                 </p>
                                 <p className="text-base subpixel-antialiased tracking-tight font-medium sm:text-2xl text-center text-secondary-foreground">
-                                    A Software Engineer who likes building things.
+                                    A Software Engineer who likes{" "}
+                                    <span className="font-script font-normal text-[1.05em] leading-none align-baseline text-secondary-foreground">
+                                        building things
+                                    </span>
+                                    .
                                 </p>
                             </BlurFade>
                             <BlurFade delay={0.005 * 2} direction="down" inView>
