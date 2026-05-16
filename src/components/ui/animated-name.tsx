@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const INITIAL_REVEAL_MS = 1100;
@@ -9,14 +10,16 @@ export const HOLD_MS = 5000;
 
 // Each clip-path'd element creates its own stacking context, so the parent
 // gradient masking doesn't reach inside. We apply the same gradient directly
-// to each segment so the cursive matches the sans text in both light and dark.
+// to the suffix so the cursive matches the sans text in both light and dark.
 //
 // Pacifico has a deep descender (~0.37em). pb-[0.5em] extends the padding-box
 // so the descender lives inside the gradient's paint area and the clip-path's
-// border-box reference. -mb-[0.5em] cancels that padding out of layout flow,
-// so the line wrapper doesn't grow and the subtitle stays where it was.
+// border-box reference. -mb-[0.5em] cancels that padding out of layout flow.
 const GRADIENT_TEXT =
     "bg-gradient-to-b from-zinc-200 dark:from-zinc-50 to-zinc-950 dark:to-zinc-300 bg-clip-text text-transparent pb-[0.5em] -mb-[0.5em]";
+
+const CLIP_REVEALED = "inset(0 0% 0 0)";
+const CLIP_CLIPPED = "inset(0 100% 0 0)";
 
 export type Phase = "initial" | "hold" | "exit" | "enter";
 export type Suffix = "y" | "am";
@@ -34,55 +37,130 @@ export function AnimatedName({
     onExitComplete,
     className,
 }: AnimatedNameProps) {
-    // On the very first reveal, render the whole word as a single wiping span
-    // so "Shivy" writes in left-to-right as one motion. After the initial
-    // reveal completes (phase transitions to "hold"), we swap to the split
-    // structure so the suffix can swap independently.
+    // Pre-measured natural widths of "y" and "am" in the rendered font/size.
+    // The slot animates between these (with 0 in the middle of the swap), so
+    // surrounding text shifts via real CSS layout every frame — no Framer
+    // `layout` prop, no transform-scale that squishes the text, and no
+    // one-frame uncompensated jump on swap.
+    const yRef = useRef<HTMLSpanElement>(null);
+    const amRef = useRef<HTMLSpanElement>(null);
+    const [widths, setWidths] = useState<{ y: number; am: number } | null>(
+        null,
+    );
+
+    useLayoutEffect(() => {
+        const measure = () => {
+            const y = yRef.current?.getBoundingClientRect().width;
+            const am = amRef.current?.getBoundingClientRect().width;
+            if (y && am) setWidths({ y, am });
+        };
+        measure();
+        window.addEventListener("resize", measure);
+        return () => window.removeEventListener("resize", measure);
+    }, []);
+
+    // Re-measure once webfonts are ready: the first synchronous measure may
+    // use a fallback metric until Pacifico loads.
+    useEffect(() => {
+        if (!document.fonts?.ready) return;
+        document.fonts.ready.then(() => {
+            const y = yRef.current?.getBoundingClientRect().width;
+            const am = amRef.current?.getBoundingClientRect().width;
+            if (y && am) setWidths({ y, am });
+        });
+    }, []);
+
+    const measureClass = cn(
+        "absolute left-[-9999px] top-0 invisible whitespace-pre pointer-events-none",
+        className,
+    );
+    const measureSpans = (
+        <>
+            <span ref={yRef} aria-hidden="true" className={measureClass}>
+                y
+            </span>
+            <span ref={amRef} aria-hidden="true" className={measureClass}>
+                am
+            </span>
+        </>
+    );
+
     if (phase === "initial") {
         return (
-            <motion.span
-                initial={{ clipPath: "inset(0 100% 0 0)" }}
-                animate={{ clipPath: "inset(0 0% 0 0)" }}
-                transition={{
-                    duration: INITIAL_REVEAL_MS / 1000,
-                    ease: [0.6, 0.05, 0.3, 1],
-                }}
-                className={cn("inline-block", GRADIENT_TEXT, className)}
-            >
-                Shivy
-            </motion.span>
+            <>
+                <motion.span
+                    initial={{ clipPath: CLIP_CLIPPED }}
+                    animate={{ clipPath: CLIP_REVEALED }}
+                    transition={{
+                        duration: INITIAL_REVEAL_MS / 1000,
+                        ease: [0.6, 0.05, 0.3, 1],
+                    }}
+                    className={cn("inline-block", GRADIENT_TEXT, className)}
+                >
+                    Shivy
+                </motion.span>
+                {measureSpans}
+            </>
         );
     }
 
-    // After initial reveal: "Shiv" is static plain text (inherits gradient from
-    // the line wrapper above), suffix is animated via clipPath driven by phase.
-    // initial={false} prevents the suffix's first mount from re-wiping in (we
-    // just finished the full-word reveal, so it should appear fully visible).
-    const clipPath =
-        phase === "exit" ? "inset(0 100% 0 0)" : "inset(0 0% 0 0)";
+    // The slot's width carries the layout: from `restWidth` of the current
+    // suffix down to 0 on exit, back up from 0 to the new suffix's width on
+    // enter. The inner motion.span's clip-path produces the visual wipe in
+    // exact sync (same duration + easing + key, both mount together).
+    //
+    // overflow stays `visible` on the slot — using `overflow: hidden` would
+    // change the inline-block's baseline rule (per CSS) and the suffix would
+    // ride higher than "Shiv". The inner's clip-path handles the masking.
+    const restWidth = widths?.[suffix];
+    const slotInitial = phase === "enter" ? 0 : restWidth;
+    const slotTarget = phase === "exit" ? 0 : restWidth;
+
+    const innerInitialClip =
+        phase === "enter" ? CLIP_CLIPPED : CLIP_REVEALED;
+    const innerTargetClip =
+        phase === "exit" ? CLIP_CLIPPED : CLIP_REVEALED;
+
+    const slotMotionProps = widths
+        ? {
+              initial: { width: slotInitial },
+              animate: { width: slotTarget },
+          }
+        : {};
 
     return (
         <span className={cn("inline-block", className)}>
             Shiv
             <motion.span
-                initial={false}
-                animate={{ clipPath }}
+                key={phase}
+                {...slotMotionProps}
                 transition={{
                     duration: SWAP_REVEAL_MS / 1000,
                     ease: "easeInOut",
                 }}
                 onAnimationComplete={() => {
-                    // Only signal completion at the end of the exit animation.
-                    // Hero uses this to swap the suffix + advance to "enter" at
-                    // the exact moment clipPath has settled to fully clipped,
-                    // avoiding any timing race where new content could be
-                    // briefly visible before the next animation starts.
                     if (phase === "exit") onExitComplete?.();
                 }}
-                className={cn("inline-block", GRADIENT_TEXT)}
+                style={{
+                    display: "inline-block",
+                    verticalAlign: "baseline",
+                    whiteSpace: "pre",
+                }}
             >
-                {suffix}
+                <motion.span
+                    initial={{ clipPath: innerInitialClip }}
+                    animate={{ clipPath: innerTargetClip }}
+                    transition={{
+                        duration: SWAP_REVEAL_MS / 1000,
+                        ease: "easeInOut",
+                    }}
+                    style={{ display: "inline-block" }}
+                    className={GRADIENT_TEXT}
+                >
+                    {suffix}
+                </motion.span>
             </motion.span>
+            {measureSpans}
         </span>
     );
 }

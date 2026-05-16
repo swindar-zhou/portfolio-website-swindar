@@ -13,7 +13,6 @@ import {
     type Phase,
     type Suffix,
 } from "@/components/ui/animated-name";
-import { motion } from "motion/react";
 import React, { useEffect, useState } from "react";
 import {
     Tooltip,
@@ -114,16 +113,7 @@ export default function Hero() {
                         <div className="w-full space-y-6">
                             <BlurFade delay={0.005 * 1} inView>
                                 <p className="z-50 subpixel-antialiased leading-[1.8] text-5xl sm:text-7xl font-bold text-center whitespace-nowrap">
-                                    <motion.span
-                                        layout
-                                        transition={{
-                                            layout: {
-                                                duration: 0.6,
-                                                ease: "easeInOut",
-                                            },
-                                        }}
-                                        className="inline-block pb-2 bg-gradient-to-b from-zinc-200 dark:from-zinc-50 to-zinc-950 dark:to-zinc-300 bg-clip-text text-transparent"
-                                    >
+                                    <span className="inline-block pb-2 bg-gradient-to-b from-zinc-200 dark:from-zinc-50 to-zinc-950 dark:to-zinc-300 bg-clip-text text-transparent">
                                         Hi. I&#39;m{" "}
                                         <AnimatedName
                                             phase={phase}
@@ -131,7 +121,7 @@ export default function Hero() {
                                             onExitComplete={handleExitComplete}
                                             className="font-script font-normal text-[1.05em] leading-none align-baseline"
                                         />
-                                    </motion.span>
+                                    </span>
                                 </p>
                                 <p className="text-base subpixel-antialiased tracking-tight font-medium sm:text-2xl text-center text-secondary-foreground">
                                     A Software Engineer who likes{" "}
