@@ -52,6 +52,11 @@ export const metadata: Metadata = {
     title: "Shivam Patel — Software Engineer",
     description: "Software Engineer who likes building things.",
   },
+  alternates: {
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
 };
 
 export default function RootLayout({

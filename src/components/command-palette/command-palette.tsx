@@ -16,6 +16,7 @@ import {
     IconMail,
     IconMoon,
     IconPencil,
+    IconRss,
     IconSearch,
     IconSun,
 } from "@tabler/icons-react";
@@ -257,6 +258,17 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
                                         window.location.href =
                                             "mailto:shivypat02@gmail.com";
                                     })
+                                }
+                            />
+                            <Item
+                                icon={<IconRss className="h-4 w-4" />}
+                                label="RSS feed"
+                                sublabel="/feed.xml"
+                                keywords={["rss", "feed", "subscribe", "xml"]}
+                                onSelect={() =>
+                                    run(() =>
+                                        window.open("/feed.xml", "_blank", "noopener,noreferrer"),
+                                    )
                                 }
                             />
                         </Group>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { RainbowButton } from "@/components/magicui/rainbow-button";
-import { IconSend } from "@tabler/icons-react";
+import { IconRss, IconSend } from "@tabler/icons-react";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
@@ -169,6 +169,16 @@ export const Footer = () => {
                                     </a>
                                 </li>
                             ))}
+                            <li>
+                                <a
+                                    href="/feed.xml"
+                                    aria-label="RSS feed"
+                                    className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                                >
+                                    <IconRss className="h-5 w-5" />
+                                    RSS
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
