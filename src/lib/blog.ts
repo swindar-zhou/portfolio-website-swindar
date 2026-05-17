@@ -17,6 +17,10 @@ export interface BlogPost {
   readingTime: string;
   content: string;
   headings: Heading[];
+  /** Path or URL to a cover image (e.g. "/blog/post-slug.jpg"). Optional. */
+  image?: string;
+  /** Accessible description for the cover image. Defaults to the title. */
+  imageAlt?: string;
 }
 
 // Extract level-2 and level-3 headings from markdown, skipping code blocks.
@@ -60,6 +64,8 @@ export function getAllPosts(): BlogPost[] {
       readingTime: stats.text,
       content,
       headings: extractHeadings(content),
+      image: data.image,
+      imageAlt: data.imageAlt,
     };
   });
 
@@ -87,5 +93,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     readingTime: stats.text,
     content,
     headings: extractHeadings(content),
+    image: data.image,
+    imageAlt: data.imageAlt,
   };
 }

@@ -12,14 +12,24 @@ export function ModeToggle() {
 
   const handleToggle = () => {
     setIsToggling(true);
+    setTimeout(() => setIsToggling(false), 500);
 
-    // Change the theme immediately
-    setTheme(theme === "dark" ? "light" : "dark");
+    const next = theme === "dark" ? "light" : "dark";
+    const doc = document as Document & {
+      startViewTransition?: (cb: () => unknown) => unknown;
+    };
 
-    // Reset the toggling state after the animation completes
-    setTimeout(() => {
-      setIsToggling(false);
-    }, 500); // Match the animation duration
+    if (typeof doc.startViewTransition !== "function") {
+      setTheme(next);
+      return;
+    }
+
+    // setTheme is synchronous (next-themes writes the class to <html>
+    // immediately), so passing a sync callback is enough — the browser
+    // captures the post-theme DOM as the "new" snapshot.
+    doc.startViewTransition(() => {
+      setTheme(next);
+    });
   };
 
   return (

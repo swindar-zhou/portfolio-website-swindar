@@ -1,10 +1,11 @@
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import Image from "next/image";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Badge } from "@/components/ui/badge";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 import { TableOfContents } from "@/components/blog/table-of-contents";
+import { TransitionLink } from "@/components/ui/transition-link";
 import { IconArrowLeft, IconCalendar, IconClock } from "@tabler/icons-react";
 import type { Metadata } from "next";
 
@@ -24,6 +25,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} — Shivam Patel`,
     description: post.description,
+    openGraph: {
+      type: "article",
+      url: `https://shivypatel.com/blog/${slug}`,
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      tags: post.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
   };
 }
 
@@ -33,7 +47,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <div className="pt-32 sm:pt-40 pb-16 px-4">
+    <div className="pt-32 sm:pt-40 pb-16 px-3 sm:px-4">
       {/*
         Grid layout at xl+: [spacer | article (672px) | TOC sidebar].
         Sticky (not fixed) means the TOC scrolls naturally with the article
@@ -45,16 +59,34 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="hidden xl:block" aria-hidden />
         <div className="mx-auto w-full max-w-2xl xl:mx-0">
           <BlurFade delay={0.005} inView>
-            <Link
+            <TransitionLink
               href="/blog"
               className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
             >
               <IconArrowLeft className="h-4 w-4" />
               All posts
-            </Link>
+            </TransitionLink>
 
+            {post.image && (
+              <div
+                className="relative aspect-[16/9] w-full mb-10 overflow-hidden rounded-xl border border-border/60"
+                style={{ viewTransitionName: `post-image-${slug}` }}
+              >
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt ?? post.title}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 672px"
+                  className="object-cover"
+                />
+              </div>
+            )}
             <header className="mb-10">
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+              <h1
+                className="text-3xl sm:text-4xl font-bold tracking-tight mb-4"
+                style={{ viewTransitionName: `post-title-${slug}` }}
+              >
                 {post.title}
               </h1>
               <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">

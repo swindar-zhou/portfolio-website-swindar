@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import profilePic from "@/images/profile-bw.jpg"
 import profilePicHover from "@/images/profile-color.jpg"

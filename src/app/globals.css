@@ -210,3 +210,27 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* View Transitions — used when navigating between the blog list and a
+ * blog post. Per-slug `view-transition-name` values on the post title morph
+ * the heading's bounding rect from list item to article heading. The rest
+ * of the page cross-fades via the default `root` transition.
+ *
+ * Falls back to instant navigation on browsers without the API; TransitionLink
+ * does the capability check.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

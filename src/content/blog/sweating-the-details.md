@@ -3,6 +3,8 @@ title: "Sweating the Details"
 description: "Why I obsess over animation timing, optical balance, and the micro-interactions most users will never consciously notice."
 date: "2026-05-15"
 tags: ["ui", "ux", "design", "animation"]
+image: "/blog/sweating-the-details.svg"
+imageAlt: "Animation easing curve plotted on a coordinate grid"
 ---
 
 Most users won't notice the things I obsess over.

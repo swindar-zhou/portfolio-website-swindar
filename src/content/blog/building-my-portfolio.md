@@ -3,6 +3,8 @@ title: "Building My Portfolio Website"
 description: "How I built this portfolio with Next.js 15, React 19, and a bunch of fun animations."
 date: "2026-04-12"
 tags: ["nextjs", "react", "portfolio"]
+image: "/blog/building-my-portfolio.svg"
+imageAlt: "Stacked browser-window panels representing UI components"
 ---
 
 This is my first blog post: a quick look at how I built this site and some of the decisions I made along the way.

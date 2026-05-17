@@ -7,6 +7,9 @@ import { Footer } from "@/components/layout/footer";
 import { data } from "@/data/data";
 import Image from "next/image";
 import { Analytics } from "@vercel/analytics/next";
+import { CommandPalette } from "@/components/command-palette/command-palette";
+import { getAllPosts } from "@/lib/blog";
+import { ViewTransitions } from "next-view-transitions";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,11 +43,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://shivypatel.com",
-    title: "Shivam Patel — Portfolio",
-    description: "Portfolio of Shivam Patel.",
-    images: [
-      { url: "/og/website-screenshot.jpg", width: 1200, height: 630, alt: "Website preview" },
-    ],
+    title: "Shivam Patel — Software Engineer",
+    description: "Software Engineer who likes building things.",
+    siteName: "Shivam Patel",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shivam Patel — Software Engineer",
+    description: "Software Engineer who likes building things.",
   },
 };
 
@@ -53,30 +59,38 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const palettePosts = getAllPosts().map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    description: p.description,
+    date: p.date,
+  }));
 
-  
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased relative`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <Navbar navItems={data.nav} />
-          <Image
-            src="/layout/background-ellipse3.svg"
-            alt=""
-            fill={false}
-            width={0}
-            height={0}
-            className="z-1 blur-lg absolute max-w-5xl top-0 left-1/2 transform -translate-x-1/2 -translate-y-5/9 w-full pointer-events-none select-none"
-            aria-hidden="true"
-            priority
-          />
-          {children}
-          <Footer />
-        </ThemeProvider>
-        <Analytics />
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased relative`}
+        >
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            <Navbar navItems={data.nav} />
+            <CommandPalette posts={palettePosts} />
+            <Image
+              src="/layout/background-ellipse3.svg"
+              alt=""
+              fill={false}
+              width={0}
+              height={0}
+              className="z-1 blur-lg absolute max-w-5xl top-0 left-1/2 transform -translate-x-1/2 -translate-y-5/9 w-full pointer-events-none select-none"
+              aria-hidden="true"
+              priority
+            />
+            {children}
+            <Footer />
+          </ThemeProvider>
+          <Analytics />
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

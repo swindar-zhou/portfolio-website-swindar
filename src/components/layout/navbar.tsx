@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "../theme-toggle";
 import { useTheme } from "next-themes";
 import { AnimatedLogo } from "../ui/logo-animation"
-import { useRouter } from "next/navigation";
+import { useTransitionRouter } from "next-view-transitions";
+import { CommandPaletteButton } from "../command-palette/command-palette-button";
 // import Link from "next/link";
 // import Image from "next/image";
 
@@ -31,7 +32,7 @@ export const Navbar = ({
   const [mounted, setMounted] = useState(false);
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(true);
-  const router = useRouter(); // Initialize useRouter
+  const router = useTransitionRouter();
 
 
   useEffect(() => {
@@ -123,6 +124,7 @@ export const Navbar = ({
                 <span className="hidden sm:block text-sm">{navItem.name}</span>
               </button>
             ))}
+            <CommandPaletteButton />
             <ModeToggle />
           </div>
 
