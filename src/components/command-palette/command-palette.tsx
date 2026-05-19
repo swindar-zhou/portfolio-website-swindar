@@ -38,6 +38,7 @@ interface CommandPaletteProps {
 export function CommandPalette({ posts }: CommandPaletteProps) {
     const [open, setOpen] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [viewport, setViewport] = useState<{ height: number; offsetTop: number } | null>(null);
     const { resolvedTheme, setTheme } = useTheme();
     const router = useTransitionRouter();
 
@@ -67,7 +68,10 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
     }, []);
 
     useEffect(() => {
-        if (!open) setCopied(false);
+        if (!open) {
+            setCopied(false);
+            setViewport(null);
+        }
     }, [open]);
 
     useEffect(() => {
@@ -76,6 +80,23 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
         document.body.style.overflow = "hidden";
         return () => {
             document.body.style.overflow = prev;
+        };
+    }, [open]);
+
+    // Track the visual viewport so the palette shrinks when the mobile
+    // keyboard appears (the keyboard overlays the layout viewport but
+    // shrinks the visual viewport).
+    useEffect(() => {
+        if (!open) return;
+        const vv = window.visualViewport;
+        if (!vv) return;
+        const update = () => setViewport({ height: vv.height, offsetTop: vv.offsetTop });
+        update();
+        vv.addEventListener("resize", update);
+        vv.addEventListener("scroll", update);
+        return () => {
+            vv.removeEventListener("resize", update);
+            vv.removeEventListener("scroll", update);
         };
     }, [open]);
 
@@ -120,13 +141,21 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Command palette"
-                className="fixed left-1/2 top-[18%] z-[6001] w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 animate-in fade-in zoom-in-95 duration-150"
+                style={
+                    viewport
+                        ? {
+                              top: viewport.offsetTop + 16,
+                              maxHeight: viewport.height - 32,
+                          }
+                        : undefined
+                }
+                className="fixed left-1/2 top-4 sm:top-[10%] z-[6001] flex w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 flex-col max-h-[calc(100svh-2rem)] animate-in fade-in zoom-in-95 duration-150"
             >
                 <Command
                     label="Command palette"
-                    className="overflow-hidden rounded-xl border border-border/60 bg-background/95 shadow-2xl backdrop-blur-xl"
+                    className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-border/60 bg-background/95 shadow-2xl backdrop-blur-xl"
                 >
-                    <div className="flex items-center gap-2 border-b border-border/60 px-4">
+                    <div className="flex shrink-0 items-center gap-2 border-b border-border/60 px-4">
                         <IconSearch className="h-4 w-4 text-muted-foreground" />
                         <Command.Input
                             placeholder="Type a command or search…"
@@ -138,7 +167,7 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
                         </kbd>
                     </div>
 
-                    <Command.List className="max-h-[400px] overflow-y-auto p-2">
+                    <Command.List className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2">
                         <Command.Empty className="py-8 text-center text-sm text-muted-foreground">
                             No results found.
                         </Command.Empty>
