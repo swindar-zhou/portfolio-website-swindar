@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <div className="pt-32 sm:pt-40 pb-16 px-3 sm:px-4">
+    <div className="relative z-10 pt-32 sm:pt-40 pb-16 px-3 sm:px-4">
       {/*
         Grid layout at xl+: [spacer | article (672px) | TOC sidebar].
         Sticky (not fixed) means the TOC scrolls naturally with the article

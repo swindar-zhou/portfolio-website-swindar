@@ -13,7 +13,7 @@ The trick is *where* to use it. Wire it up everywhere and the site starts feelin
 
 ## Theme swap
 
-The easiest win. `setTheme` in `next-themes` flips a class on `<html>` — the entire palette changes in one DOM mutation. Wrap it in `startViewTransition` and the page cross-fades between light and dark instead of snapping. No shared elements, no per-element naming. Twelve lines of code, immediately visible.
+The easiest win. `setTheme` in `next-themes` flips a class on `<html>`, and the entire palette changes in one DOM mutation. Wrap it in `startViewTransition` and the page cross-fades between light and dark instead of snapping. No shared elements, no per-element naming. Twelve lines of code, immediately visible.
 
 ## Shared elements
 
@@ -25,6 +25,6 @@ Even without shared elements, a 300ms cross-fade between routes makes the site f
 
 ## What I skipped
 
-Section anchors (Home / Projects / Experience) on this page. Those are scroll-to-anchor, not route changes — the API doesn't apply. And every internal link, indiscriminately. The animation stops feeling intentional when it's everywhere.
+Section anchors (Home / Projects / Experience) on this page. Those are scroll-to-anchor, not route changes; the API doesn't apply. And every internal link, indiscriminately. The animation stops feeling intentional when it's everywhere.
 
 The whole feature took an afternoon. The shared-element morph is the kind of thing that used to need a serious animation library, and now it's just CSS plus one Web API call.
