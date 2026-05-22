@@ -234,3 +234,73 @@ body {
     animation: none !important;
   }
 }
+
+/*
+ * rehype-pretty-code dual-theme mode emits one DOM tree with --shiki-light
+ * and --shiki-dark CSS variables on each token span. Switch which variable
+ * applies based on the theme class next-themes sets on <html>.
+ * keepBackground:false is set in the pipeline, so we paint our own block
+ * chrome below.
+ */
+html:not(.dark) code[data-theme],
+html:not(.dark) code[data-theme] span {
+  color: var(--shiki-light);
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+
+html.dark code[data-theme],
+html.dark code[data-theme] span {
+  color: var(--shiki-dark);
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}
+
+.prose pre {
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  border-radius: 0.75rem;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+/*
+ * @tailwindcss/typography wraps every <code> in literal backticks via
+ * content: "`" on ::before/::after. Suppress globally; inline code already
+ * reads as code from its monospace font + tinted background.
+ */
+.prose code::before,
+.prose code::after {
+  content: none;
+}
+
+.prose :not(pre) > code {
+  background: color-mix(in oklab, var(--foreground) 7%, transparent);
+  padding: 0.1em 0.35em;
+  border-radius: 0.3rem;
+  font-size: 0.875em;
+  font-weight: inherit;
+}
+
+.prose code[data-line-numbers] {
+  counter-reset: line;
+}
+.prose code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.75rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: var(--muted-foreground);
+}

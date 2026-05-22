@@ -1,10 +1,10 @@
-import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { getAllPosts, getPostBySlug, renderMarkdown } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Badge } from "@/components/ui/badge";
-import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 import { TableOfContents } from "@/components/blog/table-of-contents";
+import { CopyCodeButtons } from "@/components/blog/copy-code-buttons";
 import { TransitionLink } from "@/components/ui/transition-link";
 import { IconArrowLeft, IconCalendar, IconClock } from "@tabler/icons-react";
 import type { Metadata } from "next";
@@ -45,6 +45,7 @@ export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
+  const html = await renderMarkdown(post.content);
 
   return (
     <div className="relative z-10 pt-32 sm:pt-40 pb-16 px-3 sm:px-4">
@@ -116,9 +117,12 @@ export default async function BlogPostPage({ params }: Props) {
           </BlurFade>
 
           <BlurFade delay={0.01} inView>
-            <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl">
-              <MarkdownRenderer content={post.content} />
-            </article>
+            <article
+              id="post-article"
+              className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-headings:scroll-mt-[50px] prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+            <CopyCodeButtons containerSelector="#post-article" />
           </BlurFade>
         </div>
 

@@ -2,11 +2,36 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype";
+import rehypeSlug from "rehype-slug";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeStringify from "rehype-stringify";
 import { slugify, type Heading } from "@/lib/blog-utils";
 
 export type { Heading };
 
 const BLOG_DIR = path.join(process.cwd(), "src/content/blog");
+
+// keepBackground: false lets our own CSS control the code-block background so
+// it sits on the page palette rather than Shiki's hardcoded GitHub canvas.
+const markdownProcessor = unified()
+  .use(remarkParse)
+  .use(remarkGfm)
+  .use(remarkRehype)
+  .use(rehypeSlug)
+  .use(rehypePrettyCode, {
+    theme: { light: "github-light", dark: "github-dark" },
+    keepBackground: false,
+  })
+  .use(rehypeStringify);
+
+export async function renderMarkdown(content: string): Promise<string> {
+  const file = await markdownProcessor.process(content);
+  return String(file);
+}
 
 export interface BlogPost {
   slug: string;
@@ -24,8 +49,8 @@ export interface BlogPost {
 }
 
 // Extract level-2 and level-3 headings from markdown, skipping code blocks.
-// Slugs are plain slugify(text) — see MarkdownRenderer for why we deliberately
-// don't track uniqueness (Strict Mode double-invocation would mismatch).
+// Slugs use github-slugger via slugify() so they match the IDs rehype-slug
+// emits during HTML rendering.
 export function extractHeadings(content: string): Heading[] {
   const lines = content.split("\n");
   const headings: Heading[] = [];

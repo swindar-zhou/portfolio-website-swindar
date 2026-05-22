@@ -7,7 +7,16 @@ image: "/blog/view-transitions.svg"
 imageAlt: "A small thumbnail morphing into a larger panel along a curved path"
 ---
 
-I added view transitions to this site recently. They're built into the browser now: `document.startViewTransition(() => { /* mutate the DOM */ })`. The browser snapshots the old state, runs your mutation, snapshots the new state, and cross-fades between them. That's it.
+I added view transitions to this site recently. They're built into the browser now:
+
+```ts
+document.startViewTransition(() => {
+  // mutate the DOM here
+  setTheme(next);
+});
+```
+
+The browser snapshots the old state, runs your mutation, snapshots the new state, and cross-fades between them. That's it.
 
 The trick is *where* to use it. Wire it up everywhere and the site starts feeling slow, because every click costs you 300ms. Wire it up nowhere and you missed the point. Three places earned their keep on this site.
 

@@ -1,6 +1,8 @@
 // Pure utilities shared between server-side blog loading and client-side
-// rendering. No Node-only imports here — this file must be safe to import
+// rendering. No Node-only imports here, this file must be safe to import
 // from "use client" components.
+
+import GithubSlugger from "github-slugger";
 
 export interface Heading {
     level: number;
@@ -8,12 +10,13 @@ export interface Heading {
     slug: string;
 }
 
-// Shared slug generator. Used by both heading extraction (for TOC) AND the
-// markdown renderer (for h2/h3 IDs) so anchors and TOC links match.
+// Matches rehype-slug's algorithm so TOC link targets line up with the IDs
+// rehype-slug injects into the rendered HTML.
+const slugger = new GithubSlugger();
+
 export function slugify(text: string): string {
-    return text
-        .toLowerCase()
-        .trim()
-        .replace(/[^\w\s-]/g, "")
-        .replace(/\s+/g, "-");
+    // Reset between calls because we don't want cross-post uniqueness counters.
+    // Within a single post, heading uniqueness is the caller's responsibility.
+    slugger.reset();
+    return slugger.slug(text);
 }
