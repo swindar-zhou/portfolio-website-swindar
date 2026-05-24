@@ -19,8 +19,12 @@ module.exports = {
         "spin-grow": "spin-grow 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
         wiggle: "wiggle 0.8s ease-out 1",
         "sound-wave": "sound-wave ease-in-out infinite alternate",
+        "border-beam": "border-beam calc(var(--duration)) infinite linear",
       },
       keyframes: {
+        "border-beam": {
+          "100%": { "offset-distance": "100%" },
+        },
         meteor: {
           "0%": {
             transform: "rotate(var(--angle)) translateX(0)",

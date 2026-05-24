@@ -7,6 +7,8 @@ import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { HeroConstellation } from "@/components/ui/hero-constellation"
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { BorderBeam } from "@/components/ui/border-beam";
+import { IconArrowRight } from "@tabler/icons-react";
 import {
     AnimatedName,
     HOLD_MS,
@@ -15,7 +17,7 @@ import {
     type Phase,
     type Suffix,
 } from "@/components/ui/animated-name";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     Tooltip,
     TooltipContent,
@@ -71,6 +73,15 @@ export default function Hero() {
     const handleShimmerButtonClick = () => {
         handleIconClick("email");
     }
+
+    const ctaRef = useRef<HTMLAnchorElement>(null);
+    const handleCtaMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const el = ctaRef.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+        el.style.setProperty("--my", `${e.clientY - rect.top}px`);
+    };
 
     return (
         <div className="pt-32 pb-16 sm:pt-56 relative flex items-center justify-center overflow-hidden">
@@ -134,8 +145,27 @@ export default function Hero() {
                                 </p>
                             </BlurFade>
                             <BlurFade delay={0.005 * 2} direction="down" inView>
-                                <div className="z-1 space-y-6 flex flex-col items-center justify-center">
+                                <div className="z-50 flex flex-row items-center justify-center gap-5">
                                     <ContactIcons wiggleIcon={wiggleIcon} handleIconClick={handleIconClick} />
+                                    <span className="h-5 w-px bg-zinc-300/60 dark:bg-zinc-700/60" aria-hidden />
+                                    <a
+                                        ref={ctaRef}
+                                        onMouseMove={handleCtaMove}
+                                        href="#projects"
+                                        className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-zinc-300/60 dark:border-zinc-700/60 bg-background/40 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-secondary-foreground transition-colors hover:text-foreground"
+                                    >
+                                        <span
+                                            aria-hidden
+                                            className="pointer-events-none absolute inset-0 rounded-full text-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-20"
+                                            style={{
+                                                background:
+                                                    "radial-gradient(120px circle at var(--mx, 50%) var(--my, 50%), currentColor, transparent 60%)",
+                                            }}
+                                        />
+                                        <span className="relative">View my work</span>
+                                        <IconArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                                        <BorderBeam size={60} duration={5} />
+                                    </a>
                                 </div>
                             </BlurFade>
                         </div>
