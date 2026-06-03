@@ -10,10 +10,14 @@ import { cn } from "@/lib/utils";
 
 const MOVEMENT_DAMPING = 1400;
 
-const BOSTON = { lat: 42.3601, lng: -71.0589 };
-const MENLO = { lat: 37.453, lng: -122.1817 };
+// Journey: Shenzhen → Notre Dame → Bay Area
+const SHENZHEN = { lat: 22.5431, lng: 114.0579 };
+const NOTRE_DAME = { lat: 41.7033, lng: -86.2389 };
+const BAY = { lat: 37.453, lng: -122.1817 };
+const STOPS = [SHENZHEN, NOTRE_DAME, BAY];
 const AMBER = "rgb(245, 158, 11)";
 const GREEN = "rgb(34, 197, 94)";
+const SKY = "rgb(56, 189, 248)";
 
 const GLOBE_CONFIG: COBEOptions = {
   width: 800,
@@ -116,24 +120,29 @@ export function Globe({
       };
     };
 
-    const v1 = toVec(BOSTON.lat, BOSTON.lng);
-    const v2 = toVec(MENLO.lat, MENLO.lng);
-    const dotProd = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-    const omega = Math.acos(Math.max(-1, Math.min(1, dotProd)));
-    const sinOmega = Math.sin(omega);
-    const N = 80;
+    // Build one continuous polyline across every leg of the journey by
+    // concatenating great-circle arcs between consecutive stops.
+    const N_PER_LEG = 60;
     const ARC_LIFT = 0.18;
 
     const arcPoints: { x: number; y: number; z: number }[] = [];
-    for (let i = 0; i <= N; i++) {
-      const t = i / N;
-      const a = Math.sin((1 - t) * omega) / sinOmega;
-      const b = Math.sin(t * omega) / sinOmega;
-      const x = a * v1.x + b * v2.x;
-      const y = a * v1.y + b * v2.y;
-      const z = a * v1.z + b * v2.z;
-      const lift = 1 + Math.sin(Math.PI * t) * ARC_LIFT;
-      arcPoints.push({ x: x * lift, y: y * lift, z: z * lift });
+    for (let leg = 0; leg < STOPS.length - 1; leg++) {
+      const v1 = toVec(STOPS[leg].lat, STOPS[leg].lng);
+      const v2 = toVec(STOPS[leg + 1].lat, STOPS[leg + 1].lng);
+      const dotProd = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+      const omega = Math.acos(Math.max(-1, Math.min(1, dotProd)));
+      const sinOmega = Math.sin(omega) || 1;
+      // Skip the first point on later legs so the shared stop isn't duplicated.
+      for (let i = leg === 0 ? 0 : 1; i <= N_PER_LEG; i++) {
+        const t = i / N_PER_LEG;
+        const a = Math.sin((1 - t) * omega) / sinOmega;
+        const b = Math.sin(t * omega) / sinOmega;
+        const x = a * v1.x + b * v2.x;
+        const y = a * v1.y + b * v2.y;
+        const z = a * v1.z + b * v2.z;
+        const lift = 1 + Math.sin(Math.PI * t) * ARC_LIFT;
+        arcPoints.push({ x: x * lift, y: y * lift, z: z * lift });
+      }
     }
 
     // Matches cobe's rotation: M_theta * M_phi (rotate around Y by phi, then X by theta).
@@ -204,7 +213,7 @@ export function Globe({
         ctx.stroke();
       }
 
-      // Beam: bright moving segment along the arc (Boston → Menlo)
+      // Beam: bright moving segment along the arc (Shenzhen → Notre Dame → Bay)
       // Cycle includes a pause after each pass.
       beamProgress = (beamProgress + 0.0055) % 1.35;
       if (beamProgress <= 1) {
@@ -225,7 +234,7 @@ export function Globe({
         }
       }
 
-      // City dots: amber Boston, green Menlo
+      // City dots: amber Shenzhen, green Notre Dame, sky Bay Area
       const drawDot = (lat: number, lng: number, color: string) => {
         const pr = project(toVec(lat, lng), currentPhi);
         if (pr.z < -0.02) return;
@@ -250,8 +259,9 @@ export function Globe({
         ctx.globalAlpha = 1;
       };
 
-      drawDot(BOSTON.lat, BOSTON.lng, AMBER);
-      drawDot(MENLO.lat, MENLO.lng, GREEN);
+      drawDot(SHENZHEN.lat, SHENZHEN.lng, AMBER);
+      drawDot(NOTRE_DAME.lat, NOTRE_DAME.lng, GREEN);
+      drawDot(BAY.lat, BAY.lng, SKY);
 
       overlayAnimId = requestAnimationFrame(drawOverlay);
     };

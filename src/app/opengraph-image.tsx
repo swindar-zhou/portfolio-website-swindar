@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Shivam Patel — Software Engineer";
+export const alt = "Swindar Zhou — Full Stack Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -39,7 +39,7 @@ export default async function OGImage() {
                             boxShadow: "0 0 16px #22c55e",
                         }}
                     />
-                    shivypatel.com
+                    swindarzhou.com
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -55,7 +55,7 @@ export default async function OGImage() {
                             color: "transparent",
                         }}
                     >
-                        Shivam Patel
+                        Swindar Zhou
                     </div>
                     <div
                         style={{
@@ -64,7 +64,7 @@ export default async function OGImage() {
                             letterSpacing: "-0.02em",
                         }}
                     >
-                        Software Engineer who likes building things.
+                        Full Stack Developer who likes building things.
                     </div>
                 </div>
 

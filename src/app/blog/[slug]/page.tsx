@@ -23,11 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug);
   if (!post) return {};
   return {
-    title: `${post.title} — Shivam Patel`,
+    title: `${post.title} — Swindar Zhou`,
     description: post.description,
     openGraph: {
       type: "article",
-      url: `https://shivypatel.com/blog/${slug}`,
+      url: `https://swindarzhou.com/blog/${slug}`,
       title: post.title,
       description: post.description,
       publishedTime: post.date,

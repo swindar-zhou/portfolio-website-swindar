@@ -28,9 +28,9 @@ const pacifico = Pacifico({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shivypatel.com"),
-  title: "Shivam Patel - Software Engineer",
-  description: "A beautiful portfolio showcasing my work as a software engineer.",
+  metadataBase: new URL("https://swindarzhou.com"),
+  title: "Swindar Zhou - Full Stack Developer",
+  description: "A portfolio showcasing my work as a full stack developer and co-founder.",
   icons: {
     icon: [
       { url: "/logo/logo.svg", type: "image/svg+xml" },       
@@ -42,15 +42,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://shivypatel.com",
-    title: "Shivam Patel — Software Engineer",
-    description: "Software Engineer who likes building things.",
-    siteName: "Shivam Patel",
+    url: "https://swindarzhou.com",
+    title: "Swindar Zhou — Full Stack Developer",
+    description: "Full Stack Developer & Co-Founder building products at the intersection of AI and health.",
+    siteName: "Swindar Zhou",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shivam Patel — Software Engineer",
-    description: "Software Engineer who likes building things.",
+    title: "Swindar Zhou — Full Stack Developer",
+    description: "Full Stack Developer & Co-Founder building products at the intersection of AI and health.",
   },
   alternates: {
     types: {

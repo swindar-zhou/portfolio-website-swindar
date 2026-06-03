@@ -58,7 +58,7 @@ export default async function OGImage({ params }: Props) {
                                 boxShadow: "0 0 14px #22c55e",
                             }}
                         />
-                        shivypatel.com / blog
+                        swindarzhou.com / blog
                     </div>
                     <div style={{ display: "flex", gap: "20px" }}>
                         {date && <span>{date}</span>}
@@ -115,10 +115,10 @@ export default async function OGImage({ params }: Props) {
                     }}
                 >
                     <span style={{ color: "#fafafa", fontWeight: 600 }}>
-                        Shivam Patel
+                        Swindar Zhou
                     </span>
                     <span>·</span>
-                    <span>Software Engineer</span>
+                    <span>Full Stack Developer</span>
                 </div>
             </div>
         ),

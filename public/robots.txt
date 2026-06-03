@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://shivypatel.com
+Host: https://swindarzhou.com
 
 # Sitemaps
-Sitemap: https://shivypatel.com/sitemap.xml
+Sitemap: https://swindarzhou.com/sitemap.xml

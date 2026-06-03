@@ -6,7 +6,7 @@ import Image from "next/image";
 import { data } from "@/data/data"
 import { BlurFade } from "@/components/ui/blur-fade";
 import { SectionHeading, headingIconClass } from "@/components/layout/section-heading";
-import { IconBriefcase2, IconSchool } from "@tabler/icons-react"
+import { IconBriefcase2 } from "@tabler/icons-react"
 
 export default function Experience() {
   return (
@@ -26,28 +26,12 @@ export default function Experience() {
                 description={item.description}
                 location={item.location}
                 skills={item.skills}
-                href={item.href}
+                href={(item as { href?: string }).href}
               />
             </BlurFade>
           ))}
         </div>
       </TracingBeam>
-
-      <BlurFade delay={0.10} direction="right" inView>
-        <SectionHeading className="my-8" icon={<IconSchool className={headingIconClass} />}>
-          Education
-        </SectionHeading>
-        <ExperienceItem
-          image="/experience/umasslowell_logo.jpg"
-          company="University of Massachusetts, Lowell"
-          role="B.S. in Computer Science, Minor in Mathematics"
-          date="2020 - 2024"
-          description=" "
-          location="Lowell, MA"
-          skills={["C", "C++", "Java", "Python", "JavaScript", "HTML/CSS", "SQL"]}
-          href="https://www.uml.edu"
-        />
-      </BlurFade>
     </div>
   );
 }
@@ -80,7 +64,7 @@ export const ExperienceItem = ({
       height={100}
       alt={`${company} logo`}
       priority
-      className="h-8 w-8 rounded-sm sm:h-10 sm:w-10 sm:rounded-md mt-1"
+      className="h-8 w-8 rounded-sm sm:h-10 sm:w-10 sm:rounded-md mt-1 object-contain"
     />
   );
 

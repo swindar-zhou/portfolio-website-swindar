@@ -1,23 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import profilePic from "@/images/profile-bw.jpg"
-import profilePicHover from "@/images/profile-color.jpg"
+import profilePic from "@/images/profile.png"
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { HeroConstellation } from "@/components/ui/hero-constellation"
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { IconArrowRight } from "@tabler/icons-react";
-import {
-    AnimatedName,
-    HOLD_MS,
-    INITIAL_REVEAL_MS,
-    SWAP_REVEAL_MS,
-    type Phase,
-    type Suffix,
-} from "@/components/ui/animated-name";
-import React, { useEffect, useRef, useState } from "react";
+import { AnimatedName } from "@/components/ui/animated-name";
+import React, { useRef, useState } from "react";
 import {
     Tooltip,
     TooltipContent,
@@ -30,38 +22,6 @@ import { data } from "@/data/data";
 export default function Hero() {
 
     const [wiggleIcon, setWiggleIcon] = useState<string | null>(null);
-
-    // State machine for the animated name. Lifted to Hero so the layout-animated
-    // line wrapper re-renders on every phase/suffix change — Framer Motion's
-    // `layout` only measures bounding rects when the motion component re-renders.
-    // If the state lived inside AnimatedName, Hero wouldn't re-render and Framer
-    // would never see the line wrapper's width change.
-    const [phase, setPhase] = useState<Phase>("initial");
-    const [suffix, setSuffix] = useState<Suffix>("y");
-
-    useEffect(() => {
-        let timer: ReturnType<typeof setTimeout> | undefined;
-        if (phase === "initial") {
-            timer = setTimeout(() => setPhase("hold"), INITIAL_REVEAL_MS);
-        } else if (phase === "hold") {
-            timer = setTimeout(() => setPhase("exit"), HOLD_MS);
-        } else if (phase === "enter") {
-            timer = setTimeout(() => setPhase("hold"), SWAP_REVEAL_MS);
-        }
-        // Note: exit -> enter transition is NOT handled by a timer here.
-        // It's triggered by AnimatedName's onAnimationComplete (passed below)
-        // so the suffix swap happens precisely when Framer signals the exit
-        // clipPath animation has settled — no setTimeout timing race that
-        // could leave the new suffix briefly visible mid-clip.
-        return () => {
-            if (timer) clearTimeout(timer);
-        };
-    }, [phase]);
-
-    const handleExitComplete = () => {
-        setSuffix((s) => (s === "y" ? "am" : "y"));
-        setPhase("enter");
-    };
 
     const { status, dotColor } = getStatus();
 
@@ -90,17 +50,12 @@ export default function Hero() {
                 <BlurFade delay={0.005} inView>
                     <div className="relative flex-col space-y-1">
                         <div className="relative flex flex-col items-center justify-center">
-                            <BackgroundGradient className="z-50 h-16 w-16 sm:w-20 sm:h-20 md:w-20 md:h-20 ">
+                            <BackgroundGradient className="z-50 h-32 w-32 sm:w-40 sm:h-40 md:w-40 md:h-40 ">
                                 <Image
                                     src={profilePic}
-                                    alt="Profile Picture"
+                                    alt="Swindar Zhou"
                                     priority
-                                    className="absolute rounded-full transition-opacity duration-200 opacity-100 group-hover:opacity-0"
-                                />
-                                <Image
-                                    src={profilePicHover}
-                                    alt="Profile Picture Hover"
-                                    className="absolute rounded-full transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+                                    className="h-full w-full rounded-full object-cover grayscale transition-[filter] duration-300 group-hover:grayscale-0"
                                 />
                             </BackgroundGradient>
                             <ShimmerButton onClick={handleShimmerButtonClick} className="z-50 mt-8">
@@ -126,33 +81,30 @@ export default function Hero() {
                         <div className="w-full space-y-6">
                             <BlurFade delay={0.005 * 1} inView>
                                 <p className="z-50 subpixel-antialiased leading-[1.8] text-5xl sm:text-7xl font-bold text-center whitespace-nowrap">
-                                    <span className="inline-block pb-2 bg-gradient-to-b from-zinc-200 dark:from-zinc-50 to-zinc-950 dark:to-zinc-300 bg-clip-text text-transparent">
+                                    <span className="inline-block pb-2 bg-gradient-to-b from-stone-200 dark:from-stone-50 to-stone-900 dark:to-stone-300 bg-clip-text text-transparent">
                                         Hi. I&#39;m{" "}
                                         <AnimatedName
-                                            phase={phase}
-                                            suffix={suffix}
-                                            onExitComplete={handleExitComplete}
+                                            name="Swindar"
                                             className="font-script font-normal text-[1.05em] leading-none align-baseline"
                                         />
                                     </span>
                                 </p>
                                 <p className="text-base subpixel-antialiased tracking-tight font-medium sm:text-2xl text-center text-secondary-foreground">
-                                    A Software Engineer who likes{" "}
+                                    Full Stack Developer &amp; Tech Lead{" "}
                                     <span className="font-script font-normal text-[1.05em] leading-none align-baseline text-secondary-foreground">
-                                        building things
+                                        @ AI Wellness Startup
                                     </span>
-                                    .
                                 </p>
                             </BlurFade>
                             <BlurFade delay={0.005 * 2} direction="down" inView>
                                 <div className="z-50 flex flex-row items-center justify-center gap-5">
                                     <ContactIcons wiggleIcon={wiggleIcon} handleIconClick={handleIconClick} />
-                                    <span className="h-5 w-px bg-zinc-300/60 dark:bg-zinc-700/60" aria-hidden />
+                                    <span className="h-5 w-px bg-stone-300/60 dark:bg-stone-700/60" aria-hidden />
                                     <a
                                         ref={ctaRef}
                                         onMouseMove={handleCtaMove}
                                         href="#projects"
-                                        className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-zinc-300/60 dark:border-zinc-700/60 bg-background/40 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-secondary-foreground transition-colors hover:text-foreground"
+                                        className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-stone-300/60 dark:border-stone-700/60 bg-background/40 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-secondary-foreground transition-colors hover:text-foreground"
                                     >
                                         <span
                                             aria-hidden

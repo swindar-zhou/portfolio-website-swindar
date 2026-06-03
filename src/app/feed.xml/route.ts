@@ -1,11 +1,11 @@
 import { getAllPosts } from "@/lib/blog";
 
-const SITE_URL = "https://shivypatel.com";
-const SITE_TITLE = "Shivam Patel";
+const SITE_URL = "https://swindarzhou.com";
+const SITE_TITLE = "Swindar Zhou";
 const SITE_DESCRIPTION =
     "Thoughts on software engineering, design, and things I find interesting.";
-const AUTHOR_EMAIL = "shivypat02@gmail.com";
-const AUTHOR_NAME = "Shivam Patel";
+const AUTHOR_EMAIL = "swindarzhou@gmail.com";
+const AUTHOR_NAME = "Swindar Zhou";
 
 function escapeXml(s: string): string {
     return s

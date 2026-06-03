@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 15 portfolio website for Shivam Patel, built with React 19, TypeScript, and Tailwind CSS. The site features animated UI components, third-party API integrations (Spotify, WakaTime), and a component-based architecture with custom UI libraries.
+This is a Next.js 15 portfolio website for Swindar Zhou, built with React 19, TypeScript, and Tailwind CSS. The site features animated UI components, a GitHub contributions integration, and a component-based architecture with custom UI libraries.
 
 ## Development Commands
 
@@ -63,22 +63,13 @@ Components are organized into three main categories:
 - **Pattern**: Components import and render from this centralized data object
 
 ### API Routes
-Two serverless API routes handle external integrations:
-
-1. **`src/app/api/spotify/route.ts`**:
-   - Fetches recently played track from Spotify
-   - Uses OAuth refresh token flow
-   - Returns track metadata (title, artist, album, image URL)
-
-2. **`src/app/api/wakatime/route.ts`**:
-   - Fetches all-time coding hours from WakaTime
-   - Uses Basic auth with API key
-   - Returns total hours and formatted text
-   - Cached for 1 hour via `next.revalidate`
+1. **`src/app/api/github/route.ts`**:
+   - Fetches the last 7 weeks of GitHub contributions via the GraphQL API
+   - Uses a personal access token (Basic auth)
+   - Returns a contribution calendar for the dashboard heatmap
 
 ### Custom Hooks
-- **`src/hooks/useSpotify.ts`**: Fetches and manages Spotify track state
-- **`src/hooks/useWakaTime.ts`**: Fetches and manages WakaTime coding stats
+- **`src/hooks/useGitHub.ts`**: Fetches and manages GitHub contribution data
 
 ### Styling System
 - **Tailwind CSS**: Configured in `tailwind.config.js` with custom animations
@@ -89,12 +80,10 @@ Two serverless API routes handle external integrations:
 - **Utility Function**: `cn()` in `src/lib/utils.ts` combines clsx and tailwind-merge for conditional classes
 
 ### Environment Variables
-Required variables (see `.env.example`):
+Required for the GitHub contributions heatmap (the dashboard renders empty without them):
 ```bash
-WAKATIME_API_KEY=          # From https://wakatime.com/settings/account
-SPOTIFY_CLIENT_ID=         # Spotify OAuth credentials
-SPOTIFY_CLIENT_SECRET=     # Follow: https://leerob.io/blog/spotify-api-nextjs
-SPOTIFY_REFRESH_TOKEN=     # Generated via OAuth flow
+GITHUB_TOKEN=              # Personal access token with read:user scope
+GITHUB_USERNAME=           # Your GitHub username (e.g. swindar-zhou)
 ```
 
 ### TypeScript Configuration

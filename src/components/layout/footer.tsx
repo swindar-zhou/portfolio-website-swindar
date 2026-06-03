@@ -73,7 +73,7 @@ export const Footer = () => {
                         </span>
                     </h2>
                     <a
-                        href="mailto:shivypat02@gmail.com"
+                        href="mailto:swindarzhou@gmail.com"
                         onClick={handleSendClick}
                         className="group inline-block active:scale-95 transition-transform duration-150"
                     >
@@ -125,10 +125,10 @@ export const Footer = () => {
                             />
                         )}
                         <p className="text-sm font-semibold tracking-tight text-primary">
-                            Shivam Patel
+                            Swindar Zhou
                         </p>
                         <p className="text-xs text-muted-foreground leading-relaxed max-w-xs">
-                            Software Engineer & Co-founder, building thoughtful products at the intersection of AI and great UX.
+                            Full Stack Developer & Tech Lead, building thoughtful products at the intersection of AI, health, and great UX.
                         </p>
                     </div>
 
@@ -186,7 +186,7 @@ export const Footer = () => {
                 {/* Bottom row */}
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center border-t border-border/50 pt-6 pb-6">
                     <p className="text-xs text-muted-foreground leading-none">
-                        &copy; {new Date().getFullYear()} Shivam Patel. All rights reserved.
+                        &copy; {new Date().getFullYear()} Swindar Zhou. All rights reserved.
                     </p>
                     <p className="text-xs text-muted-foreground leading-none">
                         Built with ❤️ using React, Next.js and Tailwind

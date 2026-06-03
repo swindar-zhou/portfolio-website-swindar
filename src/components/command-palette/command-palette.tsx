@@ -120,11 +120,11 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
 
     const copyEmail = useCallback(async () => {
         try {
-            await navigator.clipboard.writeText("shivypat02@gmail.com");
+            await navigator.clipboard.writeText("swindarzhou@gmail.com");
             setCopied(true);
             setTimeout(() => setCopied(false), 1500);
         } catch {
-            window.location.href = "mailto:shivypat02@gmail.com";
+            window.location.href = "mailto:swindarzhou@gmail.com";
         }
     }, []);
 
@@ -228,7 +228,7 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
                                     )
                                 }
                                 label={copied ? "Copied!" : "Copy email"}
-                                sublabel="shivypat02@gmail.com"
+                                sublabel="swindarzhou@gmail.com"
                                 keywords={["email", "contact", "mail"]}
                                 onSelect={copyEmail}
                             />
@@ -254,11 +254,11 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
                             <Item
                                 icon={<IconBrandGithub className="h-4 w-4" />}
                                 label="GitHub"
-                                sublabel="github.com/shivy02"
+                                sublabel="github.com/swindar-zhou"
                                 onSelect={() =>
                                     run(() =>
                                         window.open(
-                                            "https://github.com/shivy02",
+                                            "https://github.com/swindar-zhou",
                                             "_blank",
                                             "noopener,noreferrer",
                                         ),
@@ -268,11 +268,11 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
                             <Item
                                 icon={<IconBrandLinkedin className="h-4 w-4" />}
                                 label="LinkedIn"
-                                sublabel="linkedin.com/in/shivam-patel-363747214"
+                                sublabel="linkedin.com/in/swindar-zhou"
                                 onSelect={() =>
                                     run(() =>
                                         window.open(
-                                            "https://www.linkedin.com/in/shivam-patel-363747214/",
+                                            "https://www.linkedin.com/in/swindar-zhou/",
                                             "_blank",
                                             "noopener,noreferrer",
                                         ),
@@ -285,7 +285,7 @@ export function CommandPalette({ posts }: CommandPaletteProps) {
                                 onSelect={() =>
                                     run(() => {
                                         window.location.href =
-                                            "mailto:shivypat02@gmail.com";
+                                            "mailto:swindarzhou@gmail.com";
                                     })
                                 }
                             />

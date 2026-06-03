@@ -93,7 +93,7 @@ export function GitHubHeatmap({ contributions, isLoading }: GitHubHeatmapProps) 
                   <Tooltip key={day.date}>
                     <TooltipTrigger asChild>
                       <a
-                        href="https://github.com/shivy02"
+                        href="https://github.com/swindar-zhou"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="View GitHub profile"

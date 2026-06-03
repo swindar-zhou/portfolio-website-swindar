@@ -22,26 +22,40 @@ export default function Projects() {
             <SectionHeading icon={<IconBrush className={headingIconClass} />}>
                 Projects
             </SectionHeading>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mx-auto">
-                {data.projects.map((item, index) => (
-                    <BlurFade
-                        key={item.title}
-                        delay={0.04 * 12 + index * 0.05}
-                    >
-                        <ProjectCard
-                            href={item.href}
-                            key={item.title}
-                            title={item.title}
-                            description={item.description}
-                            dates={item.dates}
-                            tags={item.technologies}
-                            // image={item.image}
-                            video={item.video}
-                            thumbnail={item.thumbnail}
-                        // links={item.links}
-                        />
-                    </BlurFade>
-                ))}
+            <div className="flex flex-col gap-10">
+                {data.projectCategories.map((category, catIndex) => {
+                    const items = data.projects.filter((p) => p.category === category);
+                    if (items.length === 0) return null;
+                    return (
+                        <div key={category} className="flex flex-col">
+                            <BlurFade delay={0.1 + catIndex * 0.05}>
+                                <div className="mb-4 flex items-center gap-3">
+                                    <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                                        {category}
+                                    </span>
+                                    <span className="h-px w-full bg-border" />
+                                </div>
+                            </BlurFade>
+                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mx-auto w-full">
+                                {items.map((item, index) => (
+                                    <BlurFade
+                                        key={item.title}
+                                        delay={0.1 + catIndex * 0.05 + index * 0.05}
+                                    >
+                                        <ProjectCard
+                                            href={item.href}
+                                            title={item.title}
+                                            description={item.description}
+                                            dates={item.dates}
+                                            tags={item.technologies}
+                                            image={item.image}
+                                        />
+                                    </BlurFade>
+                                ))}
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
