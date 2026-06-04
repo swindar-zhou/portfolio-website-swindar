@@ -1,5 +1,5 @@
 "use client";
-import React, { JSX, useState, useEffect } from "react";
+import React, { JSX, useState } from "react";
 import {
   motion,
   AnimatePresence,
@@ -8,8 +8,6 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "../theme-toggle";
-import { useTheme } from "next-themes";
-import { AnimatedLogo } from "../ui/logo-animation"
 import { useTransitionRouter } from "next-view-transitions";
 import { CommandPaletteButton } from "../command-palette/command-palette-button";
 // import Link from "next/link";
@@ -28,16 +26,9 @@ export const Navbar = ({
   className?: string;
 }) => {
 
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(true);
   const router = useTransitionRouter();
-
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useMotionValueEvent(scrollY, "change", (current) => {
 
@@ -72,12 +63,6 @@ export const Navbar = ({
     }
   };
 
-  const handleLogoClick = () => {
-    router.push("/"); // Navigate to the home page
-  };
-
-
-
   return (
     <AnimatePresence mode="wait">
       {visible && (
@@ -99,17 +84,6 @@ export const Navbar = ({
           )}
 
         >
-          {/* Logo on the left */}
-          <div className="flex items-center mr-16">
-            {mounted && (
-              <AnimatedLogo
-                theme={resolvedTheme === "dark" ? "dark" : "light"}
-                className="w-6 h-6 sm:w-7 sm:h-7"
-                onClick={handleLogoClick}
-              />
-            )}
-          </div>
-
           {/* Links in the center */}
           <div className="flex gap-6 ml-auto mr-4">
             {navItems.map((navItem, idx) => (

@@ -5,9 +5,7 @@ import { RainbowButton } from "@/components/magicui/rainbow-button";
 import { IconRss, IconSend } from "@tabler/icons-react";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
-import { AnimatedLogo } from "@/components/ui/logo-animation";
 import { data } from "@/data/data";
 
 export const Footer = () => {
@@ -16,13 +14,7 @@ export const Footer = () => {
     const waveInView = useInView(waveRef, { amount: 0.5 });
     const [waveKey, setWaveKey] = useState(0);
 
-    const { resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
     const router = useRouter();
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     useEffect(() => {
         if (waveInView) setWaveKey((k) => k + 1);
@@ -49,8 +41,6 @@ export const Footer = () => {
             section.scrollIntoView({ behavior: "smooth" });
         }
     };
-
-    const handleLogoClick = () => router.push("/");
 
     return (
         <footer className="relative w-full bg-transparent text-secondary-foreground overflow-hidden">
@@ -117,13 +107,6 @@ export const Footer = () => {
                 {/* Links + Logo */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 border-t border-border/50 pt-10 pb-8">
                     <div className="col-span-2 sm:col-span-1 flex flex-col items-start gap-3">
-                        {mounted && (
-                            <AnimatedLogo
-                                theme={resolvedTheme === "dark" ? "dark" : "light"}
-                                className="w-8 h-8"
-                                onClick={handleLogoClick}
-                            />
-                        )}
                         <p className="text-sm font-semibold tracking-tight text-primary">
                             Swindar Zhou
                         </p>

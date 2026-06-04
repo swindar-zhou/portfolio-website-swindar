@@ -33,12 +33,10 @@ export const metadata: Metadata = {
   description: "A portfolio showcasing my work as a full stack developer and co-founder.",
   icons: {
     icon: [
-      { url: "/logo/logo.svg", type: "image/svg+xml" },       
-      { url: "/favicon-196.png", sizes: "32x32", type: "image/png" },
-      // { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/swindar-icon.png", type: "image/png" },
       { url: "/favicon.ico" },
     ],
-    apple: [{ url: "/apple-icon-180.png", sizes: "180x180" }],
+    apple: [{ url: "/swindar-icon.png" }],
   },
   openGraph: {
     type: "website",
