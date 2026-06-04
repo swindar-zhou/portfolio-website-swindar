@@ -106,7 +106,7 @@ export const data = {
       type: "Web Application",
       technologies: ["Next.js 14", "FastAPI", "OpenAI Embeddings", "D3.js", "Vercel", "Railway"],
       description: "AI research-mentor discovery tool built in 48 hours — semantic faculty matching via OpenAI embeddings, an interactive D3.js force-directed graph, and one-click cold-outreach email generation. Honorable Mention — Hesburgh Libraries Hackathon.",
-      image: "/projects/matchlab-placeholder.svg",
+      image: "/projects/matchlab.png",
     },
     {
       title: "Maternal Health RAG Agent",
@@ -130,7 +130,7 @@ export const data = {
       type: "Biotech Venture",
       technologies: ["Synthetic Biology", "Product Development", "Market Validation"],
       description: "Led Notre Dame's inaugural iGEM team to a Gold Medal at the 2025 Paris Global Jamboree. Product: a GLP-1-boosting probiotic yogurt (an oral Ozempic alternative) validated through customer discovery and synthetic-biology prototyping.",
-      image: "/projects/fleur.png",
+      image: "/projects/fleur.jpg",
     },
     {
       title: "SprintHack@ND",
