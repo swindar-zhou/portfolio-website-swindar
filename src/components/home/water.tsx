@@ -16,7 +16,7 @@ export default function Water() {
   return (
     <div className="flex flex-col">
       <SectionHeading icon={<IconRipple className={headingIconClass} />}>
-        By the Water
+        be water, my friend
       </SectionHeading>
       <BlurFade delay={0.1} inView>
         <p className="mx-auto mb-8 max-w-2xl text-center text-pretty text-sm sm:text-base text-muted-foreground">

@@ -95,7 +95,7 @@ export const data = {
       type: "Mobile Application",
       technologies: ["SwiftUI", "SwiftData", "Claude API", "OpenAI API", "StoreKit 2", "Stripe", "Firebase"],
       description: "Perinatal wellness iOS app for mothers with postpartum depression. An AI chatbot paired with human coaching, with free, subscription (Apple IAP), and live-session (Stripe) tiers.",
-      image: "/projects/rosyy-placeholder.svg",
+      image: "/projects/rosyy.jpg",
     },
     {
       title: "MatchLab",
@@ -117,7 +117,7 @@ export const data = {
       type: "AI System",
       technologies: ["Python", "RAG", "TF-IDF", "LangChain", "Web Scraping"],
       description: "Scraped and structured maternal-health program data from 58 California counties (2,852 records); built a ZIP-code-queryable RAG interface surfacing programs missing from federal registries. Presented at the RISE AI Conference.",
-      image: "/projects/maternal-health-placeholder.svg",
+      image: "/projects/maternal-health.png",
     },
 
     // --- Ventures & Community ---
@@ -130,7 +130,7 @@ export const data = {
       type: "Biotech Venture",
       technologies: ["Synthetic Biology", "Product Development", "Market Validation"],
       description: "Led Notre Dame's inaugural iGEM team to a Gold Medal at the 2025 Paris Global Jamboree. Product: a GLP-1-boosting probiotic yogurt (an oral Ozempic alternative) validated through customer discovery and synthetic-biology prototyping.",
-      image: "/projects/igem-fleur-placeholder.svg",
+      image: "/projects/fleur.png",
     },
     {
       title: "SprintHack@ND",
@@ -141,7 +141,7 @@ export const data = {
       type: "Community & Events",
       technologies: ["Event Production", "Community Organizing"],
       description: "Notre Dame's first AI hackathon — 60 participants, $5K in prizes, 12 projects built in a day, judges from Google/Amazon/Replit/VC. One team's AI food-pantry platform was later featured in Vatican News.",
-      image: "/projects/sprinthack-placeholder.svg",
+      image: "/projects/sprinthack.jpeg",
     },
   ],
 

@@ -53,7 +53,7 @@ export const Footer = () => {
     const handleLogoClick = () => router.push("/");
 
     return (
-        <footer className="relative w-full bg-background text-secondary-foreground overflow-hidden">
+        <footer className="relative w-full bg-transparent text-secondary-foreground overflow-hidden">
             <div className="relative z-10 mx-auto flex max-w-5xl flex-col px-4 pt-20 sm:pt-28">
                 {/* CTA */}
                 <div className="flex flex-col items-center justify-center mb-16 sm:mb-24">
@@ -189,7 +189,15 @@ export const Footer = () => {
                         &copy; {new Date().getFullYear()} Swindar Zhou. All rights reserved.
                     </p>
                     <p className="text-xs text-muted-foreground leading-none">
-                        Built with ❤️ using React, Next.js and Tailwind
+                        Built with ❤️ using React, Next.js &amp; Tailwind · Template thanks to{" "}
+                        <a
+                            href="https://shivypatel.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline underline-offset-2 hover:text-primary transition-colors"
+                        >
+                            Shivy Patel
+                        </a>
                     </p>
                 </div>
             </div>

@@ -77,7 +77,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased relative`}
         >
-          <ThemeProvider attribute="class" defaultTheme="dark">
+          <ThemeProvider attribute="class" defaultTheme="light">
             <Navbar navItems={data.nav} />
             <CommandPalette posts={palettePosts} />
             <Image

@@ -27,7 +27,7 @@ export default function Home() {
   //   }));
 
   return (
-    <div className="relative min-h-screen w-full bg-background">
+    <div className="relative min-h-screen w-full bg-transparent">
       <div className="mx-auto flex max-w-5xl flex-col space-y-12 sm:space-y-32 px-4">
         <BlurFade delay={BLUR_FADE_DELAY} inView>
           <section id="hero">

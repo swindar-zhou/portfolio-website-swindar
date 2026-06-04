@@ -55,7 +55,7 @@ export default function Hero() {
                                     src={profilePic}
                                     alt="Swindar Zhou"
                                     priority
-                                    className="h-full w-full rounded-full object-cover grayscale transition-[filter] duration-300 group-hover:grayscale-0"
+                                    className="h-full w-full rounded-full object-cover ring-2 ring-amber-300/0 transition-all duration-300 group-hover:ring-[6px] group-hover:ring-amber-300/80 group-hover:shadow-[0_0_28px_rgba(251,191,36,0.6)]"
                                 />
                             </BackgroundGradient>
                             <ShimmerButton onClick={handleShimmerButtonClick} className="z-50 mt-8">
@@ -80,11 +80,11 @@ export default function Hero() {
                         </div>
                         <div className="w-full space-y-6">
                             <BlurFade delay={0.005 * 1} inView>
-                                <p className="z-50 subpixel-antialiased leading-[1.8] text-5xl sm:text-7xl font-bold text-center whitespace-nowrap">
+                                <p className="z-50 subpixel-antialiased leading-[1.8] text-5xl sm:text-7xl font-bold text-center">
                                     <span className="inline-block pb-2 bg-gradient-to-b from-stone-200 dark:from-stone-50 to-stone-900 dark:to-stone-300 bg-clip-text text-transparent">
                                         Hi. I&#39;m{" "}
                                         <AnimatedName
-                                            name="Swindar"
+                                            name="Swindar Zhou"
                                             className="font-script font-normal text-[1.05em] leading-none align-baseline"
                                         />
                                     </span>

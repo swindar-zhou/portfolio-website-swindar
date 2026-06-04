@@ -177,6 +177,24 @@ body {
   --color-4: oklch(88% 0.14 215);
   --color-5: oklch(83% 0.15 210);
 }
+/*
+ * Light-mode backdrop — a warm, swirling wash inspired by Van Gogh's
+ * "Starry Night": golden moon/star glows layered over soft cobalt blues on a
+ * cream base. Painted on <body> with fixed attachment so it stays put while
+ * the page scrolls; the page + footer wrappers are transparent in light mode
+ * so this shows through. Dark mode keeps the solid background.
+ */
+html:not(.dark) body {
+  background-image:
+    radial-gradient(60% 50% at 12% 8%, rgba(255, 208, 120, 0.40), transparent 70%),
+    radial-gradient(55% 48% at 88% 10%, rgba(96, 150, 214, 0.34), transparent 70%),
+    radial-gradient(72% 62% at 72% 78%, rgba(126, 182, 222, 0.30), transparent 75%),
+    radial-gradient(52% 50% at 22% 92%, rgba(255, 190, 118, 0.26), transparent 72%),
+    radial-gradient(42% 38% at 50% 42%, rgba(168, 204, 233, 0.20), transparent 78%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 /* Left fade effect */
 .fade-mask-left {
   position: absolute;
