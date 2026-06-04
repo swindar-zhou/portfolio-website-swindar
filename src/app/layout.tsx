@@ -31,13 +31,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://swindarzhou.com"),
   title: "Swindar Zhou - Full Stack Developer",
   description: "A portfolio showcasing my work as a full stack developer and co-founder.",
-  icons: {
-    icon: [
-      { url: "/swindar-icon.png", type: "image/png" },
-      { url: "/favicon.ico" },
-    ],
-    apple: [{ url: "/swindar-icon.png" }],
-  },
   openGraph: {
     type: "website",
     url: "https://swindarzhou.com",

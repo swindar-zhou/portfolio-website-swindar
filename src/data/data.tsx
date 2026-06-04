@@ -119,6 +119,17 @@ export const data = {
       description: "Scraped and structured maternal-health program data from 58 California counties (2,852 records); built a ZIP-code-queryable RAG interface surfacing programs missing from federal registries. Presented at the RISE AI Conference.",
       image: "/projects/maternal-health.png",
     },
+    {
+      title: "StylePilot.ai",
+      href: "#",
+      dates: "Oct - Dec 2025",
+      active: false,
+      category: "AI Products",
+      type: "Mobile Application",
+      technologies: ["React Native", "FastAPI", "AWS", "pgvector", "Gemini API"],
+      description: "AI personal styling copilot that digitizes your wardrobe and generates daily outfit recommendations based on weather, events, and style preferences. 2nd Place — AI Product Incubator Demo Day.",
+      image: "/projects/stylepilot.png",
+    },
 
     // --- Ventures & Community ---
     {
