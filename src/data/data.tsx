@@ -88,7 +88,7 @@ export const data = {
     // --- AI Products ---
     {
       title: "ROSYY",
-      href: "#",
+      href: "https://apps.apple.com/pl/app/rosyy/id6756865562",
       dates: "Jan 2026 - Present",
       active: true,
       category: "AI Products",
@@ -121,7 +121,7 @@ export const data = {
     },
     {
       title: "StylePilot.ai",
-      href: "#",
+      href: "https://stylepilot.ai/",
       dates: "Oct - Dec 2025",
       active: false,
       category: "AI Products",
@@ -134,7 +134,7 @@ export const data = {
     // --- Ventures & Community ---
     {
       title: "iGEM@ND — Fleur GLP-1 Probiotic Yogurt",
-      href: "https://2025.igem.wiki/notredame/",
+      href: "https://sites.google.com/nd.edu/igemnd/home",
       dates: "Sep 2024 - Nov 2025",
       active: false,
       category: "Ventures & Community",
