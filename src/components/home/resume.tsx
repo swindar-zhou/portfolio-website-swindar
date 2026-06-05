@@ -21,7 +21,7 @@ export default function Resume() {
       </BlurFade>
 
       <BlurFade delay={0.15} inView>
-        <div className="mb-6 flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-3">
           <a
             href={RESUME_URL}
             target="_blank"
@@ -39,23 +39,6 @@ export default function Resume() {
             <IconDownload className="h-4 w-4" />
             Download
           </a>
-        </div>
-      </BlurFade>
-
-      {/* Inline preview — desktop only (mobile browsers handle PDFs poorly inline) */}
-      <BlurFade delay={0.2} inView>
-        <div className="mx-auto hidden w-full max-w-3xl overflow-hidden rounded-xl border bg-muted shadow-sm sm:block">
-          <object
-            data={`${RESUME_URL}#view=FitH`}
-            type="application/pdf"
-            className="h-[85vh] w-full"
-          >
-            <iframe
-              src={RESUME_URL}
-              title="Swindar Zhou résumé"
-              className="h-[85vh] w-full"
-            />
-          </object>
         </div>
       </BlurFade>
     </div>
