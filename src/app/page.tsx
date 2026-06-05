@@ -3,6 +3,7 @@ import Experience from "@/components/home/experience"
 import Dashboard from "@/components/home/dashboard";
 import Projects from "@/components/home/projects"
 import Education from "@/components/home/education"
+import Resume from "@/components/home/resume"
 import Grind from "@/components/home/grind"
 import Water from "@/components/home/water"
 // import Writing from "@/components/home/writing"
@@ -57,6 +58,11 @@ export default function Home() {
         <BlurFade delay={BLUR_FADE_DELAY} inView>
           <section id="experience">
             <Experience />
+          </section>
+        </BlurFade>
+        <BlurFade delay={BLUR_FADE_DELAY} inView>
+          <section id="resume">
+            <Resume />
           </section>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY} inView>
