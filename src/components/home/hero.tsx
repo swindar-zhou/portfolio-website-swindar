@@ -90,9 +90,9 @@ export default function Hero() {
                                     </span>
                                 </p>
                                 <p className="text-base subpixel-antialiased tracking-tight font-medium sm:text-2xl text-center text-secondary-foreground">
-                                    Full Stack Developer &amp; Tech Lead{" "}
+                                    Co-founder &amp; CTO{" "}
                                     <span className="font-script font-normal text-[1.05em] leading-none align-baseline text-secondary-foreground">
-                                        @ AI Wellness Startup
+                                        @ Alora AI
                                     </span>
                                 </p>
                             </BlurFade>

@@ -29,19 +29,19 @@ const pacifico = Pacifico({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://swindarzhou.com"),
-  title: "Swindar Zhou - Full Stack Developer",
-  description: "A portfolio showcasing my work as a full stack developer and co-founder.",
+  title: "Swindar Zhou - Co-founder & CTO @ Alora AI",
+  description: "Swindar Zhou, Co-founder & CTO of Alora AI, building AI-native care coordination for health systems.",
   openGraph: {
     type: "website",
     url: "https://swindarzhou.com",
-    title: "Swindar Zhou — Full Stack Developer",
-    description: "Full Stack Developer & Co-Founder building products at the intersection of AI and health.",
+    title: "Swindar Zhou — Co-founder & CTO @ Alora AI",
+    description: "Co-founder & CTO @ Alora AI, building AI-native care coordination for health systems, starting with emergency hospital transfers.",
     siteName: "Swindar Zhou",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Swindar Zhou — Full Stack Developer",
-    description: "Full Stack Developer & Co-Founder building products at the intersection of AI and health.",
+    title: "Swindar Zhou — Co-founder & CTO @ Alora AI",
+    description: "Co-founder & CTO @ Alora AI, building AI-native care coordination for health systems, starting with emergency hospital transfers.",
   },
   alternates: {
     types: {

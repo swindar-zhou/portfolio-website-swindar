@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Swindar Zhou — Full Stack Developer";
+export const alt = "Swindar Zhou — Co-founder & CTO @ Alora AI";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -64,7 +64,7 @@ export default async function OGImage() {
                             letterSpacing: "-0.02em",
                         }}
                     >
-                        Full Stack Developer who likes building things.
+                        Co-founder & CTO @ Alora AI. Building AI-native care coordination.
                     </div>
                 </div>
 

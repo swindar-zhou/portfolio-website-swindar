@@ -111,7 +111,7 @@ export const Footer = () => {
                             Swindar Zhou
                         </p>
                         <p className="text-xs text-muted-foreground leading-relaxed max-w-xs">
-                            Full Stack Developer & Tech Lead, building thoughtful products at the intersection of AI, health, and great UX.
+                            Co-founder & CTO @ Alora AI, building thoughtful products at the intersection of AI, health, and great UX.
                         </p>
                     </div>
 

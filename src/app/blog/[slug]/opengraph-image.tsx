@@ -118,7 +118,7 @@ export default async function OGImage({ params }: Props) {
                         Swindar Zhou
                     </span>
                     <span>·</span>
-                    <span>Full Stack Developer</span>
+                    <span>Co-founder & CTO @ Alora AI</span>
                 </div>
             </div>
         ),

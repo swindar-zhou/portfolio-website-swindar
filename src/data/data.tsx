@@ -1,6 +1,15 @@
-import { IconHome, IconBrandGithub, IconBrush, IconBriefcase2, IconBrandLinkedin, IconMail, IconBarbell, IconRipple, IconFileCv } from "@tabler/icons-react"
+import { IconHome, IconBrandGithub, IconBrush, IconBriefcase2, IconBrandLinkedin, IconMail, IconBarbell, IconRipple } from "@tabler/icons-react"
 export const data = {
   experience: [
+    {
+      image: "/experience/alora.png",
+      company: "Alora AI",
+      role: "Co-founder & CTO",
+      date: "Jul 2026 - Present",
+      description: "Building AI-native care traffic control for health systems, starting with emergency hospital transfers: clinicians attach a patient record (OCR and clinical extraction with page-level evidence), pick a destination, and an AI agent calls the receiving hospital with a live transcript, mid-call instructions or takeover, and a structured summary with follow-ups.",
+      location: "Bay Area",
+      skills: ["TypeScript", "Node.js", "Voice AI (Retell)", "LLMs", "OCR & Clinical NLP", "GCP", "Firestore"],
+    },
     {
       image: "/experience/rosyy.png",
       company: "ROSYY (Stealth AI Startup)",
@@ -196,11 +205,6 @@ export const data = {
       name: "Experience",
       link: "experience",
       icon: <IconBriefcase2 className="subpixel-antialiased h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />,
-    },
-    {
-      name: "Resume",
-      link: "resume",
-      icon: <IconFileCv className="subpixel-antialiased h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:text-zinc-300 hover:dark:text-zinc-50 hover:animate-wiggle animate-wiggle transition-colors duration-100" />,
     },
     {
       name: "The Grind",
