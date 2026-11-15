@@ -10,6 +10,7 @@ const spots = [
   { image: "/water/shenzhen.jpg", caption: "Shenzhen Bay", sub: "Where I grew up" },
   { image: "/water/notre-dame-lake.jpg", caption: "St. Joseph's Lake", sub: "Notre Dame, IN" },
   { image: "/water/lake-michigan.jpg", caption: "Lake Michigan", sub: "Benton Harbor, MI" },
+  { image: "/water/golden-gate.jpg", caption: "Golden Gate", sub: "San Francisco, CA" },
 ];
 
 export default function Water() {
@@ -24,7 +25,7 @@ export default function Water() {
           is where I slow down, think, and reset.
         </p>
       </BlurFade>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {spots.map((spot, index) => (
           <BlurFade key={spot.caption} delay={0.15 + index * 0.05} inView>
             <div className="group relative aspect-[3/4] overflow-hidden rounded-xl border bg-muted">
@@ -32,7 +33,7 @@ export default function Water() {
                 src={spot.image}
                 alt={spot.caption}
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
