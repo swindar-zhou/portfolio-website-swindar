@@ -102,6 +102,7 @@ export const ExperienceItem = ({
           {description}
         </p>
       )}
+      {skills.length > 0 && (
       <div className="mt-4 flex flex-row flex-wrap gap-y-2 gap-x-2">
         {skills.map((skill, index) => (
           <BlurFade key={`${skill}-${index}`} delay={0.05 + index * 0.05} direction="up" inView>
@@ -113,6 +114,7 @@ export const ExperienceItem = ({
           </BlurFade>
         ))}
       </div>
+      )}
     </div>
   );
 };
