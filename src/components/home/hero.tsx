@@ -5,7 +5,6 @@ import profilePic from "@/images/profile.png"
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { HeroConstellation } from "@/components/ui/hero-constellation"
 import { BlurFade } from "@/components/ui/blur-fade";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { IconArrowRight } from "@tabler/icons-react";
 import { AnimatedName } from "@/components/ui/animated-name";
@@ -23,16 +22,10 @@ export default function Hero() {
 
     const [wiggleIcon, setWiggleIcon] = useState<string | null>(null);
 
-    const { status, dotColor } = getStatus();
-
     const handleIconClick = (iconName: string) => {
         setWiggleIcon(iconName);
         setTimeout(() => setWiggleIcon(null), 600);
     };
-
-    const handleShimmerButtonClick = () => {
-        handleIconClick("email");
-    }
 
     const ctaRef = useRef<HTMLAnchorElement>(null);
     const handleCtaMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -49,7 +42,7 @@ export default function Hero() {
             <TooltipProvider>
                 <BlurFade delay={0.005} inView>
                     <div className="relative flex-col space-y-1">
-                        <div className="relative flex flex-col items-center justify-center">
+                        <div className="relative flex flex-col items-center justify-center pb-8">
                             <BackgroundGradient className="z-50 h-32 w-32 sm:w-40 sm:h-40 md:w-40 md:h-40 ">
                                 <Image
                                     src={profilePic}
@@ -58,25 +51,6 @@ export default function Hero() {
                                     className="h-full w-full rounded-full object-cover ring-2 ring-amber-300/0 transition-all duration-300 group-hover:ring-[6px] group-hover:ring-amber-300/80 group-hover:shadow-[0_0_28px_rgba(251,191,36,0.6)]"
                                 />
                             </BackgroundGradient>
-                            <ShimmerButton onClick={handleShimmerButtonClick} className="z-50 mt-8">
-                                <div className="z-50 relative flex items-center justify-center">
-                                    <div
-                                        className={`absolute h-1.5 w-1.5 rounded-full border-1 ${dotColor === "green"
-                                            ? "border-green-600/80 bg-green-500 animate-ping"
-                                            : "border-orange-600/80 bg-orange-500 animate-ping"
-                                            } mr-2`}
-                                    ></div>
-                                    <div
-                                        className={`relative h-1 w-1 rounded-full border-1 ${dotColor === "green"
-                                            ? "border-green-600/80 bg-green-500 animate-pulse"
-                                            : "border-orange-600/80 bg-orange-500 animate-pulse"
-                                            } mr-2`}
-                                    ></div>
-                                </div>
-                                <span className="whitespace-pre-wrap text-center font-semibold leading-none text-muted-foreground text-xs sm:text-base py-[0.5]">
-                                    {status}
-                                </span>
-                            </ShimmerButton>
                         </div>
                         <div className="w-full space-y-6">
                             <BlurFade delay={0.005 * 1} inView>
@@ -127,23 +101,6 @@ export default function Hero() {
         </div>
     );
 }
-
-const getStatus = () => {
-    const now = new Date();
-    const localTime = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/Los_Angeles",
-        hour: "numeric",
-        hour12: false,
-    }).format(now);
-
-    const currentHour = parseInt(localTime, 10);
-
-    if (currentHour >= 8 && currentHour < 22) {
-        return { status: "Available", dotColor: "green" };
-    } else {
-        return { status: "Away", dotColor: "amber" };
-    }
-};
 
 
 const iconClass = (label: string, wiggleIcon: string | null) =>
