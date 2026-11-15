@@ -34,13 +34,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://swindarzhou.com",
-    title: "Swindar Zhou — Co-founder & CTO @ Alora AI",
+    title: "Swindar Zhou - Co-founder & CTO @ Alora AI",
     description: "Co-founder & CTO @ Alora AI, building AI-native care coordination for health systems, starting with emergency hospital transfers.",
     siteName: "Swindar Zhou",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Swindar Zhou — Co-founder & CTO @ Alora AI",
+    title: "Swindar Zhou - Co-founder & CTO @ Alora AI",
     description: "Co-founder & CTO @ Alora AI, building AI-native care coordination for health systems, starting with emergency hospital transfers.",
   },
   alternates: {

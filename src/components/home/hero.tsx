@@ -77,7 +77,9 @@ export default function Hero() {
                                     <a
                                         ref={ctaRef}
                                         onMouseMove={handleCtaMove}
-                                        href="#projects"
+                                        href="https://callalora.ai"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-stone-300/60 dark:border-stone-700/60 bg-background/40 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-secondary-foreground transition-colors hover:text-foreground"
                                     >
                                         <span
@@ -88,7 +90,7 @@ export default function Hero() {
                                                     "radial-gradient(120px circle at var(--mx, 50%) var(--my, 50%), currentColor, transparent 60%)",
                                             }}
                                         />
-                                        <span className="relative">View my work</span>
+                                        <span className="relative">Check out my startup</span>
                                         <IconArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                                         <BorderBeam size={60} duration={5} />
                                     </a>

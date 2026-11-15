@@ -6,7 +6,7 @@ import { IconArrowLeft, IconArrowUpRight } from "@tabler/icons-react";
 import { TransitionLink } from "@/components/ui/transition-link";
 
 export const metadata = {
-  title: "Blog — Swindar Zhou",
+  title: "Blog - Swindar Zhou",
   description: "Thoughts on software engineering, projects, and more.",
 };
 

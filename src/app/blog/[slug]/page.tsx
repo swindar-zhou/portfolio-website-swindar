@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug);
   if (!post) return {};
   return {
-    title: `${post.title} — Swindar Zhou`,
+    title: `${post.title} - Swindar Zhou`,
     description: post.description,
     openGraph: {
       type: "article",
@@ -52,7 +52,7 @@ export default async function BlogPostPage({ params }: Props) {
       {/*
         Grid layout at xl+: [spacer | article (672px) | TOC sidebar].
         Sticky (not fixed) means the TOC scrolls naturally with the article
-        and disappears when the article ends — so it never overlaps the
+        and disappears when the article ends - so it never overlaps the
         footer below. Below xl, the grid collapses to a single column and
         the TOC is hidden.
       */}

@@ -116,7 +116,7 @@ function AnimatedDots({ desktopDots = 1500, mobileDots = 250 }: { desktopDots?: 
       const radiusSq = MOUSE_RADIUS * MOUSE_RADIUS;
 
       for (const dot of dots) {
-        // Mouse interaction — repel + slight swirl
+        // Mouse interaction - repel + slight swirl
         const dmx = dot.x - mouseX;
         const dmy = dot.y - mouseY;
         const distSq = dmx * dmx + dmy * dmy;
@@ -179,7 +179,7 @@ function AnimatedDots({ desktopDots = 1500, mobileDots = 250 }: { desktopDots?: 
         lastWidth = window.innerWidth;
         resize();
         // Only reshuffle dots when width actually changes (e.g. orientation change).
-        // Mobile address-bar show/hide fires resize but only changes height — keep dots stable.
+        // Mobile address-bar show/hide fires resize but only changes height - keep dots stable.
         if (widthChanged) {
           initDots();
         }

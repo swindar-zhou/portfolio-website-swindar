@@ -19,7 +19,7 @@ export default function Education() {
             role="M.S. in Bioengineering (AI + Healthcare)"
             date="Expected May 2027"
             location="Stanford, CA"
-            skills={["Bioengineering", "Machine Learning", "Research", "Python"]}
+            skills={[]}
             href="https://www.stanford.edu"
           />
         </BlurFade>
@@ -30,7 +30,7 @@ export default function Education() {
             role="B.S. in Computer Science"
             date="Graduated May 2026"
             location="Notre Dame, IN"
-            skills={["Python", "JavaScript", "TypeScript", "Swift", "SQL", "AI/ML"]}
+            skills={[]}
             href="https://www.nd.edu"
           />
         </BlurFade>

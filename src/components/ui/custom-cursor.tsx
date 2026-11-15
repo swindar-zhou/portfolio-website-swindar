@@ -92,7 +92,7 @@ export function CustomCursor() {
         targetAngle = Math.max(-0.35, Math.min(0.35, vx * 0.02));
       }
 
-      // Angular spring — soft swing toward target, no wild oscillation.
+      // Angular spring - soft swing toward target, no wild oscillation.
       // Wrap delta to [-π, π] so the airplane crossing ±π takes the short path
       // (otherwise tiny vy noise while moving left flips target between +π and
       // -π and the spring spins all the way around).

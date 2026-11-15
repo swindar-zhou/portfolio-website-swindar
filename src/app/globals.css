@@ -178,7 +178,7 @@ body {
   --color-5: oklch(83% 0.15 210);
 }
 /*
- * Light-mode backdrop — a warm, swirling wash inspired by Van Gogh's
+ * Light-mode backdrop - a warm, swirling wash inspired by Van Gogh's
  * "Starry Night": golden moon/star glows layered over soft cobalt blues on a
  * cream base. Painted on <body> with fixed attachment so it stays put while
  * the page scrolls; the page + footer wrappers are transparent in light mode
@@ -196,7 +196,7 @@ html:not(.dark) body {
 }
 
 /*
- * Dark-mode backdrop — a galaxy: soft purple/blue nebula glows plus several
+ * Dark-mode backdrop - a galaxy: soft purple/blue nebula glows plus several
  * tiled star layers at different sizes/offsets so the field doesn't look
  * gridded. Painted on <body> with fixed attachment (page + footer wrappers are
  * transparent so this shows through). Light mode uses the warm gradient above.
@@ -250,7 +250,7 @@ html.dark body {
   }
 }
 
-/* View Transitions — used when navigating between the blog list and a
+/* View Transitions - used when navigating between the blog list and a
  * blog post. Per-slug `view-transition-name` values on the post title morph
  * the heading's bounding rect from list item to article heading. The rest
  * of the page cross-fades via the default `root` transition.

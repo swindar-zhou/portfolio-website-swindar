@@ -23,8 +23,8 @@ export function TableOfContents({ headings }: Props) {
 
         let rafId: number | null = null;
 
-        // Compute each heading's "activation point" — the scrollY value at
-        // which it should become active — and pick the latest heading whose
+        // Compute each heading's "activation point" - the scrollY value at
+        // which it should become active - and pick the latest heading whose
         // activation point has been passed.
         //
         // On TALL articles, each activation point is the natural one (where
@@ -35,7 +35,7 @@ export function TableOfContents({ headings }: Props) {
         // into the band. Without compensation, only the first heading ever
         // activates naturally and the bar appears to jump directly to the
         // last when bottom-of-page is hit. Solution: scale the natural points
-        // proportionally so the last heading activates exactly at maxScroll —
+        // proportionally so the last heading activates exactly at maxScroll -
         // intermediate headings end up evenly distributed across the
         // available scroll range and the bar steps through them in order.
         function update() {
@@ -66,7 +66,7 @@ export function TableOfContents({ headings }: Props) {
 
             // Bail out and reset to first heading when either:
             //  - No headings have been rendered to the DOM yet (e.g. client-
-            //    side nav timing — useEffect fires before the markdown's
+            //    side nav timing - useEffect fires before the markdown's
             //    h2/h3 IDs are queryable). Without this, every natural point
             //    is 0, the loop below marks every heading "reached" at
             //    scrollY=0, and activeIdx lands on the last heading.
@@ -76,7 +76,7 @@ export function TableOfContents({ headings }: Props) {
             if (!foundAny || lastNatural === 0) {
                 setActiveSlug(headings[0].slug);
                 if (!foundAny) {
-                    // DOM may catch up — retry once on the next frame.
+                    // DOM may catch up - retry once on the next frame.
                     rafId = requestAnimationFrame(update);
                 }
                 return;

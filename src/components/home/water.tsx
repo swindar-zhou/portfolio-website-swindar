@@ -5,7 +5,7 @@ import { IconRipple } from "@tabler/icons-react";
 import { SectionHeading, headingIconClass } from "@/components/layout/section-heading";
 import { BlurFade } from "@/components/ui/blur-fade";
 
-// Sea & lakes — places I go to reset. Swap photos in /public/water/.
+// Sea & lakes - places I go to reset. Swap photos in /public/water/.
 const spots = [
   { image: "/water/shenzhen.jpg", caption: "Shenzhen Bay", sub: "Where I grew up" },
   { image: "/water/notre-dame-lake.jpg", caption: "St. Joseph's Lake", sub: "Notre Dame, IN" },
@@ -21,7 +21,7 @@ export default function Water() {
       </SectionHeading>
       <BlurFade delay={0.1} inView>
         <p className="mx-auto mb-8 max-w-2xl text-center text-pretty text-sm sm:text-base text-muted-foreground">
-          From the bay I grew up on to the lakes I find wherever I land — water
+          From the bay I grew up on to the lakes I find wherever I land - water
           is where I slow down, think, and reset.
         </p>
       </BlurFade>

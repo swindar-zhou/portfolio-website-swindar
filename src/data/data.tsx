@@ -16,7 +16,7 @@ export const data = {
       company: "ROSYY (Stealth AI Startup)",
       role: "Engineering Lead / Tech Lead & PM",
       date: "Jan 2026 - May 2026",
-      description: "Building a perinatal wellness iOS app for mothers with postpartum depression — an AI chatbot paired with human coaching, with tiered monetization via Apple IAP and Stripe.",
+      description: "Building a perinatal wellness iOS app for mothers with postpartum depression - an AI chatbot paired with human coaching, with tiered monetization via Apple IAP and Stripe.",
       location: "Remote / Bay Area",
       skills: ["SwiftUI", "SwiftData", "Claude API", "OpenAI API", "Stripe", "StoreKit 2"],
     },
@@ -31,16 +31,16 @@ export const data = {
     },
     {
       image: "/experience/sprinthack.jpeg",
-      company: "SprintHack@ND — IDEA Center",
+      company: "SprintHack@ND - IDEA Center",
       role: "Co-Founder & Organizer",
       date: "Aug 2025 - May 2026",
-      description: "Founded Notre Dame's first AI hackathon — sold out at 60 people with $5K in prizes and judges from Google, Amazon, Replit, and top VCs; converted it into a recurring demo day and builder community.",
+      description: "Founded Notre Dame's first AI hackathon - sold out at 60 people with $5K in prizes and judges from Google, Amazon, Replit, and top VCs; converted it into a recurring demo day and builder community.",
       location: "South Bend, IN",
       skills: ["Community Building", "Event Production", "Sponsor Relations"],
     },
     {
       image: "/experience/ideacenter.png",
-      company: "IDEA Center — Race to Revenue",
+      company: "IDEA Center - Race to Revenue",
       role: "Lead Product Manager Intern",
       date: "May 2025 - Aug 2025",
       description: "Led AI/LLM product builds for pre-seed startups; drove $5M+ pipeline value and reduced LLM response latency 70% via prompt engineering and caching.",
@@ -85,7 +85,7 @@ export const data = {
     },
     {
       image: "/experience/ndnano.jpeg",
-      company: "NDnano — Nanoscience & Technology Center",
+      company: "NDnano - Nanoscience & Technology Center",
       role: "Undergraduate Researcher / ML & Data Engineer",
       date: "Jun 2024 - Mar 2025",
       description: "Co-authored a bioRxiv preprint on real-time electrochemical signal processing; built automated peak detection reducing manual analysis from 3 hours to under 1 second.",
@@ -115,7 +115,7 @@ export const data = {
       category: "AI Products",
       type: "Web Application",
       technologies: ["Next.js 14", "FastAPI", "OpenAI Embeddings", "D3.js", "Vercel", "Railway"],
-      description: "AI research-mentor discovery tool built in 48 hours — semantic faculty matching via OpenAI embeddings, an interactive D3.js force-directed graph, and one-click cold-outreach email generation. Honorable Mention — Hesburgh Libraries Hackathon.",
+      description: "AI research-mentor discovery tool built in 48 hours - semantic faculty matching via OpenAI embeddings, an interactive D3.js force-directed graph, and one-click cold-outreach email generation. Honorable Mention - Hesburgh Libraries Hackathon.",
       image: "/projects/matchlab.png",
     },
     {
@@ -137,13 +137,13 @@ export const data = {
       category: "AI Products",
       type: "Mobile Application",
       technologies: ["React Native", "FastAPI", "AWS", "pgvector", "Gemini API"],
-      description: "AI personal styling copilot that digitizes your wardrobe and generates daily outfit recommendations based on weather, events, and style preferences. 2nd Place — AI Product Incubator Demo Day.",
+      description: "AI personal styling copilot that digitizes your wardrobe and generates daily outfit recommendations based on weather, events, and style preferences. 2nd Place - AI Product Incubator Demo Day.",
       image: "/projects/stylepilot.png",
     },
 
     // --- Ventures & Community ---
     {
-      title: "iGEM@ND — Fleur GLP-1 Probiotic Yogurt",
+      title: "iGEM@ND - Fleur GLP-1 Probiotic Yogurt",
       href: "https://sites.google.com/nd.edu/igemnd/home",
       dates: "Sep 2024 - Nov 2025",
       active: false,
@@ -161,12 +161,12 @@ export const data = {
       category: "Ventures & Community",
       type: "Community & Events",
       technologies: ["Event Production", "Community Organizing"],
-      description: "Notre Dame's first AI hackathon — 60 participants, $5K in prizes, 12 projects built in a day, judges from Google/Amazon/Replit/VC. One team's AI food-pantry platform was later featured in Vatican News.",
+      description: "Notre Dame's first AI hackathon - 60 participants, $5K in prizes, 12 projects built in a day, judges from Google/Amazon/Replit/VC. One team's AI food-pantry platform was later featured in Vatican News.",
       image: "/projects/sprinthack.jpeg",
     },
   ],
 
-  // Ordered list of project categories — Projects renders one subsection per
+  // Ordered list of project categories - Projects renders one subsection per
   // entry, in this order, filtering data.projects by `category`.
   projectCategories: ["AI Products", "Ventures & Community"],
 

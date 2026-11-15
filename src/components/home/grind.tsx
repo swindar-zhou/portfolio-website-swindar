@@ -12,8 +12,8 @@ const pursuits = [
     image: "/grind/running.png",
     imagePosition: "object-[center_50%]",
     blurb:
-      "Long-distance runner — the miles are where I think clearest. Training is the same loop as building product: show up, log the reps, chase the next PR.",
-    stat: "Notre Dame Holy Half — 13.1 mi",
+      "Long-distance runner - the miles are where I think clearest. Training is the same loop as building product: show up, log the reps, chase the next PR.",
+    stat: "Notre Dame Holy Half - 13.1 mi",
   },
   {
     icon: IconBarbell,
@@ -21,7 +21,7 @@ const pursuits = [
     image: "/grind/boxing.jpg",
     imagePosition: "object-center",
     blurb:
-      "Competitive boxer — footwork, timing, and the discipline of the ring. It keeps me sharp under pressure and comfortable being uncomfortable.",
+      "Competitive boxer - footwork, timing, and the discipline of the ring. It keeps me sharp under pressure and comfortable being uncomfortable.",
     stat: "Notre Dame Boxing Club",
   },
 ];
@@ -35,7 +35,7 @@ export default function Grind() {
       <BlurFade delay={0.1} inView>
         <p className="mx-auto mb-8 max-w-2xl text-center text-pretty text-sm sm:text-base text-muted-foreground">
           Outside of building, I train. Endurance on the road and impact in the
-          ring — the same discipline that ships products.
+          ring - the same discipline that ships products.
         </p>
       </BlurFade>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
